@@ -1,0 +1,53 @@
+/* 
+    Created on : Oct 24, 2014, 2:05:35 PM
+    Author     : robertsegura
+*/
+
+.dropzone .dz-default.dz-message {
+    background-image: none;
+    font-size: 24px;
+    text-align: center;
+    line-height: 32px;
+    left: 0;
+    width: 100%;
+    margin-left: auto;
+}
+
+.dropzone .dz-default.dz-message span {
+    display: inline;
+    color: #555;
+}
+
+.bigger-150 {
+    font-size: 150%!important;
+}
+
+.bolder {
+    font-weight: bolder;
+}
+
+.red {
+    color: #dd5a43!important;
+}
+
+.ace-icon {
+    text-align: center;
+}
+
+.smaller-80 {
+    font-size: 80%!important;
+}
+
+.grey {
+    color: #777!important;
+}
+
+.dropzone .dz-default.dz-message span .upload-icon {
+    opacity: .7;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.blue {
+    color: #478FCA!important;
+}

@@ -1,0 +1,116 @@
+<div ng-controller="propertyTemplateController" class="panel-heading">
+    <h4 class="panel-title profile-header">
+        <span class="accordion-toggle property-panel" data-toggle="collapse" data-parent="#propertyTemplates_{{propNest}}" href="#property_{{item}}" style="display: inline-block">
+            <i class="fa accordion-caret"></i>
+            <i class="fa faq-accordion-caret"></i>
+            <span popover="Type: {{propertyTemplate.type || 'None'}}"
+        popover-title="Property URI: {{propertyTemplate.propertyURI || 'Undefined'}}"
+        popover-placement="right" popover-trigger="mouseenter">{{ propertyTemplate.propertyLabel || "Property Template"}}
+            </span>
+            <i id="error" class="fa fa-exclamation red" ng-show="propertyForm.$invalid || !propertyValid(propertyTemplate)"></i>
+        </span>
+        
+        <a id="propertyChoose" class="pull-right" data-toggle="modal" href="#chooseResource" ng-click="updateChosenProperty(propertyTemplate);" onclick="event.returnValue = false; return false;">
+            <i class="fa fa-bars"></i>
+            {{!propertyTemplate.propertyURI ? "Select Property" : "Change Property" }}
+        </a>
+        
+        <a id="deleteIcon" href="#" ng-click="verifyDelete(deleteProperty)" class="pull-right" onclick="event.returnValue = false; return false;">
+            <i class="fa fa-trash-o"></i>
+            Delete {{propertyTemplate.propertyLabel || "Property Template"}}
+        </a>
+    </h4>
+</div>
+
+<div ng-controller="propertyTemplateController" id="property_{{item}}" class="panel-collapse collapse">
+    <div class="panel-body">
+        
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="propertyURI">Property URI</label>
+                    </td>
+                    <td>
+                        <input type="url" name="propertyURI" ng-model="propertyTemplate.propertyURI" required
+                               popover="URI of the RDF property being described"
+                               popover-title="Property URI" popover-trigger="mouseenter"
+                               popover-placement="right"/>
+                        <div class="error" style="display: inline-block;" ng-show="propertyForm.propertyURI.$error.required">
+                            <i class="fa fa-warning red"></i>
+                        </div>
+                        <div class="error" ng-show="!propertyForm.propertyURI.$error.required && propertyForm.propertyURI.$dirty && propertyForm.propertyURI.$invalid">
+                           <small class="error">url is invalid</small>
+                        </div> 
+                    </td>
+                    <td>
+                        <label for="propertyLabel">Property Label</label>
+                    </td>
+                    <td>
+                        <input name="propertyLabel" ng-model="propertyTemplate.propertyLabel"
+                                popover="Preferred, human readable label associated with the property."
+                                popover-title="Property Label" popover-trigger="mouseenter"
+                                popover-placement="left"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="type">Type</label>
+                    </td>
+                    <td>
+                        <input name="type" ng-model="propertyTemplate.type"
+                               popover="Type or value that is allowed by this property."
+                               popover-title="Type" popover-trigger="mouseenter"
+                               popover-placement="right"/>
+                    </td>
+                    <td>
+                        <label for="remark">Guiding statement for the use of this resource</label>
+                    </td>
+                    <td>
+                        <input name="remark" ng-model="propertyTemplate.remark"
+                               popover="Comment or guiding statement intended to be presented as supplementary information in user display"
+                               popover-title="Property Remark" popover-trigger="mouseenter"
+                               popover-placement="left"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mandatory">Mandatory</label>
+                    </td>
+                    <td>
+                        <select name="mandatory" ng-options="option.key as option.label for option in options"
+                                ng-required ng-model="propertyTemplate.mandatory"
+                                popover="indication that the property is mandatory"
+                                popover-title="Mandatory" popover-trigger="mouseenter"
+                                popover-placement="right">
+                        </select>
+                    </td>
+                    <td>
+                        <label for="repeatable">Repeatable</label>
+                    </td>
+                    <td>
+                        <select name="repeatable" ng-options="option.key as option.label for option in options"
+                                ng-required ng-model="propertyTemplate.repeatable"
+                                popover="Indication that the property is repeatable"
+                                popover-title="Repeatable" popover-trigger="mouseenter"
+                                popover-placement="left">
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="valueConstraints" class="propertyItems">
+            <div ng-repeat="field in propertyFields" sss-field item={{field}} html='html/valueConstraint.html'></div>
+        </div>
+
+        <div id="propertyResources">
+            <h5>Resources</h5>
+            <div id="resources_{{resNest}}" class="resources panel-group accordion-panel" ui-sortable="propResourceSortOption" ng-model="resources">
+                <div ng-form novalidate name="resourceForm" class="panel panel-default" ng-repeat="field in resources" sss-field item={{field}} html='html/resourceTemplate.html'></div>
+            </div>
+            <button class="btn btn-secondary" ng-click="addPropertyResource();" onclick="return false;">Add Resource</button>
+        </div>
+        
+    </div>
+</div>

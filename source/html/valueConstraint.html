@@ -1,0 +1,98 @@
+<div ng-controller="ValueConstraintController">
+    
+    <h5 id="constraintHeader">Value Constraint</h5>
+    
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label for="valueLanguage">Value Language</label>
+                </td>
+                <td>
+                    <input name="valueLanguage" ng-model="valueConstraint.valueLanguage"
+                           popover="Language specified for a literal"
+                           popover-title="Value Language" popover-trigger="mouseenter"
+                           popover-placement="right"/>
+                </td>
+                <td>
+                    <label for="languageURI">Language URI</label>
+                </td>
+                <td>
+                    <select name="languageURI" ng-model="valueConstraint.languageURI"
+                            popover="URI associated with the language of the literal"
+                            popover-title="Language URI" popover-trigger="mouseenter"
+                            popover-placement="left" ng-options="option.value as option.key for option in languages">
+                    </select>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="languageLabel">Language Label</label>
+                </td>
+                <td>
+                    <input name="languageLabel" ng-model="valueConstraint.languageLabel"
+                           popover="Preferred, human readable label associated with the language of the literal."
+                           popover-title="Language Label" popover-trigger="mouseenter"
+                           popover-placement="right"/>
+                </td>
+                <td>
+                    <label for="remark">Remark</label>
+                </td>
+                <td>
+                    <input name="remark" ng-model="valueConstraint.remark"
+                           popover="Comment or guiding statement intended to be presented as supplementary information in user display"
+                           popover-title="Value Constraint Remark" popover-trigger="mouseenter"
+                           popover-placement="left"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="editable">Editable</label>
+                </td>
+                <td>
+                    <select name="editable" ng-options="option.key as option.label for option in options"
+                            ng-required ng-model="valueConstraint.editable"
+                            popover="Whether the value provided for the property is meant to be modified by a cataloguer. If not, the specified default value is in effect fixed"
+                            popover-title="Editable" popover-trigger="mouseenter"
+                            popover-placement="right">
+                    </select>
+                </td>
+                <td>
+                    <label for="editable">Repeatable</label>
+                </td>
+                <td>
+                    <select name="editable" ng-options="option.key as option.label for option in options"
+                            ng-required ng-model="valueConstraint.repeatable"
+                            popover="Indication that the value constraint is repeatable"
+                            popover-title="Repeatable" popover-trigger="mouseenter"
+                            popover-placement="right">
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div id="valueDataType" class="propertyItems">
+        <div ng-repeat="field in constraintFields" sss-field item="{{field}}" html='html/valueDataType.html'></div>
+    </div>
+    
+    <div id="template" class="propertyItems">
+        <h5>Templates</h5>
+        <div class="listItems" ng-repeat="field in templateFields" sss-field item="{{field}}" html='html/template.html'></div>
+        <a id="addTemplate" ng-click="addTemplate()" style="display: block;">
+            <i class="fa fa-plus"></i>
+            Add Template
+        </a>   
+    </div>
+    
+    <div id="value" class="propertyItems">
+        <h5>Values</h5>
+        <div class="listItems" ng-repeat="field in valueFields" sss-field item="{{field}}" html='html/value.html'></div>
+        <a id="adValue" ng-click="addValue()" style="display: block;">
+            <i class="fa fa-plus"></i>
+            Add Value
+        </a>
+        
+    </div>
+</div>

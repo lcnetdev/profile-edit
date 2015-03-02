@@ -1,0 +1,72 @@
+/* ========================================================
+*
+* MVP Ready - Lightweight & Responsive Admin Template
+*
+* ========================================================
+*
+* File: mvpready-flat.css
+* Theme Version: 1.1.0
+* Bootstrap Version: 3.1.1
+* Author: Jumpstart Themes
+* Website: http://mvpready.com
+*
+* ======================================================== */
+.navbar {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.btn {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.alert {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.progress-bar {
+  background-image: none;
+  -ms-filter: none;
+  filter: none;
+}
+.table-bordered thead tr,
+.table-bordered tfoot tr {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.accordion-boxed .accordion-toggle {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.accordion-boxed .panel.is-open .accordion-toggle {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.modal-styled .modal-header {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-image: none;
+  background-repeat: no-repeat;
+  -ms-filter: none;
+  filter: none;
+}

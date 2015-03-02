@@ -1,0 +1,400 @@
+
+<div id="styledModal" sss-closeModal class="modal modal-styled fade in" aria-hidden="true" style="display: none" ng-controller="importController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title">Import Data</h3>
+            </div>
+            
+            <div class="modal-body" sss-drop>
+                <form action="./dummy.html" class="dropzone dz-clickable" id="dropzone">
+                    <div class="dz-default dz-message">
+                        <span>
+                            <span class="bigger-150 bolder">
+                                <i class="ace-icon fa fa-caret-right red"></i>
+                                Drop file
+                            </span>
+                            to upload
+                            <br>
+                            <i ng-file-select="onFileSelect($files)" class="upload-icon ace-icon fa fa-cloud-upload blue fa-3x"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            
+            
+            <div class="modal-footer">
+                <button id="importCloseButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deleteModal" sss-delete class="modal modal-styled fade in" aria-hidden="true" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="closeDelete" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3>Are you Sure?</h3>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-secondary" ng-click="confirm();" onclick="$('#closeDelete').click();">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" onclick="$('#closeDelete').click();">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chooseResource" sss-closeChooseResource class="modal modal-styled fade in" aria-hidden="true" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="chooserClose" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title">{{vocabHeader || "Chose Vocab Template"}}</h3>
+            </div>
+            <div class="modal-body">
+                <!--Put the select in a div so that ff styles it correctly-->
+                <div id="select_box_holder">
+                    <select name="chooseVocab" ng-options="option.value as option.key for option in selectData"
+                        ng-model="sssSelected" ng-change="selectVocab();" class="form-control">
+                        <option value="" selected>Select Vocabulary File</option>
+                    </select>
+                </div>
+                
+                <form class="mainnav-form vocab-search" id="template_search_bar" role="search">
+                    <input type="text" name="search" class="form-control input-md mainnav-search-query" ng-model="searchText" placeholder="Search"/>
+                    <button ng-click="searchVocab()" class="btn btn-sm mainnav-form-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <select multiple id="resourcePick" name="chooseResource" class="form-control" ng-options="vocab as vocab.label for vocab in vocabData" ng-model="sssVocab" ng-change="fillData();">
+                        </select>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="alertBox" class="modal modal-styled fade in" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="alertClose" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title">Error!</h3>
+            </div>
+            <div class="modal-body">
+                <p id="alert_text"></p>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<div id="warningBox" class="modal modal-styled fade in" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title">Are you sure?</h3>
+            </div>
+            <div class="modal-body">
+                <p id="warning_text">
+                    {{message}}
+                    <br><br>
+                    {{confirmation}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default" ng-click="save()">
+                    <i class="fa fa-save" style="margin-right: 5px;"></i>
+                    Continue
+                </button>
+                <button id="warning_close" type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<div id="overrideBox" class="modal modal-styled fade in" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="warning_close_title">x</button>
+                <h3 class="modal-title">Change in Title</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    {{message}}
+                    <br><br>
+                    {{confirmation}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default" ng-click="deleteThenSave()">
+                    <i class="fa fa-save" style="margin-right: 5px;"></i>
+                    Yes, overwrite
+                </button>
+                <button type="button" class="btn btn-default" ng-click="save()">
+                    <i class="fa fa-copy" style="margin-right: 5px;"></i>
+                    No, make a copy
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="profileForm" ng-submit="checkTitle()" novalidate sss-alert sss-warning sss-override sss-datepicker>
+    <h3 class="portlet-title">
+        <u>{{profile.title || profile.id || "Profile"}}</u>
+    </h4>
+    <ul id="sssTab1" class="nav nav-tabs">
+        
+        <li class="nav-right btn-raised">
+            <button type="submit" class="btn btn-default">
+                <i class="fa fa-save" style="margin-right: 5px;"></i>
+                Save
+            </button>
+        </li>
+        <li class="nav-right pushed-right">
+            <button type="button" class="btn btn-default" ui-sref="profile.list">
+                <i class="fa fa-chevron-left" style="margin-right: 5px;"></i>
+                Cancel
+            </button>
+        </li>
+        
+    </ul>
+    
+    <div id="profile-panel" class="panel-group accordion-panel">
+        <div class="panel panel-default">
+            
+            <div class="panel-heading">
+                <h4 class="panel-title profile-header" sss-changeColor>
+                    <span id="profileBanner" class="accordion-toggle" data-toggle="collapse" data-parent="#profile-pane" href="#profile">
+                        <span popover="Date: {{getDisplayDate() || 'Undefined'}}"
+                    popover-title="Profile ID: {{profile.id || 'Undefined'}}"
+                    popover-placement="right" popover-trigger="mouseenter">Profile</span>
+                    </span>
+                </h4>
+            </div>
+            
+            <div id="profile" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="id">ID <!--[if lte IE 9]>
+                                                       <small>e.g., profile:MyRDAProfile</small>
+                                                       <![endif]--></label>
+                                </td>
+                                <td>
+                                    
+                                    <input name="id" ng-model="profile.id" required
+                                           popover="Unique identifier associated with the profile"
+                                           popover-title="Profile ID" popover-trigger="mouseenter"
+                                           popover-placement="right" placeholder="eg., profile:MyRDAProfile"
+                                           />
+                                    <div class="error" style="display: inline-block;" ng-show="profileForm.id.$error.required">
+                                        <i class="fa fa-warning red"></i>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <label for="title">Title</label>
+                                </td>
+                                <td>
+                                    <input name="title" ng-model="profile.title" required
+                                           popover="Textual title assoicated with the profile"
+                                           popover-title="Title" popover-trigger="mouseenter"
+                                           popover-placement="left"/>
+                                    <div class="error" style="display: inline-block;" ng-show="profileForm.title.$error.required">
+                                        <i class="fa fa-warning red"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="description">Description</label>
+                                </td>
+                                <td>
+                                    <input name="description" ng-model="profile.description"
+                                           popover="Textual description associated with the profile."
+                                           popover-title="Description" popover-trigger="mouseenter"
+                                           popover-placement="right"/>
+                                </td>
+
+                                <td>
+                                    <label for="date">Date</label>
+                                </td>
+                                <td>
+                                    <input type="text" name="date" ng-model="profile.date" 
+                                           popover="Date associated with the profile"
+                                           popover-title="Date" popover-trigger="mouseenter"
+                                           popover-placement="left" class="datepicker"/>
+                                    <div class="error" ng-show="profileForm.date.$dirty && profileForm.date.$invalid">
+                                       <small class="error">Date is invalid</small>
+                                   </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="contact">Contact</label>
+                                </td>
+                                <td>
+                                    <input name="contact" ng-model="profile.contact"
+                                           popover="Contact information associated with the profile."
+                                           popover-title="Contact" popover-trigger="mouseenter"
+                                           popover-placement="right"/>
+                                </td>
+
+                                <td>
+                                    <label for="remark">Remark</label>
+                                </td>
+                                <td>
+                                    <input name="remark" ng-model="profile.remark"
+                                           popover="Comment or guiding statement intended to be presented as supplementary information in user display."
+                                           popover-title="Remark" popover-trigger="mouseenter"
+                                           popover-placement="left"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div id="resourceTemplates_0" class="panel-group accordion-panel" ui-sortable="resourceSortOption" ng-model="fields">
+        <div ng-form novalidate name="resourceForm" class="panel panel-default" ng-repeat="field in fields" sss-field item={{field}} html='html/resourceTemplate.html'></div>
+    </div>
+    
+    <button id="addResource" class="btn btn-secondary" type="button" ng-click="addResource()"
+            popover="">
+        <i class="fa fa-plus" style="color: white; margin-right: 1em;"></i>
+        Add Resource Template
+    </button>
+    
+    <div ng-if="addPage">
+    
+        <!--[if IE]>
+        <a ng-controller="importController" ng-file-select="onFileSelect($files)" class="btn btn-default pull-right" href="#" onclick="event.returnValue = false; return false;">
+            <i class="fa fa-upload"></i>
+            Import
+        </a>
+        <![endif]-->
+
+        <!--[if !IE]> -->
+        <a class="btn btn-default pull-right" data-toggle="modal" href="#styledModal" onclick="return false;">
+            <i class="fa fa-upload"></i>
+            Import
+        </a>
+        <!-- <![endif]-->
+    
+    </div>
+    
+    <a class="btn btn-default pull-right pushed-right" href="#" sss-export onclick="event.returnValue = false; return false;">
+        <i class="fa fa-download"></i>
+        Export
+    </a>
+
+</form>
+
+<a id="alert_message" data-toggle="modal" href="#alertBox" onclick="return false;" style="display: none;"></a>
+<a id="warning_message" data-toggle="modal" href="#warningBox" onclick="return false;" style="display: none;"></a>
+<a id="override_message" data-toggle="modal" href="#overrideBox" onclick="return false;" style="display: none;"></a>
+<a id="delete_message" data-toggle="modal" href="#deleteModal" onclick="return false;" style="display: none;"></a>
+
+ <!--[if !IE]> -->
+<div id="glasscontainer" sss-loading>
+    <div id="glass-container">
+        <div id="glass">
+            <div class="top half-glass triangle"></div>
+            <div class="bottom half-glass triangle rotate"></div>
+        </div>
+        <div id="layer-1">
+            <div>
+                <div class="top layer-1 triangle"></div>
+            </div>
+            <div class="rotate">
+                <div class="bottom layer-1 triangle"></div>
+            </div>
+        </div>
+        <div id="layer-2">
+            <div>
+                <div class="top layer-2 triangle"></div>
+            </div>
+            <div class="rotate">
+                <div class="bottom layer-2 triangle"></div>
+            </div>
+        </div>
+        <div id="sand-stream"></div>
+        <div id="bond">
+            <div class="top bond triangle"></div>
+            <div class="bottom bond triangle"></div>
+        </div>
+    </div>
+</div>
+<!-- <![endif]-->
+
+<!--[if IE 9]>
+<div id="glasscontainer" sss-loading>
+    <div id="glass-container">
+        <div id="glass">
+            <div class="top half-glass triangle"></div>
+            <div class="bottom half-glass triangle rotate"></div>
+        </div>
+        <div id="layer-1">
+            <div>
+                <div class="top layer-1 triangle"></div>
+            </div>
+            <div class="rotate">
+                <div class="bottom layer-1 triangle"></div>
+            </div>
+        </div>
+        <div id="layer-2">
+            <div>
+                <div class="top layer-2 triangle"></div>
+            </div>
+            <div class="rotate">
+                <div class="bottom layer-2 triangle"></div>
+            </div>
+        </div>
+        <div id="sand-stream"></div>
+        <div id="bond">
+            <div class="top bond triangle"></div>
+            <div class="bottom bond triangle"></div>
+        </div>
+    </div>
+</div>
+<![endif]-->
+
+<!--[if lte IE 8]>
+    <div id="glasscontainer" sss-loading>
+        <div id="glass-container">
+            <div id="glass">
+                <div class="top half-glass triangle"></div>
+                <div class="bottom half-glass triangle rotate"></div>
+            </div>
+            <div id="layer-1">
+                <div>
+                    <div class="top layer-1 triangle"></div>
+                </div>
+            </div>
+            <div id="layer-2">
+                <div>
+                    <div class="bottom layer-2 triangle"></div>
+                </div>
+            </div>
+            <div id="sand-stream"></div>
+            <div id="bond">
+                <div class="top bond triangle"></div>
+                <div class="bottom bond triangle"></div>
+            </div>
+        </div>
+    </div>
+<![endif]-->

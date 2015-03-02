@@ -1,0 +1,194 @@
+/* Created By: rsegura 11/21/2014
+ * This file should only be loaded in the case the user
+ * is using Internet Explorer 8. This is designed to make
+ * certain h1, and ul tags behave similar to header and nav
+ * tags that do not exist in Internet Explorer 8.
+ */
+
+#wrapper {
+    background-color: #fcfcfc;
+}
+
+h1.headerTag {
+    padding: 10px;
+    width: 100%;
+    min-width: 1060px;
+}
+
+h1.headerTag span.bold {
+    font-weight: 700;
+}
+
+h1.headerTag span {
+    vertical-align: middle;
+    color: #FFF;
+    font-size: 18pt;
+    letter-spacing: 1px;
+}
+
+h1.headerTag p {
+    font-size: 13px;
+}
+
+h1.sss-large-min-width {
+    min-width: 1100px;
+}
+
+ul.navTag li {
+    display: inline-block;
+    font-size: 12pt;
+    margin-bottom: 0px;
+}
+
+#search_bar {
+    margin-top: -6.1em !important;
+}
+
+#search_bar button.btn, #chooseResource .btn {
+    top: 1px;
+}
+
+#search_bar button.btn {
+    margin-right: -2.3em;
+}
+
+h1.headerTag.footer {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    top: 0px;
+}
+
+/* ui-grid colors */
+.ui-grid-row:first-child .ui-grid-cell {
+    background-color: #F3F3F3;
+}
+
+.ui-grid-row:first-child + .ui-grid-row .ui-grid-cell {
+    background-color: #FDFDFD;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row .ui-grid-cell {
+    background-color: #F3F3F3;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row .ui-grid-cell {
+    background-color: #FDFDFD;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row .ui-grid-cell {
+    background-color: #F3F3F3;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row  .ui-grid-cell {
+    background-color: #FDFDFD;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row  .ui-grid-cell {
+    background-color: #F3F3F3;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row  .ui-grid-cell {
+    background-color: #FDFDFD;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row  .ui-grid-cell {
+    background-color: #F3F3F3;
+}
+
+.ui-grid-row:first-child + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row + .ui-grid-row  .ui-grid-cell {
+    background-color: #FDFDFD;
+}
+
+/* ui-grid CSS */
+.ui-grid-row, .ui-grid-cell, .ui-grid-cell .ui-grid-vertical-bar {
+    height: 30px !important;
+}
+
+.ui-grid-row:last-child .ui-grid-cell {
+    border-bottom-width: 0px !important;
+}
+
+.ui-grid[dir=rtl] .ui-grid-viewport {
+  padding-left: px !important;
+}
+
+.ui-grid-row .ui-grid-cell:first-child {
+    width: 160px !important;
+}
+
+.ui-grid-row .ui-grid-cell:first-child + .ui-grid-cell{
+    width: 750px !important;
+}
+
+.ui-grid-row .ui-grid-cell:first-child + .ui-grid-cell + .ui-grid-cell{
+    width: 120px !important;
+}
+
+.ui-grid-header-canvas .ui-grid-header-cell:first-child {
+    width: 160px !important;
+}
+
+.ui-grid-header-canvas .ui-grid-header-cell:first-child + .ui-grid-header-cell{
+    width: 750px !important;
+}
+
+.ui-grid-header-canvas .ui-grid-header-cell:first-child + .ui-grid-header-cell + .ui-grid-header-cell{
+    width: 120px !important;
+}
+
+.ui-grid-render-container-body .ui-grid-canvas { 
+    width: 1030px !important;
+    height: 300px !important; 
+}
+.ui-grid-render-container-body .ui-grid-header-canvas { 
+    width: 1030px !important;
+}
+.ui-grid-render-container-body .ui-grid-viewport { 
+    width: 1029.17px !important; 
+    height: 297px !important; 
+}
+.ui-grid-render-container-body .ui-grid-header-viewport { 
+    width: 1029.17px !important; 
+}
+.ui-grid-render-container-body .ui-grid-footer-canvas {
+    width: 1030px !important;
+}
+.ui-grid-render-container-body .ui-grid-footer-viewport { 
+    width: 1029.17px !important; 
+}
+.ui-grid-render-container-body .ui-grid-header-cell { 
+    height: 33px !important; 
+}
+
+.modal-dialog {
+    width: 600px !important;
+    margin: 30px auto !important;
+}
+
+.rotate {
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1, M12=θ, M21=θ, M22=-1, SizingMethod="auto expand");
+}
+
+.layer-2.triangle.bottom {
+    bottom: -15px !important;
+    left: 15px;
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-0.8, M12=9.797174393178826e-17, M21=-9.797174393178826e-17, M22=-0.8, SizingMethod='auto expand');
+}
+
+.layer-1.triangle.top {
+    left: 15px;
+    border-top-color: #9A8A7A !important;
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.8, M12=0, M21=0, M22=0.8, SizingMethod='auto expand');
+}
+
+.vocab-search {
+    width: 60% !important;
+}
+
+.container .navTag {
+    margin-bottom: 0px !important;
+}
+
+.dropdown a {
+    padding: 21px 15px !important;
+}

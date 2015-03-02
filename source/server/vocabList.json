@@ -1,0 +1,6 @@
+[
+    {"comment": "This is a test"},
+    {"key": "Bibframe", "value": "/server/vocab.rdf"},
+    {"key": "test", "value": "/server/test.rdf"},
+    {"key": "MADSRDF", "value": "/server/v1.rdf"}
+]

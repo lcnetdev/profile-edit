@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="locApp">
+    <head>
+        
+        <!--[if lte IE 7]>
+            <script src="/assets/js/lib/json/json2.js"></script>
+        <![endif]-->
+        
+        <script type="text/javascript" src='assets/js/lib/jquery/jquery1x.min.js'></script>
+        <script> var is_ie8 = false; </script>
+        
+        <!--[if lte IE 8]>
+            <script src='assets/js/lib/json/shim.js'></script>
+            <link rel="stylesheet" href="assets/css/explorer8.css" />
+            <script> is_ie8 = true; </script>
+        <![endif]-->
+        
+        <script type="text/javascript">
+            //optional need to be loaded before angular-file-upload-shim(.min).js
+            window.FileAPI = {
+                //debug: true
+                //only one of jsPath or jsUrl.
+                //jsPath: 'assets/js/lib/fileupload/',
+
+                //only one of staticPath or flashUrl.
+                //staticPath: 'assets/js/lib/fileupload/',
+
+                //forceLoad: true, html5: false //to debug flash in HTML5 browsers
+            };
+        </script>
+        
+        <script src='assets/js/lib/fileupload/angular-file-upload-shim.min.js'></script>
+        <script src="https://angular-file-upload.appspot.com/js/FileAPI.min.js"></script>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-resource.min.js"></script>
+		<script src="assets/js/lib/ui-router/angular-ui-router.min.js"></script>
+        <script src="assets/js/lib/ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+        <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="assets/js/lib/x2js-v1.1.5/xml2json.min.js"></script>
+        
+        <script src="assets/js/lib/fileupload/angular-file-upload.min.js"></script> 
+            
+        <script src="assets/js/ng-app.js"></script>
+        
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        
+        <!-- mvp styles -->
+        <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/bootstrap/mvpready-admin.css" />
+        <link rel="stylesheet" href="assets/css/bootstrap/mvpready-flat.css" />
+        
+        <link rel="stylesheet" href="assets/js/lib/datepicker/css/datepicker.css" />
+        
+        <link href="assets/js/lib/ng-grid/ui-grid-stable.min.css" rel="stylesheet" />
+        
+        <link rel="stylesheet" href="assets/css/font-awesome/font-awesome.min.css" />
+        
+        <!-- Production JavaScript -->
+        <script src="assets/js/dist/US-LOC-ProfileEditor.min.js"></script>
+        <!-- Dev JavaScript -->
+        <!-- <script src="assets/js/dist/concat.js"></script> -->
+        
+        <link rel="stylesheet" href="assets/css/dist/US-LOC-ProfileEditor.min.css" />
+        <link rel="stylesheet" href="assets/css/jquery.fileupload.css" />
+        <link rel="stylesheet" href="assets/css/jquery.fileupload-ui.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        
+        <!--Special CSS for IE 9 and below-->
+        <!--[if lte IE 9]>
+        <link rel="stylesheet" href="assets/css/explorer9.css" />
+        <![endif]-->
+        
+    </head>
+    <body>
+        <div id="wrapper">
+            <!--[if !IE]> -->
+            <header class="nabvar navbar-inverse sss-large-min-width" role="banner">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <img src="assets/images/CheckLogo.png"/>
+                        <span class="bold">Library of Congress&nbsp;</span>
+                        <span class="normal">Bibframe Profile Editor</span>
+
+                    </div>
+                </div>
+            </header>
+            <!-- <![endif]-->
+            
+            <!--[if IE 9]>
+            <header class="nabvar navbar-inverse sss-large-min-width" role="banner">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <img src="assets/images/CheckLogo.png"/>
+                        <span class="bold">Library of Congress&nbsp;</span>
+                        <span class="normal">Bibframe Profile Editor</span>
+
+                    </div>
+                </div>
+            </header>
+            <![endif]-->
+            
+            <!--[if lte IE 8]>
+            <h1 class="headerTag nabvar navbar-inverse sss-large-min-width" role="banner">
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <img src="assets/images/CheckLogo.png"/>
+                        <span class="bold">Library of Congress&nbsp;</span>
+                        <span class="normal">Bibframe Profile Editor</span>
+
+                    </div>
+                </div>
+            </h1>
+            <![endif]-->
+            
+            <div class="content">
+
+                <div class="mainnav sss-large-min-width">
+                    <div class="container">
+                        <!--[if !IE]> -->
+                        <nav class="collapse mainnav-collapse sss-large-min-width" role="navigation">
+                            <ul class="mainnav-menu">
+                                <li class="dropdown">
+                                    <a href="#/profile/list" >Profiles</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#/help">Help</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- <![endif]-->
+                        
+                        <!--[if IE 9]>
+                        <nav class="collapse mainnav-collapse sss-large-min-width" role="navigation">
+                            <ul class="mainnav-menu">
+                                <li class="dropdown">
+                                    <a href="#/profile/list" >Profiles</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#/help">Help</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <![endif]-->
+                        
+                        <!--[if lte IE 8]>
+                        <ul class="navTag mainnav-collapse sss-large-min-width" role="navigation">
+                            <ul class="mainnav-menu">
+                                <li class="dropdown">
+                                    <a href="#/profile/list" >Profiles</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#/help">Help</a>
+                                </li>
+                            </ul>
+                        </ul>
+                        <![endif]-->
+                        
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="page-content-area" ui-view>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/lib/jquery/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+        
+        <!-- Bootstrap Script -->
+		<script src="assets/js/lib/bootstrap/bootstrap.js"></script>
+        
+        <!-- MVC Admin -->
+        <script src="assets/js/lib/mvpready/mvpready-core.js"></script>
+        <script src="assets/js/lib/mvpready/mvpready-admin.js"></script>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="assets/js/lib/ui-sortable/sortable.js"></script>
+        
+        <!--[if lte IE 8]>
+        <script src="assets/js/lib/ng-grid/ui-grid-ie8.min.js"></script>
+        <![endif]-->
+        
+        <!--[if IE 9]>
+        <script src="assets/js/lib/ng-grid/ui-grid-unstable.min.js"></script>
+        <![endif]-->
+        
+        <!--[if !IE]> -->
+        <script src="assets/js/lib/ng-grid/ui-grid-unstable.min.js"></script>
+        <!-- <![endif]-->
+        
+        <script src="assets/js/lib/datepicker/js/bootstrap-datepicker.js"></script>
+        
+    </body>
+    
+    
+    <!--[if !IE]> -->
+    <footer class="footer sss-large-min-width">
+
+        <div class="container">
+
+            <p id="copyrightTest" class="pull-left"></p>
+
+        </div>
+
+    </footer>
+    <!-- <![endif]-->
+            
+    <!--[if IE 9]>
+    <footer class="footer sss-large-min-width">
+
+        <div class="container">
+
+            <p id="copyrightTest" class="pull-left"></p>
+
+        </div>
+
+    </footer>
+    <![endif]-->
+
+    <!--[if lte IE 8]>
+    <h1 class="headerTag footer sss-large-min-width">
+
+        <div class="container">
+
+            <p id="copyrightTest" class="pull-left"></p>
+
+        </div>
+
+    </h1>
+    <![endif]-->
+    
+    <script>
+        var year = new Date(Date.now()).getFullYear();
+        $('#copyrightTest').html("Copyright &copy; " + year + " Library of Congress");
+    </script>
+    
+</html>

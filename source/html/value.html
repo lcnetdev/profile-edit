@@ -1,0 +1,15 @@
+<div>
+    <div>
+        <label class="urimargins" for="URI">URI</label>
+        <input type="url" name="URI" ng-model="valueConstraint.useValuesFrom[parentId]" 
+                popover="Identifies a values list from which acceptable values should come. URIs are expected, but your community may have a different solution."
+                popover-title="Use Values From" popover-trigger="mouseenter"
+                popover-placement="right"/>
+        <a href="#" onclick="event.returnValue = false; return false;" ng-click="verifyDelete(deleteValue)">
+            <i class="fa fa-trash-o"></i>
+        </a>
+        <div class="error" ng-show="profileForm.URI.$dirty && profileForm.URI.$invalid">
+           <small class="error errorValue">url is invalid</small>
+       </div>
+    </div>
+</div>

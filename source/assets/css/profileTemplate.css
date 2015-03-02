@@ -1,0 +1,511 @@
+h3, h4, h5{
+    font-family: sans-serif;
+}
+
+h5 {
+    font-size: 12pt;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+#constraintHeader {
+    margin-top: 1.75em;
+}
+
+table {
+    width: 100%;
+}
+
+.profile-header {
+    letter-spacing: 1px;
+}
+
+#profile-panel {
+    margin-bottom: 5px;
+}
+
+.property-panel {
+    width: 55%;
+}
+
+.propertyTemplates.panel-group.accordion-simple .profile-header .property-panel {
+    padding: 0px 0px;
+    background-color: whitesmoke;
+}
+
+.propertyTemplates {
+    padding-left: 2em;
+}
+
+.propertyItems {
+    margin-top: 1em;
+}
+
+.listItems {
+    display: inline-block;
+    margin-right: 1%;
+    margin-bottom: 8px;
+}
+
+.listItems label {
+    width: 9em;
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+.listItems input {
+    width: 18em;
+    font-size: 12pt;
+}
+
+i {
+    color: #0078AE;
+}
+
+#alert {
+    width: 30%;
+    height: 60%;
+    position: fixed;
+    left: 30%;
+    top: 20%;
+    background-color: white;
+    border-radius: 10px;
+    border-color: black;
+    z-index: 1;
+    text-align: center;
+}
+
+#alert i {
+    font-size: 14pt;
+    float: right;
+}
+
+#fade {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+#alert h4 {
+    display: inline;
+}
+
+.importBanner {
+    padding: 1em;
+    background-color: lightgray;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-bottom: 0.5em;
+}
+
+.importContent {
+    padding: 1em;
+    margin-bottom: 0.5em;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container {
+    position: relative;
+    width: auto;
+    min-width: 640px;
+    max-width: 1000px;
+}
+
+.panel-collapse, .panel-heading, .propertyItem {
+    background-color: whitesmoke;
+}
+
+div.propertyItem div.panel-heading h4.panel-title span.property-panel {
+    color:  #444;
+    text-align: left;
+}
+
+#deleteIcon {
+    vertical-align: middle;
+    color: #0078AE;
+    margin-right: 1.1em;
+}
+
+#deleteIcon i {
+    margin-right: 1em;
+}
+
+#search_bar {
+    position: relative;
+    margin-top: -7.3em;
+    margin-bottom: 0px;
+    min-width: 15em;
+    max-width: 15em;
+}
+
+#search_bar input {
+    min-width: 14em;
+    max-width: 14em;
+}
+
+li.nav-right {
+    float: right;
+}
+
+#addTemplate {
+    margin-bottom: 1em;
+}
+
+a#propertyChoose {
+    color: #0078AE;
+}
+
+#propertyChoose i {
+    margin-right: 1em;
+}
+
+
+#sssTab1 li {
+    margin-bottom: 10px;
+}
+
+header, footer {
+    padding: 10px;
+    width: 100%;
+    min-width: 1060px;
+}
+
+header span {
+    vertical-align: middle;
+    color: #fff;
+    font-size: 18pt;
+    letter-spacing: 1px;
+}
+
+header span.bold {
+    font-weight: bold;
+}
+
+div.portlet {
+    display: inline-block;
+    width: 100%;
+}
+
+div.sss-large-min-width, header.sss-large-min-width, footer.sss-large-min-width {
+    min-width: 1100px;
+}
+
+div.sss-min-width, h3.sss-min-width {
+    min-width: 1061px;
+}
+
+a.sss-add-margin-top {
+    display: inline-block;
+    margin-top: 0.5em;
+}
+
+div.mainnav div.container, div.container nav {
+    width: 100%;
+}
+
+form[name=profileForm] {
+    min-width: 678px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form[name=profileForm] td label {
+    width: 8em;
+    font-size: 10pt;
+    font-weight: normal;
+}
+
+form[name=profileForm] td input {
+    width: 19em;
+}
+
+form[name=profileForm] td select {
+    width: 19em;
+}
+
+form[name=profileForm] td {
+    padding-bottom: 8px;
+}
+
+.pushed-right {
+    margin-right: 1em;
+}
+
+.white {
+    color: white;
+}
+
+small.error {
+    padding: 2px 10px;
+    margin: 0;
+    color: #b94a48;
+    left: 16.5em;
+    bottom: 2.3em;
+    font-size: 10px;
+    font-weight: 600;
+    position: relative;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+div.error {
+    position: absolute;
+}
+
+.error i {
+    position: relative;
+    top: 0.3em;
+    left: -1.5em;
+}
+
+.page-footer {
+    display: inline-block;
+    width: 100%;
+}
+
+div.page-footer div.page-info {
+    padding-left: 3.5em;
+}
+
+#search_bar button, #template_search_bar button {
+    padding-top: 5px;
+}
+
+/*------handle the search button on medium-width screens-------*/
+@media (max-width: 991px) {
+    #search_bar {
+        margin-top: -6.9em;
+    }
+}
+
+/*-------handle the search button on small screens-----------*/
+@media (max-width: 767px) {
+    #search_bar {
+        position: absolute;
+        //top: 44em;
+        top: 9.8em;
+        left: 2.4em;
+    }
+    
+    #search_bar button.btn {
+        top: 17px;
+    }
+    
+    .mainnav-form {
+        border: 0;
+    }
+}
+
+.ui-grid-col0 {
+    padding-left: 4px;
+    padding-top: 4px;
+}
+
+.new-profile {
+    position: relative;
+    right: 1.25em;
+    font-size: 10pt;
+}
+
+@media screen and (min-width: 640px) {
+    .vocab-search {
+        margin-left: 1em;
+    }
+}
+
+.vocab-search {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: 63%;
+}
+
+.vocab-search label {
+    margin-right: 2em;
+}
+
+.vocab-search input {
+    display: inline-block;
+    width: 100%;
+}
+
+.popover {
+    //min-width: 100px;
+    max-width: 250px;
+    width: auto;
+}
+
+.popover-inner .popover-title, h3.popover-title {
+    background-color: #0078AE;
+    color: white;
+    word-wrap: break-word;
+}
+
+.popover-inner .popover-content {
+    font-size: 13px;
+    color: #111;
+    word-wrap: break-word;
+}
+
+/* ----------Move the tooltips on smaller screens-------------------*/
+@media (max-width: 1502) {
+    
+}
+
+div.modal-footer form button {
+    top: 5px;
+}
+
+div.ui-grid-native-scrollbar.horizontal {
+    height: 0;
+}
+
+#resourcePick {
+    height: 30em;
+}
+
+#chooseResource [name=chooseVocab] {
+    display: inline-block;
+    width: 97%;
+    margin-bottom: 10px;
+}
+
+.pad-cell {
+    display: inline-block;
+    width: inherit;
+    overflow: hidden;
+    padding-top: 5px;
+    padding-left: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ui-grid {
+    overflow: hidden;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+td label {
+    margin-bottom: 0px;
+}
+
+#wrapper {
+    //max-width: 1583px;
+    margin-left: 0px;
+}
+
+#resourceChoose {
+    color: white;
+}
+
+#resourceChoose i{
+    color: white;
+}
+
+.collapsed #resourceChoose, .collapsed #resourceChoose i {
+    color: #428bca;
+}
+
+.questionTitle {
+    display: inline-block;
+    letter-spacing: normal;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.questionTitle i {
+    margin-right: 5px;
+    font-size: 12pt;
+    vertical-align: middle;
+}
+
+#helpPanel .panel {
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.0);
+    margin-bottom: 1.5em;
+}
+
+#helpPanel .panel-heading {
+    background-color: white;
+}
+
+#helpPanel .panel-body {
+    font-size: 12pt;
+    margin-left: 2em;
+    background-color: white;
+}
+
+#helpTitle {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#helpRef {
+    font-family: sans-serif;
+    margin-bottom: 5px;
+}
+
+body, html {
+    overflow: overlay;
+}
+
+.footer {
+    line-height: 49px;
+}
+
+#back-to-top {
+    height: 38px;
+}
+
+ul.mainnav-menu li a {
+    font-weight: normal;
+}
+
+#select_box_holder {
+    display: inline-block;
+    width: 34%;
+}
+
+#deleteModal .modal-dialog {
+    width: 18em !important;
+}
+
+#propertyResources {
+    width: 112%;
+}
+
+#propertyResources .resources{
+    position: relative;
+    right: 69px;
+}
+
+.propertyTemplates [name=propertyForm]{
+    overflow: visible;
+}
+
+div[id^=resourceTemplates] {
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+
+.panel-group .panel {
+    overflow: visible;
+}
+
+div#deleteModal div.modal-body {
+    text-align: center;
+}

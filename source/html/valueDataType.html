@@ -1,0 +1,54 @@
+<div ng-controller="ValueDataTypeController">
+    <h5>Value Data Type</h5>
+    
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label for="dataTypeURI">URI</label>
+                </td>
+                <td>
+                    <input type="url" name="dataTypeURI" ng-model="valueDataType.dataTypeURI"
+                        popover="URI associated with the DataType"
+                        popover-title="Data Type URI" popover-trigger="mouseenter"
+                        popover-placement="right"/>
+                    
+                    <div class="error" ng-show="propertyForm.dataTypeURI.$dirty && propertyForm.dataTypeURI.$invalid">
+                        <small class="error">url is invalid</small>
+                    </div>
+                    
+                </td>
+                <td>
+                    <label for="dataTypeLabel">Label</label>
+                </td>
+                <td>
+                    <input name="dataTypeLabel" ng-model="valueDataType.dataTypeLabel"
+                           popover="Preferred, human readable label associated with the DataType"
+                           popover-title="Data Type Label" popover-trigger="mouseenter"
+                           popover-placement="left"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="dataTypeLabelHint">Label Hint</label>
+                </td>
+                <td>
+                    <input name="dataTypeLabelHint" ng-model="valueDataType.dataTypeLabelHint"
+                           popover="Short, human readable label primarily for display purposes"
+                           popover-title="Data Type Hint" popover-trigger="mouseenter"
+                           popover-placement="right"/>
+                </td>
+                <td>
+                    <label for="remark">Remark</label>
+                </td>
+                <td>
+                    <input name="remark" ng-model="valueDataType.remark"
+                           popover="Comment or guiding statement intended to be presented as supplementary information in user display"
+                           popover-title="Data Type Remark" popover-trigger="mouseenter"
+                           popover-placement="left"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
