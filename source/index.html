@@ -7,7 +7,10 @@
         <![endif]-->
         
         <script type="text/javascript" src='assets/js/lib/jquery/jquery1x.min.js'></script>
-        <script> var is_ie8 = false; </script>
+        <script>
+            var is_ie8 = false;
+            var serverPath = (window.location.pathname === '/') ? '' : window.location.pathname;
+        </script>
         
         <!--[if lte IE 8]>
             <script src='assets/js/lib/json/shim.js'></script>
@@ -61,7 +64,7 @@
         <!-- Production JavaScript -->
         <script src="assets/js/dist/US-LOC-ProfileEditor.min.js"></script>
         <!-- Dev JavaScript -->
-        <!-- <script src="assets/js/dist/concat.js"></script> -->
+        <!--<script src="assets/js/dist/concat.js"></script>-->
         
         <link rel="stylesheet" href="assets/css/dist/US-LOC-ProfileEditor.min.css" />
         <link rel="stylesheet" href="assets/css/jquery.fileupload.css" />

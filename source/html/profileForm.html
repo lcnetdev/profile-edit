@@ -153,7 +153,13 @@
     </h4>
     <ul id="sssTab1" class="nav nav-tabs">
         
-        <li class="nav-right btn-raised">
+        <li class="nav-right btn-raised" ng-if="profile.id">
+            <button type="button" class="btn btn-danger" ng-click="verifyDelete(deleteProfile)">
+                <i class="fa fa-trash-o" style="margin-right: 5px;"></i>
+                Delete
+            </button>
+        </li>
+        <li class="nav-right pushed-right">
             <button type="submit" class="btn btn-default">
                 <i class="fa fa-save" style="margin-right: 5px;"></i>
                 Save
@@ -297,9 +303,14 @@
     
     </div>
     
-    <a class="btn btn-default pull-right pushed-right" href="#" sss-export onclick="event.returnValue = false; return false;">
+    <a class="btn btn-default pull-right pushed-right" href="#" sss-export="brief" onclick="event.returnValue = false; return false;">
         <i class="fa fa-download"></i>
-        Export
+        Brief Export
+    </a>
+    
+    <a class="btn btn-default pull-right pushed-right" href="#" sss-export="verbose" onclick="event.returnValue = false; return false;">
+        <i class="fa fa-download"></i>
+        Verbose Export
     </a>
 
 </form>

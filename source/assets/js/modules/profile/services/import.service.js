@@ -47,7 +47,7 @@ angular.module('locApp.modules.profile.services')
                 //URL bounces back the contents contained in the post
                 
                 $upload.upload({
-                    url: 'server/import', //upload.php script, node.js route, or servlet url
+                    url: serverPath + 'server/import', //upload.php script, node.js route, or servlet url
                     method: 'POST',
                     file: file
                   }).success(function(data, status, headers, config) {

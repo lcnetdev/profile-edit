@@ -1,16 +1,15 @@
 RewriteEngine on
-RewriteBase /
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^getTemplateRefs server/php/getTemplateRefs.php
-    RewriteRule ^updateTemplateRefs server/php/updateTemplateRefs.php
-    RewriteRule ^delete server/php/delete.php
-    RewriteRule ^export server/php/export.php
-    RewriteRule ^getFile/(.*) server/php/getFile.php?name=$1
-    RewriteRule ^get/(.*) server/php/get.php?filename=$1
-    RewriteRule ^get server/php/get.php
-    RewriteRule ^import server/php/import.php
-    RewriteRule ^list/(.*) server/php/list.php?query=$1
-    RewriteRule ^list server/php/list.php
-    RewriteRule ^save server/php/save.php
+    RewriteRule ^getTemplateRefs php/getTemplateRefs.php
+    RewriteRule ^updateTemplateRefs php/updateTemplateRefs.php
+    RewriteRule ^delete php/delete.php
+    RewriteRule ^export php/export.php
+    RewriteRule ^getFile/(.*) php/getFile.php?name=$1
+    RewriteRule ^get/(.*) php/get.php?filename=$1
+    RewriteRule ^get php/get.php
+    RewriteRule ^import php/import.php
+    RewriteRule ^list/(.*) php/list.php?query=$1
+    RewriteRule ^list php/list.php
+    RewriteRule ^save php/save.php

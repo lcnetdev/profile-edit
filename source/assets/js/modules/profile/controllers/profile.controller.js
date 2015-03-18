@@ -257,7 +257,7 @@ angular.module('locApp.modules.profile.controllers')
                 return false;
             }
             
-            var jsonObj = FormHandler.getFormData($scope.profile);
+            var jsonObj = FormHandler.getFormData($scope.profile, false);
             
             
             try {
@@ -279,7 +279,6 @@ angular.module('locApp.modules.profile.controllers')
          * Checks that the profile has a unique title, and displays a warning
          * to the user if that is the case
          */
-        //$scope.selectSave = function() {
         $scope.checkTitle = function() {
             
             if(!$scope.validateProfile()){
@@ -405,7 +404,7 @@ angular.module('locApp.modules.profile.controllers')
 
             // get the object for the JSON serialization, validate, then
             // serialize if clean.Alert
-            var jsonObj = FormHandler.getFormData($scope.profile);
+            var jsonObj = FormHandler.getFormData($scope.profile, false);
 
             $scope.validateDate();
 
@@ -461,7 +460,7 @@ angular.module('locApp.modules.profile.controllers')
          */
         $scope.deleteProfile = function() {
             Server.deleteItem('/server/delete', {
-                name: $scope.Profile.title + ".json"
+                name: $scope.profile.title + ".json"
             })
                 .then(function() {
                         $state.go('profile.list');

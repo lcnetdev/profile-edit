@@ -62,6 +62,10 @@ i {
     color: #0078AE;
 }
 
+.btn-danger i {
+    color: white;
+}
+
 #alert {
     width: 30%;
     height: 60%;

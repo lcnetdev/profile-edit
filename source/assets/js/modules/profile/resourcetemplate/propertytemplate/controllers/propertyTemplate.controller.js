@@ -7,7 +7,11 @@
 angular.module('locApp.modules.profile.controllers')
     .controller('propertyTemplateController', function($scope, $state, $stateParams, Scrub) {
         $scope.propertyFields = [];
-        $scope.propertyTemplate = {};
+        $scope.propertyTemplate = {
+            mandatory:  'false',
+            repeatable: 'true',
+            type:       'literal'
+        };
         $scope.item = Scrub.getIndex();
         
         $scope.resources = [];
@@ -23,7 +27,21 @@ angular.module('locApp.modules.profile.controllers')
         if($scope.importy){
             // override fields
             $scope.propertyTemplate.resourceTemplates = [];
+            
+            // Loop through the data and add the values in it.
             $scope.propertyTemplate = $scope.resourceTemplate.propertyTemplates[$scope.parentId];
+            if($scope.propertyTemplate) {
+                if($scope.propertyTemplate.mandatory === undefined) {
+                    $scope.propertyTemplate.mandatory = 'false';
+                }
+                if($scope.propertyTemplate.repeatable === undefined) {
+                    $scope.propertyTemplate.repeatable = 'true';
+                }
+                if($scope.propertyTemplate.type === undefined) {
+                    $scope.propertyTemplate.type = 'literal';
+                }
+            }
+            
             $scope.importCascade($scope.resources, $scope.propertyTemplate.resourceTemplates);
             $scope.addIndexProperty = $scope.propertyTemplate.resourceTemplates ? $scope.propertyTemplate.resourceTemplates.length : 0;
             $scope.propertyFields.push(-1);
@@ -50,9 +68,9 @@ angular.module('locApp.modules.profile.controllers')
         else {
             $scope.item = Math.floor($scope.item);
             // add default Values
-            $scope.propertyTemplate.mandatory = 'false';
+            /*$scope.propertyTemplate.mandatory = 'false';
             $scope.propertyTemplate.repeatable = 'true';
-            $scope.propertyTemplate.type = 'literal';
+            $scope.propertyTemplate.type = 'literal';*/
 
             $scope.propertyTemplate.resourceTemplates = [];
 

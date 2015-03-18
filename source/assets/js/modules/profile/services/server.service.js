@@ -31,7 +31,7 @@ angular.module('locApp.modules.profile.services')
             $http({
                 //Include a random number to prevent early version of IE from
                 //caching the request
-                url: url + '?' + Math.random(),
+                url: serverPath + url + '?' + Math.random(),
                 method: "GET",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 params: params,
@@ -64,7 +64,7 @@ angular.module('locApp.modules.profile.services')
             var deferred = $q.defer();
 
             $http({
-                url: url,
+                url: serverPath + url,
                 method: "POST",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param(params)
@@ -93,7 +93,7 @@ angular.module('locApp.modules.profile.services')
             var deferred = $q.defer();
 
             $http({
-                url: url,
+                url: serverPath + url,
                 method: "DELETE",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 params: params
