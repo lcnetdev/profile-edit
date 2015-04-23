@@ -13,10 +13,10 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 $directory = '../../profiles';
+
 $scanned = array_diff(scandir($directory), array('..','.', '.svn'));
 
 $query = isset($_GET['query']) ? $_GET['query'] : null;
-
 
 
 $data = [];

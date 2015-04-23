@@ -12,6 +12,9 @@ if(!$_SERVER['REQUEST_METHOD'] === 'POST'){
     return 405;
 }
 
+error_log(print_r($_POST, true));
+error_log(print_r($_GET, true));
+
 $PROFILE = "../../profiles";
 
 $name = $_POST['name'];

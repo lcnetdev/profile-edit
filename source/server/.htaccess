@@ -2,14 +2,14 @@ RewriteEngine on
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^getTemplateRefs php/getTemplateRefs.php
-    RewriteRule ^updateTemplateRefs php/updateTemplateRefs.php
-    RewriteRule ^delete php/delete.php
-    RewriteRule ^export php/export.php
-    RewriteRule ^getFile/(.*) php/getFile.php?name=$1
-    RewriteRule ^get/(.*) php/get.php?filename=$1
-    RewriteRule ^get php/get.php
-    RewriteRule ^import php/import.php
-    RewriteRule ^list/(.*) php/list.php?query=$1
-    RewriteRule ^list php/list.php
-    RewriteRule ^save php/save.php
+    RewriteRule ^getTemplateRefs /profile-edit/server/php/getTemplateRefs.php [L]
+    RewriteRule ^updateTemplateRefs /profile-edit/server/php/updateTemplateRefs.php
+    RewriteRule ^delete /profile-edit/server/php/delete.php
+    RewriteRule ^export /profile-edit/server/php/export.php
+    RewriteRule ^getFile/(.*) /profile-edit/server/php/getFile.php?name=$1
+    RewriteRule ^get/(.*) /profile-edit/server/php/get.php?filename=$1
+    RewriteRule ^get /profile-edit/server/php/get.php
+    RewriteRule ^import /profile-edit/server/php/import.php
+    RewriteRule ^list/(.*) /profile-edit/server/php/list.php?query=$1
+    RewriteRule ^list /profile-edit/server/php/list.php
+    RewriteRule ^save /profile-edit/server/php/save.php
