@@ -12,7 +12,8 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$directory = '../../profiles';
+//$directory = '../../profiles';
+$directory = '/home/kefo/IdeaProjects/bibframe-model/bfweb/static/bfe/static/profiles/bibframe';
 
 $scanned = array_diff(scandir($directory), array('..','.', '.svn'));
 
