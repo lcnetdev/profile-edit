@@ -589,7 +589,7 @@ angular.module('locApp.modules.profile.controllers')
         
         $scope.propertyValid = function(property) {
             // if we dont have resources in the property then return true
-            if(property.resourceTemplates.length === 0) {
+            if(property.resourceTemplates == null || property.resourceTemplates.length === 0) {
                 return true;
             }
             else {
