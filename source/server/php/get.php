@@ -16,8 +16,8 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$filename = "../../profiles/" . $_REQUEST['filename'] . '.json';
-
+$filename = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe/" . $_REQUEST['filename'] . '.json';
+//$filename = "/opt/bibframe-8283/bibframe-model/bfweb/static/bfe/static/profiles/bibframe/WIA-monograph-simple.json";
 if(!file_exists($filename)) {
     echo("File does not exist");
     return 404;

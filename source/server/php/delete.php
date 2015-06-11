@@ -11,7 +11,7 @@
     }
 
     $fileName = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
-    $path = '../../profiles/' . $fileName;
+    $path = '/opt/bibframe-8283/bibframe-model/bfweb/static/bfe/static/profiles/bibframe/' . $fileName;
 
     if(isset($fileName) && file_exists($path) && !unlink($path)) {
             throw new Exception("Failed to delete file");

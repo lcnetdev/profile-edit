@@ -16,8 +16,8 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$PROFILE = "../../profiles";
-
+//$PROFILE = "../../profiles";
+$PROFILE = "/opt/bibframe-8283/bibframe-model/bfweb/static/bfe/static/profiles/bibframe";
 if(file_exists($PROFILE . "/". $_GET['name'])) {
     header("Content-Type: application/json");
     header('Content-Disposition: attachment; filename="' . $_GET['name'] . '"');
