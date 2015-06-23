@@ -43,7 +43,7 @@ Vocabulary list files may be stored at any place on the server but for testing p
 This is the format that the application will expect. “key” refers to the name that will appear in the application when you go to choose a resource or property template. “value” is the file path that the application will use. If the application cannot find the file the site will report it in the browser's console and will ignore the file.
 
 ##Template Reference
-A file that should be of note is /templateRefs/templateRefs . This file is used to hold the template values that are used most often for the templates that are created. The application will create this file on its own and should not have to be touched, examining the file will show that it stores a list of template references. Template references are created from profiles in the /source/profiles directory.
+A file that should be of note is /templateRefs/templateRefs . This file is used to hold the template values that are used most often for the templates that are created. The application will create this file on its own and should not have to be touched, examining the file will show that it stores a list of template references. Template references are created from profiles in the /source/profiles directory. If you want to specify a different folder for profiles, modify the $profiledir variable in /source/server/profile.php.
 
 ##Troubleshooting
 Although every effort has been made to ensure that the Editor can be easily installed and run, we recognize that errors do occasionally happen. Should you have problems installing or running the Editor, the following steps will resolve most errors quickly.
