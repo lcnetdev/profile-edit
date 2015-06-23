@@ -16,13 +16,13 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$profiledir = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe/"
+$profiledir = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe";
 
 if(file_exists($profiledir . "/". $_GET['name'])) {
     header("Content-Type: application/json");
     header('Content-Disposition: attachment; filename="' . $_GET['name'] . '"');
-    echo file_get_contents($profile . "/". $_GET['name'] . "_tmp");
-    unlink($profiledir . "/". $_GET['name'] . "_tmp");
+    echo file_get_contents($profiledir . "/" . $_GET['name']);
+    unlink($profiledir . "/" . $_GET['name'] . "_tmp");
     return 200;
 } else {
     header("HTTP/1.0 404 Not Found");
