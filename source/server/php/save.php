@@ -15,7 +15,7 @@ if(!$_SERVER['REQUEST_METHOD'] === 'POST'){
 error_log(print_r($_POST, true));
 error_log(print_r($_GET, true));
 
-$profiledir = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe/"
+include './profile.php';
 
 $name = $_POST['name'];
 $json = $_POST['json'];

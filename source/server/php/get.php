@@ -16,9 +16,9 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$profiledir = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe/";
+include './profile.php';
 
-$filename = $profiledir . $_REQUEST['filename'] . '.json';
+$filename = $profiledir . '/' . $_REQUEST['filename'] . '.json';
 
 if(!file_exists($filename)) {
     echo("File does not exist");

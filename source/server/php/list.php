@@ -12,17 +12,17 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$directory = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe";
+include 'profile.php';
 
-$scanned = array_diff(scandir($directory), array('..','.', '.svn'));
+$scanned = array_diff(scandir($profiledir), array('..','.', '.svn'));
 
 $query = isset($_GET['query']) ? $_GET['query'] : null;
 
 $data = [];
 
 foreach($scanned as $filename) {
-    $file = fopen($directory . '/' . $filename, "r") or die("hi");
-    $item = fread($file, filesize($directory . '/' . $filename));
+    $file = fopen($profiledir . '/' . $filename, "r") or die("hi");
+    $item = fread($file, filesize($profiledir . '/' . $filename));
     
     if($query) {
         if(strpos($item, $query) !== false) {
