@@ -12,12 +12,11 @@ if(!$_SERVER['REQUEST_METHOD'] === 'GET'){
     return 405;
 }
 
-$directory = "/opt/bibframe-8283/bibframe-model/bfweb/static/bfe/static/profiles/bibframe";
+$directory = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe";
 
 $scanned = array_diff(scandir($directory), array('..','.', '.svn'));
 
 $query = isset($_GET['query']) ? $_GET['query'] : null;
-
 
 $data = [];
 

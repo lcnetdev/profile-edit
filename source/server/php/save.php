@@ -15,16 +15,16 @@ if(!$_SERVER['REQUEST_METHOD'] === 'POST'){
 error_log(print_r($_POST, true));
 error_log(print_r($_GET, true));
 
-$PROFILE = "/opt/bibframe-8283/bibframe-model/bfweb/static/bfe/static/profiles/bibframe";
+$profiledir = "../../../../bibframe-model/bfweb/static/bfe/static/profiles/bibframe/"
 
 $name = $_POST['name'];
 $json = $_POST['json'];
 
-if(!file_exists($PROFILE)) {
-    mkdir($PROFILE, 0777);
+if(!file_exists($profiledir)) {
+    mkdir($profiledir, 0777);
 }
 
-$file = fopen($PROFILE . "/" . $name, 'w');
+$file = fopen($profiledir . "/" . $name, 'w');
 
 fwrite($file, $json);
 
