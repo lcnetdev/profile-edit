@@ -25,11 +25,12 @@ profile:bf:Language
 profile:bf:Provider
 profile:bf:Title
 profile:bf:Work:Monograph
+bf:profile:RDAExpression
+profile:bf:Instance:Monograph
+profile:bf:HeldItem:Monograph
+profile:bf:Work:Monograph
 profile:bf:Instance:Monograph
 profile:bf:HeldItem:Monograph
 profile:bf:Work
 profile:bf:Instance
 profile:bf:HeldItem
-profile:
-profile:bprofile:bf:Topicf:Topic
-http://id.loc.gov/vocabulary/contentTypes

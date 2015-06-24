@@ -16,12 +16,13 @@ if ($_POST["reset"] === 'TRUE')
 {
 
   $filename = '../../templateRefs/templateRefs';
-  $dir = '../../profiles';
-  $profiles = scandir($dir);
+  include 'profile.php';
+  //$profiledir = '../../profiles';
+  $profiles = scandir($profiledir);
   $cleanList = [];
   foreach($profiles as $profile){
     if($profile != '.' && $profile != '..'){
-      $pf = file_get_contents($dir . '/' . $profile);
+      $pf = file_get_contents($profiledir . '/' . $profile);
       $js = json_decode($pf);
       $resourceTemplates = $js->Profile->resourceTemplates;
       foreach ($resourceTemplates as $rt){
