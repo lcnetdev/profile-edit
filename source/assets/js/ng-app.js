@@ -7,7 +7,8 @@ angular.module('locApp', [
     'ui.sortable',
     'ui.bootstrap',
     'LocalStorageModule',
-    'angularFileUpload'
+    'angularFileUpload',
+    'angularSpinner'
 ])
 
     .config(function($httpProvider, $urlRouterProvider, $tooltipProvider, localStorageServiceProvider) {

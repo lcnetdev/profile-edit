@@ -1,5 +1,5 @@
 {
-  "name": "US-LOC-ProfileEditor",
+  "name": "profile-edtior",
   "version": "1.1.0",
   "description": "A Bibframe Profile Editor the Library of Congress",
   "main": "Gruntfile.js",
@@ -8,7 +8,10 @@
     "grunt-contrib-cssmin": "~0.10.0",
     "grunt-contrib-uglify": "~0.6.0",
     "grunt-ng-annotate": "~0.4.0",
-    "grunt-plato": "~1.3.0"
+    "grunt-plato": "~1.3.0",
+    "angular-local-storage": "~0.2.2",
+    "angular-spinner": "~0.6.1",
+    "spin.js": "~2.3.1"
   },
   "devDependencies": {
     "grunt-ng-annotate": "~0.4.0",
@@ -16,11 +19,25 @@
     "grunt-contrib-cssmin": "~0.10.0",
     "grunt-plato": "~1.3.0",
     "grunt-jsdoc": "~0.5.7",
-    "grunt-ngdocs": "~0.2.6"
+    "grunt-ngdocs": "~0.2.6",
+    "angular-local-storage": "~0.2.2",
+    "angular-spinner": "~0.6.1",
+    "spin.js": "~2.3.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "rsmith, rsegura",
-  "license": "BSD"
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lcnetdev/profile-edit.git"
+  },
+  "keywords": [
+    "bibframe"
+  ],
+  "bugs": {
+    "url": "https://github.com/lcnetdev/profile-edit/issues"
+  },
+  "homepage": "https://github.com/lcnetdev/profile-edit#readme"
 }

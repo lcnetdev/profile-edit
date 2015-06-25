@@ -5,7 +5,6 @@ RewriteEngine on
     RewriteRule ^getTemplateRefs /profile-edit/server/php/getTemplateRefs.php [L]
     RewriteRule ^updateTemplateRefs /profile-edit/server/php/updateTemplateRefs.php
     RewriteRule ^delete /profile-edit/server/php/delete.php
-    RewriteRule ^export /profile-edit/server/php/export.php
     RewriteRule ^getFile/(.*) /profile-edit/server/php/getFile.php?name=$1
     RewriteRule ^get/(.*) /profile-edit/server/php/get.php?filename=$1
     RewriteRule ^get /profile-edit/server/php/get.php
