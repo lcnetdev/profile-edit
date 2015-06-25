@@ -67,7 +67,7 @@ module.exports = function(grunt) {
 			combine: {
 				//For some reason, this one is dest then src
 				files: {
-					'assets/css/dist/<%= pkg.name %>.min.css': ['assets/css/**/*.css', '!assets/css/explorer8.css', '!assets/css/explorer9.css', '!assets/css/style.css', '!**/*.min.css']
+					'assets/css/dist/<%= pkg.name %>.min.css': ['assets/css/**/*.css', '!assets/css/explorer8.css', '!assets/css/explorer9.css', '!**/*.min.css']
 				},
 			},
 		},

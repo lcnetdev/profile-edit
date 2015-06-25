@@ -1913,7 +1913,7 @@ table.table thead .sorting_desc_disabled,
 /* ----------------------------------------------- */
 .navbar-inverse {
   margin-bottom: 0;
-  background-color: #2f4354;
+  background-color: #222222;
   background-image: -webkit-linear-gradient(top, #425d75 0%, #2f4354 100%);
   background-image: linear-gradient(to bottom, #425d75 0%, #2f4354 100%);
   background-repeat: repeat-x;
