@@ -22,7 +22,7 @@ angular.module('locApp.modules.profile.services').factory('Export', function($re
     exportService.exportJson = function(json, name) {
         var deferred = $q.defer();
         $http({
-            url: "/server/save",
+            url: serverPath + "server/save",
             method: "POST",
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $.param({"name":name + "_tmp","json":json})

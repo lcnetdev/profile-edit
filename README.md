@@ -1,6 +1,6 @@
-#BIBRAME Editor Documentation
+#BIBRAME Profile Editor
 ##Overview
-The BIBFRAME Editor was designed to work on the widest range of machines possible. As such, most of the Editor's business logic is implemented client-side in JavaScript. This code can run in Chrome, FireFox, IE 8+, and Safari. The AngularJS framework used is the latest in client-side MVC architecture, and provides a clear model for structuring and organizing code. Every effort has been made to follow this structure and document the code, making future modifications as easy as possible.
+The BIBFRAME Profile Editor was designed to work on the widest range of machines possible. As such, most of the business logic is implemented client-side in JavaScript. This code can run in Chrome, FireFox, IE 8+, and Safari. The AngularJS framework used is the latest in client-side MVC architecture, and provides a clear model for structuring and organizing code. Every effort has been made to follow this structure and document the code, making future modifications as easy as possible.
 All of the JavaScript code comes with comments explaining what each bit does. Documentation tools were used to generate documentation for this part of the application automatically. This documentation is available in /source/documentation/jsdoc/. It is also viewable from the web interface at /documentation/jsdoc/. The Editor also contains a help link containing a FAQ section.
 There is a small amount of server-side logic in the application that mainly handles storing profiles, template references and vocabularies on the server. This was written in PHP and set up to run on an Apache web server. This code is explained below under the sub-heading 'Server Dependent Files'.
 
@@ -14,6 +14,7 @@ The files located in /source/server/php all handle server-side processing, and a
 * getTemplateRefs.php responds to an HTTP GET request containing no parameters. It returns a json encoded string of the template references on the server, and 200 status code. If the request is not a GET, it returns a 405 error code.
 * import.php responds to an HTTP request with a $_FILES array. It returns the contents of the file sent as a string with a 200 status code. The file sent is located at $_FILES['file']['tmp_name'].
 * list.php responds to an HTTP GET request with an optional 'query' parameter. It returns a list of profiles whose contents contain the 'query' string, or the entire profile list if 'query' is not set. In either case it returns a 200 status code. If the request is not a GET, it returns a 405 error code.
+* profile.php defaults to the /source/profile directory; change if you have your profiles in a different location.
 * save.php responds to an HTTP POST request containing both 'name' and 'json' parameters. It saves the contents of 'json' to a file 'name'. It returns a 200 status code on success. If the request is not a POST, it returns a 405 error code.
 * updateTemplateRefs.php responds to an HTTP POST request with a 'template' parameter. It adds 'template' to the list of template references if it does not already exist, and returns a 200 status code. If the request is not a POST, it returns a 405 error code.
 
@@ -43,7 +44,7 @@ Vocabulary list files may be stored at any place on the server but for testing p
 This is the format that the application will expect. “key” refers to the name that will appear in the application when you go to choose a resource or property template. “value” is the file path that the application will use. If the application cannot find the file the site will report it in the browser's console and will ignore the file.
 
 ##Template Reference
-A file that should be of note is /templateRefs/templateRefs . This file is used to hold the template values that are used most often for the templates that are created. The application will create this file on its own and should not have to be touched, examining the file will show that it stores a list of template references. Template references are created from profiles in the /source/profiles directory. If you want to specify a different folder for profiles, modify the $profiledir variable in /source/server/profile.php.
+A file that should be of note is /templateRefs/templateRefs . This file is used to hold the template values that are used most often for the templates that are created. The application will create this file on its own and should not have to be touched, examining the file will show that it stores a list of template references. Template references are created from profiles in the /source/profiles directory.
 
 ##Troubleshooting
 Although every effort has been made to ensure that the Editor can be easily installed and run, we recognize that errors do occasionally happen. Should you have problems installing or running the Editor, the following steps will resolve most errors quickly.

@@ -20,7 +20,7 @@ angular.module('locApp.modules.profile.controllers')
                             .then(function(response) {
                                 if(response !== "\"failure\"") {
                                     var iframe = document.createElement("iframe");
-                                    iframe.setAttribute("src", "/server/getFile/" + name);
+                                    iframe.setAttribute("src", serverPath + "server/getFile/" + name);
                                     iframe.setAttribute("style", "display:none");
                                     document.body.appendChild(iframe);
                                 }

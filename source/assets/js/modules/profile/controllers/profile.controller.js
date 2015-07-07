@@ -7,7 +7,7 @@
  */
 angular.module('locApp.modules.profile.controllers')
 
-    .controller('profileController', function($scope, $state, $stateParams, $filter, Alert, Server, FormHandler, ProfileHandler, Vocab) {
+    .controller('profileController', function($scope, $state, $stateParams, $filter, Alert, Server, FormHandler, ProfileHandler, Vocab, usSpinnerService) {
 
         $scope.addPage = ($state.current.name === 'profile.create');
 
@@ -53,10 +53,13 @@ angular.module('locApp.modules.profile.controllers')
         
         $scope.loadCount = 0;
         $scope.loaded = 0;
+
+        
         
         $scope.$watch('loaded', function() {
            if($scope.loaded >= $scope.loadCount && $scope.loadCount !== 0) {
                $scope.finishedLoading = true;
+               usSpinnerService.stop('spinner-1');
            } 
         });
 
@@ -74,6 +77,8 @@ angular.module('locApp.modules.profile.controllers')
                 $scope.continueImport();
                 $scope.loading = true;
                 
+                usSpinnerService.spin('spinner-1');
+
                 $scope.addIndex = $scope.profile.resourceTemplates.length;
                 $scope.oldTitle = $scope.profile.title;
 

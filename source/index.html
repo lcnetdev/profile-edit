@@ -69,13 +69,14 @@
         <link rel="stylesheet" href="assets/css/dist/US-LOC-ProfileEditor.min.css" />
         <link rel="stylesheet" href="assets/css/jquery.fileupload.css" />
         <link rel="stylesheet" href="assets/css/jquery.fileupload-ui.css" />
-        <link rel="stylesheet" href="assets/css/style.css" />
         
         <!--Special CSS for IE 9 and below-->
         <!--[if lte IE 9]>
         <link rel="stylesheet" href="assets/css/explorer9.css" />
-        <![endif]-->
-        
+        <![endif]-->        
+        <base href="/profile-edit/"/>
+        <script src="node_modules/spin.js/spin.js"></script>
+        <script src="node_modules/angular-spinner/angular-spinner.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -84,7 +85,7 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <img src="assets/images/CheckLogo.png"/>
+                        <img src="assets/images/bibframe-newlogo.png"/>
                         <span class="bold">Library of Congress&nbsp;</span>
                         <span class="normal">Bibframe Profile Editor</span>
 
@@ -98,7 +99,7 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <img src="assets/images/CheckLogo.png"/>
+                        <img src="assets/images/bibframe-newlogo.png"/>
                         <span class="bold">Library of Congress&nbsp;</span>
                         <span class="normal">Bibframe Profile Editor</span>
 
@@ -112,7 +113,7 @@
                 <div class="container">
 
                     <div class="navbar-header">
-                        <img src="assets/images/CheckLogo.png"/>
+                        <img src="assets/images/bibframe-newlogo.png"/>
                         <span class="bold">Library of Congress&nbsp;</span>
                         <span class="normal">Bibframe Profile Editor</span>
 
@@ -120,7 +121,15 @@
                 </div>
             </h1>
             <![endif]-->
-            
+
+            <div class="container hidden-print">
+            <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/tools/">Tools</a></li>
+            <li class="active">Editor Demo</li>
+            </ol>
+            </div>
+
             <div class="content">
 
                 <div class="mainnav sss-large-min-width">

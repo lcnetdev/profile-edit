@@ -24,7 +24,7 @@ angular.module('locApp.modules.profile.services')
             //Pass the search parameter to the list routine, which will
             //only return the results that contain text
             $http({
-                url: '/server/list/' + text,
+                url: serverPath + 'server/list/' + text,
                 method: "GET"
             }).
                 success(function(response) {

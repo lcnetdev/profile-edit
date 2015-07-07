@@ -6,10 +6,11 @@ angular.module('locApp.modules.profile.controllers')
 
                 scope.$watch('finishedLoading', function() {
                     if(scope.finishedLoading) {
-                        $('#glasscontainer').hide();
+                        $('#spinner').hide();
+
                     }
                     else {
-                        $('#glasscontainer').show();
+                        $('#spinner').show();
                     }
                 });
             }
