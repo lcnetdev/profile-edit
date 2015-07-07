@@ -59,14 +59,35 @@
                     </select>
                 </td>
                 <td>
-                    <label for="editable">Repeatable</label>
+                    <label for="repeatable">Repeatable</label>
                 </td>
                 <td>
-                    <select name="editable" ng-options="option.key as option.label for option in options"
+                    <select name="repeatable" ng-options="option.key as option.label for option in options"
                             ng-required ng-model="valueConstraint.repeatable"
                             popover="Indication that the value constraint is repeatable"
                             popover-title="Repeatable" popover-trigger="mouseenter"
-                            popover-placement="right">
+                            popover-placement="left">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="editable">Default URI</label>
+                </td>
+                <td>
+                    <input name="defaultURI" ng-model="valueConstraint.defaultURI"
+                            popover="Value constraint default value URI."
+                            popover-title="Default URI" popover-trigger="mouseenter"
+                            popover-placement="right"/>
+                </td>
+                <td>
+                    <label for="editable">Default Literal</label>
+                </td>
+                <td>
+                    <input name="defaultLiteral" ng-model="valueConstraint.defaultLiteral"
+                            popover="Value constraint default literal value."
+                            popover-title="Default Literal" popover-trigger="mouseenter"
+                            popover-placement="left">
                     </select>
                 </td>
             </tr>
