@@ -1,7 +1,7 @@
 {
   "name": "profile-editor",
-  "version": "1.1",
-  "description": "A Bibframe Profile Editor the Library of Congress",
+  "version": "1.1.1",
+  "description": "Bibframe Profile Editor",
   "main": "Gruntfile.js",
   "dependencies": {
     "grunt": "~0.4.5",

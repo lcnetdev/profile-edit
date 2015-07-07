@@ -96,19 +96,16 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         var item = $q.defer();
         var converter = new X2JS();
 
-        $http({
-            url: url,
-            method: "GET"
-        })
+        Server.get(url,{},false)
         .then(function(response) {
             // if a vocab file is empty then we will pass over it and return.
-            if(response.data === undefined || response.data === "") {
+            if(response === undefined || response === "") {
                 item.reject("No data");
                 return;
             }
 
             // set the local storage with this data
-            var xmlData = response.data;
+            var xmlData = response;
             var jsonObj = converter.xml_str2json(xmlData);
 
             var resource = {};
@@ -123,7 +120,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             properties.push(property);
 
             // Resolve the queue
-            item.resolve("Finsihed");
+            item.resolve("Finished");
         });
 
         return item.promise;
@@ -147,17 +144,16 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     vocab.setVocabData = function() {
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
-        $http({
-            url: '/server/vocabList.json',
-            method: "GET"
-        }).then(function(response){
+      
+        Server.get('/server/vocabList.json', {}, false)
+        .then(function(response){
             var listLength = 0;
             var returnNumber = 0;
             var resources = [];
             var properties = [];
 
             // loop through the list of vocabs and gather up the data.
-            angular.forEach(response.data, function(value) {
+            angular.forEach(response, function(value) {
 
                 // test that we hvae a key and this isn't a comment.
                 if(value.key != null) {

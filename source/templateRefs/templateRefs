@@ -34,3 +34,7 @@ profile:bf:HeldItem:Monograph
 profile:bf:Work
 profile:bf:Instance
 profile:bf:HeldItem
+profile:bf:Meetingprofile:bf:Jurisdiction
+profile:bf:Provider:
+profile:bf:Provider:Monograph
+profile:bf:Publication:Monograph
