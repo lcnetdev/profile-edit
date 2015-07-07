@@ -1,1 +1,6 @@
 *.zip
+source/assets/css/dist/
+source/assets/js/dist/
+source/documentation/
+source/node_modules/
+
