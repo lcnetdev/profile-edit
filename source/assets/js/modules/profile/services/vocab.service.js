@@ -145,7 +145,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
       
-        Server.get('/server/vocabList.json', {}, false)
+        Server.get('server/vocabList.json', {}, false)
         .then(function(response){
             var listLength = 0;
             var returnNumber = 0;
@@ -247,7 +247,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         else {
             var converter = new X2JS();
 
-            Server.get('/server/languages.rdf', {}, false)
+            Server.get('server/languages.rdf', {}, false)
             .then(function(response) {
                 var xmlData = response;
                 var jsonObj = converter.xml_str2json(xmlData);
