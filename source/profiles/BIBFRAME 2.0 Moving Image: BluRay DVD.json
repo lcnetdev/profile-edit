@@ -2313,8 +2313,8 @@
     "contact": "NDMSO",
     "date": "2015-10-22",
     "description": "Work, Expression, Instance for BluRay DVD",
-    "id": "profile:bf:blueraydvd",
-    "title": "WEI-BluRayDVD",
+    "id": "profile:bf2:blueraydvd",
+    "title": "BIBFRAME 2.0 Moving Image: BluRay DVD",
     "remark": ""
   }
 }
