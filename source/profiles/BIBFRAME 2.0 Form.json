@@ -1,0 +1,37 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/authorities/genreForms"
+              ],
+              "valueDataType": {
+                "dataTypeURI": "http://www.loc.gov/mads/rdf/v1#GenreForm"
+              }
+            },
+            "propertyLabel": "Search LCGFT (RDA 6.3)",
+            "propertyURI": "http://www.loc.gov/mads/rdf/v1#authoritativeLabel",
+            "remark": "http://access.rdatoolkit.org/6.3.html"
+          }
+        ],
+        "id": "profile:bf2:Form",
+        "resourceURI": "http://www.loc.gov/mads/rdf/v1#GenreForm",
+        "resourceLabel": "Form/Genre",
+        "contact": "NDMSO"
+      }
+    ],
+    "id": "profile:bf2:Form",
+    "title": "BIBFRAME 2.0 Form",
+    "description": "Form of Work",
+    "date": "2017-05-13",
+    "contact": "NDMSO"
+  }
+}
