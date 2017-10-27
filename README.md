@@ -1,12 +1,16 @@
-#BIBRAME Profile Editor
-##Overview
+# BIBRAME Profile Editor
+
+## Overview
 The BIBFRAME Profile Editor was designed to work on the widest range of machines possible. As such, most of the business logic is implemented client-side in JavaScript. This code can run in Chrome, FireFox, IE 8+, and Safari. The AngularJS framework used is the latest in client-side MVC architecture, and provides a clear model for structuring and organizing code. Every effort has been made to follow this structure and document the code, making future modifications as easy as possible.
 All of the JavaScript code comes with comments explaining what each bit does. Documentation tools were used to generate documentation for this part of the application automatically. This documentation is available in /source/documentation/jsdoc/. It is also viewable from the web interface at /documentation/jsdoc/. The Editor also contains a help link containing a FAQ section.
 There is a small amount of server-side logic in the application that mainly handles storing profiles, template references and vocabularies on the server. This was written in PHP and set up to run on an Apache web server. This code is explained below under the sub-heading 'Server Dependent Files'.
 
-##Installation Prerequisites
+## Installation Prerequisites
+
 Users should already have npm (documentation can be found at https://www.npmjs.com/package/npm), and Apache installed (documentation can be found at http://httpd.apache.org/) with PHP 5.4 or higher (documentation can be found at http://php.net/). These instructions further assume that the user is familiar with the Linux command line. Some syntax may need to be changed for a Windows environment.
-##Server Dependent files
+
+## Server Dependent files
+
 The files located in /source/server/php all handle server-side processing, and are thus dependent on the server architecture. Each file is described below with its purpose, expected inputs and output.
 * delete.php responds to an HTTP DELETE or POST with a 'name' parameter. The script deletes the file with 'name' if it exists, and returns a 200 status code. If the HTTP verb is not DELETE or POST, the server returns a 405 error code.
 * get.php responds to an HTTP GET request with a 'filename' parameter. It returns the contents of the file 'filename' as a string if the file exists, and 200 status code. If the file does not exist, it returns a 404 error code. If the request is not a GET, it returns a 405 status code.
@@ -19,7 +23,9 @@ The files located in /source/server/php all handle server-side processing, and a
 * updateTemplateRefs.php responds to an HTTP POST request with a 'template' parameter. It adds 'template' to the list of template references if it does not already exist, and returns a 200 status code. If the request is not a POST, it returns a 405 error code.
 
 In addition to the files listed above, the /source/server directory contains a file .htaccess. This file is read by Apache, and handles URL re-writing on the server. This makes it possible to extend the app to run on multiple servers without changing the client-side code. It also enables cleaner, more meaning URLs for the user.
-##Installation
+
+## Installation
+
 1.	Download the source code into the desired directory.
 2.	Open a command line terminal, and navigate to the project's source folder
 3.	Ensure that the permissions on all files are 775. (On Linux sudo chmod 775 -R .)
@@ -43,10 +49,12 @@ Vocabulary list files may be stored at any place on the server but for testing p
 		{“key”: “MADSRDF”, “value”: “/server/v1.rdf”}
 This is the format that the application will expect. “key” refers to the name that will appear in the application when you go to choose a resource or property template. “value” is the file path that the application will use. If the application cannot find the file the site will report it in the browser's console and will ignore the file.
 
-##Template Reference
+## Template Reference
+
 A file that should be of note is /templateRefs/templateRefs . This file is used to hold the template values that are used most often for the templates that are created. The application will create this file on its own and should not have to be touched, examining the file will show that it stores a list of template references. Template references are created from profiles in the /source/profiles directory.
 
-##Troubleshooting
+## Troubleshooting
+
 Although every effort has been made to ensure that the Editor can be easily installed and run, we recognize that errors do occasionally happen. Should you have problems installing or running the Editor, the following steps will resolve most errors quickly.
 
 1. Ensure Apache is the owner of all the files. The command 'ls -al' will display the files in a folder with their owner and permissions. The third and fourth columns list the owner and group, respectively. As long as Apache is the owner, or in the group, the site should work correctly.
