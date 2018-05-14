@@ -6,7 +6,7 @@
         "propertyTemplates": [
           {
             "propertyLabel": "Lookup",
-            "propertyURI": "http://www.loc.gov/ontologies/bibframe/Work",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Work",
             "resourceTemplates": [],
             "type": "resource",
             "valueConstraint": {
@@ -14,7 +14,9 @@
               "useValuesFrom": [
                 "http://mlvlp04.loc.gov:8230/resources/works"
               ],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Work"
+              }
             },
             "mandatory": "false",
             "repeatable": "true"
@@ -26,7 +28,7 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Agents:Contribution"
+                "profile:bflc:Agents:PrimaryContribution"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
@@ -51,7 +53,7 @@
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/title",
             "propertyLabel": "Title Information (RDA 6.2.2, 6.2.3)",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3731.html"
+            "remark": ""
           },
           {
             "propertyLabel": "Form of Work (RDA 6.3)",
@@ -100,20 +102,6 @@
             "repeatable": "true"
           },
           {
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
-            "propertyLabel": "Other Distinguishing Characteristic of the Work (RDA 6.6)",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3205.html",
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal"
-          },
-          {
             "mandatory": "false",
             "repeatable": "true",
             "type": "literal",
@@ -128,34 +116,65 @@
             "remark": "http://access.rdatoolkit.org/7.2.html"
           },
           {
-            "propertyLabel": "Coverage of the Content (RDA 7.3)",
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/geographicAreas"
+              ],
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/GeographicCoverage"
+              }
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/geographicCoverage",
+            "propertyLabel": "Geographic Area Code (MARC 043 Field)"
+          },
+          {
+            "propertyLabel": "(Geographic) Coverage of the Content (RDA 7.3)",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/geographicCoverage",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:CoverageContent"
-              ],
+              "valueTemplateRefs": [],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-440.html",
+            "remark": "http://access.rdatoolkit.org/7.3.html",
             "mandatory": "false",
             "repeatable": "true",
-            "type": "resource"
+            "type": "literal"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/temporalCoverage",
+            "propertyLabel": "(Time) Coverage of the Content (RDA 7.3)",
+            "remark": "http://access.rdatoolkit.org/7.3.html"
           },
           {
             "propertyLabel": "Intended Audience (RDA 7.7)",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/intendedAudience",
             "resourceTemplates": [],
-            "type": "literal",
+            "type": "resource",
             "valueConstraint": {
-              "valueTemplateRefs": [
-                ""
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/maudience"
               ],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/IntendedAudience"
+              }
             },
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-634.html",
+            "remark": "http://access.rdatoolkit.org/7.7.html",
             "mandatory": "false",
             "repeatable": "true"
           },
@@ -195,35 +214,36 @@
             "repeatable": "true"
           },
           {
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Note"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Notes about the Work",
+            "remark": "",
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource"
+          },
+          {
             "mandatory": "false",
             "repeatable": "true",
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:LCC"
+                "profile:bf2:LCC",
+                "profile:bf2:DDC"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "LC Classification",
+            "propertyLabel": "Classification numbers",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/classification"
-          },
-          {
-            "propertyLabel": "DDC Classification (RDA Chapter 23)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/classification",
-            "resourceTemplates": [],
-            "type": "resource",
-            "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:Serial:Dewey"
-              ],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "remark": "http://access.rdatoolkit.org/rdachp23_rda23-12.html",
-            "mandatory": "false",
-            "repeatable": "true"
           },
           {
             "propertyLabel": "Related Works (RDA Chapter 25 and Appendix J)",
@@ -242,18 +262,20 @@
             "repeatable": "true"
           },
           {
-            "propertyLabel": "Contents Note (LC-PCC PS 25.1)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Contents (LC-PCC PS 25.1)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/tableOfContents",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Serial:Contents"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
-            "remark": "http://access.rdatoolkit.org/lcpschp25_lcps25-357.html"
+            "type": "resource",
+            "remark": ""
           },
           {
             "propertyLabel": "Related Expressions (RDA Chapter 26 and Appendix J)",
@@ -267,7 +289,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "remark": "http://access.rdatoolkit.org/rdachp25_rda25-65.html",
+            "remark": "http://access.rdatoolkit.org/rdachp26_rda26-25.html",
             "mandatory": "false",
             "repeatable": "true"
           },
@@ -284,7 +306,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/hasExpression",
-            "propertyLabel": "Related Expression (BIBFRAME)"
+            "propertyLabel": "Expression elements"
           },
           {
             "mandatory": "false",
@@ -296,8 +318,9 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "Related Manifestations (RDA Chapter 27 and Appendix J)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/hasInstance"
+            "propertyLabel": "Related Manifestations (RDA Chapter 27,  Appendix J)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/hasInstance",
+            "remark": "http://access.rdatoolkit.org/rdachp27_rda27-40.html"
           },
           {
             "mandatory": "false",
@@ -325,7 +348,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "Authorized Access Point Representing the Work (RDA 6.27.1)",
-            "propertyURI": "http://www.loc.gov/standards/mads/rdf/v1#authoritativeLabel",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
             "remark": "http://access.rdatoolkit.org/6.27.1.html"
           },
           {
@@ -338,7 +361,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab2/comment",
+            "propertyURI": "http://id.loc.gov/ontologies/bflc/comment",
             "propertyLabel": "Your Windows ID and Comments"
           }
         ],
@@ -353,11 +376,13 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:Serial:Work"
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://mlvlp04.loc.gov:8230/resources/works"
               ],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Work"
+              }
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/expressionOf",
             "propertyLabel": "Expression of",
@@ -371,11 +396,13 @@
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [
-                "http://rdaregistry.info/termList/RDAContentType"
+                "http://id.loc.gov/vocabulary/contentTypes"
               ],
-              "valueDataType": {},
-              "defaultURI": "http://rdaregistry.info/termList/RDAContentType/1020",
-              "editable": "false",
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Content"
+              },
+              "defaultURI": "http://id.loc.gov/vocabulary/contentTypes/txt",
+              "editable": "true",
               "defaultLiteral": "text"
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/content",
@@ -394,7 +421,7 @@
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/originDate",
             "propertyLabel": "Date of Expression (RDA 6.10)",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3436.html"
+            "remark": "http://access.rdatoolkit.org/6.10.html"
           },
           {
             "mandatory": "false",
@@ -402,11 +429,13 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:Language"
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/languages"
               ],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Language"
+              }
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/language",
             "propertyLabel": "Language of Expression (RDA 6.11)",
@@ -415,25 +444,11 @@
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
-            "propertyLabel": "Other Distinguishing Characteristic of the Expression (RDA 6.12)",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3585.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Serial:IssnL"
+                "profile:bf2:Identifiers:ISSNL"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
@@ -445,15 +460,17 @@
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Serial:Summary"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "Summary of Content (RDA 7.10)",
-            "remark": "http://access.rdatoolkit.org/7.10.html",
+            "propertyLabel": "Summary",
+            "remark": "",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/summary"
           },
           {
@@ -463,14 +480,14 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Language"
+                "profile:bf2:Language:Note"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab/language",
-            "propertyLabel": "Language of the Content (RDA 7.12)",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-844.html"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/language",
+            "propertyLabel": "Language of Content (RDA 7.12)",
+            "remark": "http://access.rdatoolkit.org/7.12.html"
           },
           {
             "mandatory": "false",
@@ -484,21 +501,25 @@
             },
             "propertyLabel": "Script (RDA 7.13.2)",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/notation",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-929.html"
+            "remark": "http://access.rdatoolkit.org/7.13.2.html"
           },
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/millus"
+              ],
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Illustration"
+              }
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/illustrativeContent",
             "propertyLabel": "Illustrative Content (RDA 7.15)",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1090.html"
+            "remark": "http://access.rdatoolkit.org/7.15.html"
           },
           {
             "mandatory": "false",
@@ -517,44 +538,36 @@
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Serial:Color"
+              ],
               "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": ""
+              }
             },
-            "propertyLabel": "Colour Content (RDA 7.17)",
+            "propertyLabel": "Color Content",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/colorContent",
-            "remark": "http://access.rdatoolkit.org/7.17.html"
+            "remark": ""
           },
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/colorContent",
-            "propertyLabel": "Details of Colour Content (RDA 7.17.1.4)",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1288.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Note"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
-            "propertyLabel": "Note on Expression (RDA 7.29)",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-8838.html"
+            "propertyLabel": "Notes about the Expression",
+            "remark": ""
           },
           {
             "mandatory": "false",
@@ -582,25 +595,9 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://www.loc.gov/standards/mads/rdf/v1#authoritativeLabel",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
             "propertyLabel": "Authorized Access Point for the Expression (RDA 6.27.3)",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-7056.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [
-                ""
-              ],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "LC Control Number for the Expression (RDA 6.13)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3698.html"
+            "remark": "http://access.rdatoolkit.org/6.27.3.html"
           }
         ],
         "id": "profile:bf2:Serial:Expression",
@@ -641,35 +638,7 @@
             "mandatory": "false",
             "repeatable": "true",
             "type": "resource",
-            "remark": "http://access.rdatoolkit.org/2.3.2.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "Earlier Title Proper (RDA 2.3.7) (Integrating Resources)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/title",
-            "remark": "http://access.rdatoolkit.org/2.3.7.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/title",
-            "propertyLabel": "Later Title Proper (RDA 2.3.8) (Minor Title Change)",
-            "remark": "http://access.rdatoolkit.org/2.3.8.html"
+            "remark": ""
           },
           {
             "mandatory": "false",
@@ -686,20 +655,18 @@
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/responsibilityStatement"
           },
           {
-            "propertyLabel": "Edition Statement (RDA 2.5)",
+            "propertyLabel": "Edition Statement",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/editionStatement",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:InstanceEdition"
-              ],
+              "valueTemplateRefs": [],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "type": "resource",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-4891.html"
+            "type": "literal",
+            "remark": ""
           },
           {
             "mandatory": "false",
@@ -715,25 +682,25 @@
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/enumerationAndChronology",
             "propertyLabel": "Numbering of Serials (RDA 2.6)",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-5435.html"
+            "remark": "http://access.rdatoolkit.org/2.6.html"
           },
           {
-            "propertyLabel": "Publication, Distribution, Manufacture Statements (RDA 2.8 - 2.10)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Publication",
+            "propertyLabel": "Publication, Distribution, Manufacture Statements",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/provisionActivity",
             "resourceTemplates": [],
             "type": "resource",
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Serial:Publication",
-                "profile:bf2:Serial:Distribution",
-                "profile:bf2:Serial:Manufacture"
+                "profile:bf2:PublicationInformation",
+                "profile:bf2:DistributionInformation",
+                "profile:bf2:ManufactureInformation"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "remark": "http://access.rdatoolkit.org/2.8.html"
+            "remark": ""
           },
           {
             "mandatory": "false",
@@ -756,14 +723,14 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Instance:SeriesStatement"
+                "profile:bf2:SeriesInformation"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "Series Statement (RDA 2.12)",
-            "remark": "http://access.rdatoolkit.org/2.12.html",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/seriesStatement"
+            "propertyLabel": "Series Statement",
+            "remark": "",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/hasSeries"
           },
           {
             "mandatory": "false",
@@ -773,13 +740,15 @@
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [
-                "http://rdaregistry.info/termList/ModeIssue"
+                "http://id.loc.gov/vocabulary/issuance"
               ],
-              "valueDataType": {},
-              "defaultURI": "http://rdaregistry.info/termList/ModeIssue/1003",
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Issuance"
+              },
+              "defaultURI": "http://id.loc.gov/vocabulary/issuance/serl",
               "defaultLiteral": "serial",
               "repeatable": "true",
-              "editable": "false"
+              "editable": "true"
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/issuance",
             "propertyLabel": "Mode of Issuance (RDA 2.13)",
@@ -791,59 +760,36 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [
-                "http://rdaregistry.info/termList/frequency"
+              "valueTemplateRefs": [
+                "profile:bf2:Serial:Frequency"
               ],
-              "valueDataType": {}
+              "useValuesFrom": [],
+              "valueDataType": {
+                "dataTypeURI": ""
+              }
             },
-            "propertyLabel": "Frequency (RDA 2.14)",
-            "remark": "http://access.rdatoolkit.org/2.14.html",
+            "propertyLabel": "Frequency",
+            "remark": "",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/frequency"
           },
           {
-            "propertyLabel": "ISSN - Identifier for the Manifestation (RDA 2.15)",
-            "propertyURI": "http://bibframe.org/vocab/identifiedBy",
+            "propertyLabel": "Identifiers",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
             "resourceTemplates": [],
             "type": "resource",
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Serial:ISSN"
+                "profile:bf2:Identifiers:ISSN",
+                "profile:bf2:Identifiers:ISSNL",
+                "profile:bf2:Identifiers:Other",
+                "profile:bf2:Identifiers:Local"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "remark": "http://access.rdatoolkit.org/2.15.html"
-          },
-          {
-            "propertyLabel": "Note on Title (RDA 2.17.2)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "remark": "http://access.rdatoolkit.org/2.17.2.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
-            "propertyLabel": "Issue, Part, or Iteration Note (RDA 2.17.13)",
-            "remark": "http://access.rdatoolkit.org/2.17.13.html"
+            "remark": ""
           },
           {
             "propertyLabel": "Media type (RDA 3.2)",
@@ -854,16 +800,18 @@
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [
-                "http://rdaregistry.info/termList/RDAMediaType"
+                "http://id.loc.gov/vocabulary/mediaTypes"
               ],
-              "valueDataType": {},
-              "defaultURI": "http://rdaregistry.info/termList/RDAMediaType/1007",
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Media"
+              },
+              "defaultURI": "http://id.loc.gov/vocabulary/mediaTypes/n",
               "defaultLiteral": "unmediated",
               "repeatable": "true",
-              "editable": "false"
+              "editable": "true"
             },
             "mandatory": "false",
-            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-2027.html"
+            "remark": "http://access.rdatoolkit.org/3.2.html"
           },
           {
             "propertyLabel": "Extent (RDA 3.4)",
@@ -877,7 +825,7 @@
             "mandatory": "false",
             "repeatable": "true",
             "type": "literal",
-            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-2080.html"
+            "remark": "http://access.rdatoolkit.org/3.4.html"
           },
           {
             "propertyLabel": "Dimensions (RDA 3.5)",
@@ -891,7 +839,7 @@
             "mandatory": "false",
             "repeatable": "true",
             "type": "literal",
-            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-3150.html"
+            "remark": "http://access.rdatoolkit.org/3.5.html"
           },
           {
             "propertyLabel": "Carrier Type (RDA 3.3)",
@@ -902,30 +850,18 @@
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [
-                "http://rdaregistry.info/termList/RDACarrierType"
+                "http://id.loc.gov/vocabulary/carriers"
               ],
-              "valueDataType": {},
-              "defaultURI": "http://rdaregistry.info/termList/RDACarrierType/1049",
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Carrier"
+              },
+              "defaultURI": "http://id.loc.gov/vocabulary/carriers/nc",
               "repeatable": "true",
               "defaultLiteral": "volume",
-              "editable": "false"
+              "editable": "true"
             },
             "mandatory": "false",
-            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-2051.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "Note on Changes in Carrier Characteristics (RDA 3.21.4)",
-            "remark": "http://accesss.rdatoolkit.org/3.21.4.html",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note"
+            "remark": "http://access.rdatoolkit.org/3.3.html"
           },
           {
             "mandatory": "false",
@@ -945,24 +881,28 @@
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Note"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "Other Note on Manifestation (RDA 2.17)",
+            "propertyLabel": "Notes about the Instance",
             "remark": "http://access.rdatoolkit.org/2.17.html",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/note"
           },
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Serial:Item"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
@@ -991,14 +931,14 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Serial:Lccn"
+                "profile:bf2:Identifiers:LCCN"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
             "propertyLabel": "LC Control Number for the Manifestation (RDA 2.15)",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8419.html"
+            "remark": "http://access.rdatoolkit.org/2.15.html"
           },
           {
             "mandatory": "false",
@@ -1017,6 +957,20 @@
           },
           {
             "mandatory": "false",
+            "repeatable": "false",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bflc/projectedProvisionDate",
+            "remark": "http://id.loc.gov/ontologies/bflc.html#p_projectedProvisionDate",
+            "propertyLabel": "Projected publication date (YYMM)"
+          },
+          {
+            "mandatory": "false",
             "repeatable": "true",
             "type": "literal",
             "resourceTemplates": [],
@@ -1025,7 +979,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab2/comment",
+            "propertyURI": "http://id.loc.gov/ontologies/bflc/comment",
             "propertyLabel": "Your Windows ID and Comments"
           }
         ],
@@ -1036,27 +990,18 @@
         "id": "profile:bf2:Serial:Item",
         "propertyTemplates": [
           {
-            "propertyLabel": "Holding for",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/itemOf",
+            "propertyLabel": "Held by",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/heldBy",
             "resourceTemplates": [],
             "type": "resource",
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "mandatory": "false",
-            "repeatable": "true"
-          },
-          {
-            "propertyLabel": "Held by",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/heldBy",
-            "resourceTemplates": [],
-            "type": "literal",
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Agent"
+              },
+              "defaultURI": "http://id.loc.gov/vocabulary/organizations/dlc",
+              "defaultLiteral": "DLC"
             },
             "mandatory": "false",
             "repeatable": "true"
@@ -1092,13 +1037,15 @@
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Identifiers:Barcode"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal"
+            "type": "resource"
           },
           {
             "propertyLabel": "Circulation status",
@@ -1114,43 +1061,19 @@
             "type": "literal"
           },
           {
-            "propertyLabel": "Copy note",
+            "propertyLabel": "Notes about the Item",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Note"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal"
-          },
-          {
-            "propertyLabel": "System item identifier",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal"
-          },
-          {
-            "propertyLabel": "Shelf Location",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/shelfMark",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal"
+            "type": "resource"
           },
           {
             "propertyLabel": "Lending, Reproduction, and Retention Policies",
@@ -1166,34 +1089,23 @@
             "type": "resource"
           },
           {
-            "propertyLabel": "LCC call number",
-            "propertyURI": "http://bibframe.org/vocab/shelfMarkLcc",
+            "propertyLabel": "Shelving call numbers",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifedBy",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Identifiers:Shelfmarks"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal"
-          },
-          {
-            "propertyLabel": "DDC call number",
-            "propertyURI": "http://bibframe.org/vocab/shelfMarkDdc",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal"
+            "type": "resource"
           },
           {
             "propertyLabel": "Access condition",
-            "propertyURI": "http://bibframe.org/vocab/accessCondition",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/UsageAndAccessPolicy",
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [],
@@ -1210,7 +1122,9 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Serial:EnumerationAndChronology"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
@@ -1229,6 +1143,20 @@
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/immediateAcquisition",
             "propertyLabel": "Immediate Acquisition"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/acquisitionSource",
+            "remark": "http://access.rdatoolkit.org/rdachp4_rda4-93.html",
+            "propertyLabel": "Contact information (RDA 4.3)"
           }
         ],
         "resourceLabel": "BIBFRAME Item (RDA Item)",
@@ -1288,26 +1216,6 @@
         "propertyTemplates": [
           {
             "mandatory": "false",
-            "repeatable": "false",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
-            "propertyLabel": "LCCN"
-          }
-        ],
-        "id": "profile:bf2:Serial:Lccn",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Lccn",
-        "resourceLabel": "LCCN"
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
             "repeatable": "true",
             "type": "literal",
             "resourceTemplates": [],
@@ -1317,7 +1225,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "Valid ISSN Recording Identifier for Manifestation (RDA 2.15.1.4)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifies",
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
             "remark": "http://access.rdatoolkit.org/2.15.1.4.html"
           },
           {
@@ -1341,9 +1249,13 @@
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://www.w3.org/2000/01/rdf-schema#label",
+                "dataTypeLabel": "\"incorrect\""
+              },
+              "defaultLiteral": ""
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifies",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/status",
             "propertyLabel": "Incorrect ISSN Incorrect Identifiers (RDA 2.15.1.6)",
             "remark": "http://access.rdatoolkit.org/2.15.1.6.html"
           },
@@ -1355,16 +1267,19 @@
             "valueConstraint": {
               "valueTemplateRefs": [],
               "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#label",
+                "dataTypeLabel": "\"cancelled\""
+              }
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifies",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/status",
             "propertyLabel": "Cancelled ISSN Incorrect Identifiers (RDA 2.15.1.6)",
             "remark": "http://access.rdatoolkit.org/2.15.1.6.html"
           }
         ],
         "id": "profile:bf2:Serial:ISSN",
         "resourceURI": "http://id.loc.gov/ontologies/bibframe/Issn",
-        "resourceLabel": "ISSN"
+        "resourceLabel": "ISSN (unused)"
       },
       {
         "propertyTemplates": [
@@ -1400,7 +1315,7 @@
         "id": "profile:bf2:Serial:IssnL",
         "resourceURI": "http://id.loc.gov/ontologies/bibframe/IssnL",
         "contact": "NDMSO",
-        "resourceLabel": "ISSN-L"
+        "resourceLabel": "ISSN-L (unused)"
       },
       {
         "propertyTemplates": [
@@ -1414,8 +1329,8 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
-            "propertyLabel": "Place of Publication (RDA 2.8.2)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Place",
+            "propertyLabel": "Place (RDA 2.8.2)",
             "remark": "http://access.rdatoolkit.org/2.8.2.html"
           },
           {
@@ -1428,8 +1343,8 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
-            "propertyLabel": "Publisher's Name (RDA 2.8.4)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Agent",
+            "propertyLabel": "Name (RDA 2.8.4)",
             "remark": "http://access.rdatoolkit.org/2.8.4.html"
           },
           {
@@ -1443,7 +1358,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
-            "propertyLabel": "Date of Publication (RDA 2.8.6)",
+            "propertyLabel": "Date (RDA 2.8.6)",
             "remark": "http://access.rdatoolkit.org/2.8.6.html"
           },
           {
@@ -1477,8 +1392,8 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
-            "propertyLabel": "Place of Distribution (RDA 2.9.2)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Place",
+            "propertyLabel": "Place (RDA 2.9.2)",
             "remark": "http://access.rdatoolkit.org/2.9.2.html"
           },
           {
@@ -1491,8 +1406,8 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
-            "propertyLabel": "Distributor’s Name (RDA 2.9.4)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Agent",
+            "propertyLabel": "Name (RDA 2.9.4)",
             "remark": "http://access.rdatoolkit.org/2.9.4.html"
           },
           {
@@ -1506,7 +1421,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
-            "propertyLabel": "Date of Distribution (RDA 2.9.6)",
+            "propertyLabel": "Date (RDA 2.9.6)",
             "remark": "http://access.rdatoolkit.org/2.9.6.html"
           },
           {
@@ -1540,8 +1455,8 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
-            "propertyLabel": "Place of Manufacture (RDA 2.10.2)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Place",
+            "propertyLabel": "Place (RDA 2.10.2)",
             "remark": "http://access.rdatoolkit.org/2.10.2.html"
           },
           {
@@ -1554,8 +1469,8 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
-            "propertyLabel": "Manufacturer’s Name (RDA 2.10.4)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Agent",
+            "propertyLabel": "Name (RDA 2.10.4)",
             "remark": "http://access.rdatoolkit.org/2.10.4.html"
           },
           {
@@ -1569,7 +1484,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
-            "propertyLabel": "Date of Manufacture (RDA 2.10.6)",
+            "propertyLabel": "Date (RDA 2.10.6)",
             "remark": "http://access.rdatoolkit.org/2.10.6.html"
           },
           {
@@ -1596,115 +1511,16 @@
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/variantType",
-            "propertyLabel": "Type of variant title"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "Variant Title (RDA 2.3.6)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/title"
-          }
-        ],
-        "id": "profile:bf2:Serial:VariantTitle",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/VariantTitle",
-        "contact": "NDMSO",
-        "resourceLabel": "Variant Title",
-        "remark": "Title associated with the resource that is different from the Work or Instance title."
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/classification",
-            "propertyLabel": "Dewey Classification"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/edition",
-            "propertyLabel": "Dewey Edition"
-          }
-        ],
-        "id": "profile:bf2:Serial:Dewey",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ClassificationDdc",
-        "contact": "NDMSO",
-        "resourceLabel": "Dewey Classification"
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
-            "repeatable": "true",
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "Lookup",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/IntendedAudience"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "label",
-            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
-          }
-        ],
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/IntendedAudience",
-        "resourceLabel": "Intended audience information",
-        "remark": "",
-        "id": "profile:bf:Serial:Audience"
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "resource",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "useValuesFrom": [
+                "http://mlvlp04.loc.gov:8230/resources/works"
+              ],
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Work"
+              }
             },
             "propertyLabel": "Search Related Work Authorized Access Point",
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/relatedTo"
@@ -1819,8 +1635,12 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "useValuesFrom": [
+                "http://mlvlp04.loc.gov:8230/resources/works"
+              ],
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Work"
+              }
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/hasExpression",
             "propertyLabel": "Search Related Expression Authorized Access Point"
@@ -2077,56 +1897,38 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                ""
-              ],
+              "valueTemplateRefs": [],
               "useValuesFrom": [
-                "http://rdaregistry.info/termList/frequency"
+                "http://id.loc.gov/vocabulary/frequencies"
               ],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Frequency"
+              }
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/frequency",
-            "propertyLabel": "Frequency"
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Frequency (RDA 2.14)",
+            "remark": "http://access.rdatoolkit.org/2.14.html"
           },
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
+            "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Note"
+              ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/frequency",
-            "propertyLabel": "Other Frequency"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Note on Frequency (RDA 2.17.12)",
+            "remark": "http://access.rdatoolkit.org/2.17.12.html"
           }
         ],
         "id": "profile:bf2:Serial:Frequency",
         "resourceURI": "http://id.loc.gov/ontologies/bibframe/Frequency",
         "resourceLabel": "Frequency"
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/title",
-            "propertyLabel": "Parallel Title Proper (RDA 2.3.3)",
-            "remark": "http://access.rdatoolkit.org/2.3.3.html"
-          }
-        ],
-        "id": "profile:bf2:ParallelTitleProper",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ParallelTitle",
-        "contact": "NDMSO",
-        "resourceLabel": "Parallel Title Proper"
       },
       {
         "propertyTemplates": [
@@ -2173,10 +1975,17 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/temporalCoverage",
-            "propertyLabel": "Chronological coverage of the content of a work (RDA 7.3)",
-            "remark": "http://access.rdatoolkit.org/7.3.html"
-          },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Contents note",
+            "remark": "http://access.rdatoolkit.org/lcpschp25_lcps25-354.html"
+          }
+        ],
+        "id": "profile:bf2:Serial:Contents",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/TableOfContents",
+        "resourceLabel": "Contents note"
+      },
+      {
+        "propertyTemplates": [
           {
             "mandatory": "false",
             "repeatable": "true",
@@ -2187,15 +1996,14 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/geographicCoverage",
-            "propertyLabel": "Geographic coverage of the content of a work (RDA 7.3)",
-            "remark": "http://access.rdatoolkit.org/7.3.html"
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Summary note",
+            "remark": "http://access.rdatoolkit.org/7.10.html"
           }
         ],
-        "id": "profile:bf2:CoverageContent",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Work",
-        "contact": "NDMSO",
-        "resourceLabel": "Coverage of Content"
+        "id": "profile:bf2:Serial:Summary",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Summary",
+        "resourceLabel": "Summary note"
       },
       {
         "propertyTemplates": [
@@ -2205,15 +2013,17 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:Serial:Publication"
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/mcolor"
               ],
-              "useValuesFrom": [],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/ColorContent"
+              }
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Publication",
-            "propertyLabel": "Publication Statement",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-6379.html"
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Color Content (RDA 7.17)",
+            "remark": "http://access.rdatoolkit.org/7.17.html"
           },
           {
             "mandatory": "false",
@@ -2222,37 +2032,19 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Serial:Distribution"
+                "profile:bf2:Note"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Distribution",
-            "propertyLabel": "Distribution Statement",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-6939.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "resource",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf2:Serial:Manufacture"
-              ],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Manufacture",
-            "propertyLabel": "Manufacture Statement",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-7298.html"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Details of Color Content (RDA 7.17.1.4)",
+            "remark": "http://access.rdatoolkit.org/7.17.1.4.html"
           }
         ],
-        "resourceLabel": "Publication, Distribution, Manufacture Statements (RDA 2.8 - 2.10)",
-        "id": "profile:bf2:Serial:ProvisionActivity",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ProvisionActivity",
-        "contact": "NDMSO",
-        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-6379.html"
+        "id": "profile:bf2:Serial:Color",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ColorContent",
+        "resourceLabel": "Color content"
       }
     ],
     "contact": "NDMSO",

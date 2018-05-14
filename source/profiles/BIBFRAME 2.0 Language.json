@@ -13,13 +13,22 @@
               "useValuesFrom": [
                 "http://id.loc.gov/vocabulary/languages"
               ],
-              "valueDataType": {},
-              "defaultURI": ""
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Language"
+              },
+              "valueLanguage": ""
             },
             "propertyURI": "http://id.loc.gov/ontologies/bibframe/language",
-            "propertyLabel": "Language of the Content (RDA 7.12)",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-844.html"
-          },
+            "propertyLabel": "Lookup"
+          }
+        ],
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Language",
+        "id": "profile:bf2:Language",
+        "resourceLabel": "Language (unused)",
+        "remark": ""
+      },
+      {
+        "propertyTemplates": [
           {
             "mandatory": "false",
             "repeatable": "true",
@@ -30,20 +39,18 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "Note on Language of the Content (RDA 7.12)",
-            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-844.html",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note"
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Note Text"
           }
         ],
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/language",
-        "id": "profile:bf2:Language",
-        "resourceLabel": "Language",
-        "remark": ""
+        "id": "profile:bf2:Language:Note",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Note",
+        "resourceLabel": "Language Note"
       }
     ],
     "id": "profile:bf2:Language",
     "title": "BIBFRAME 2.0 Language",
     "date": "2017-05-13",
-    "description": "Language of Expression and Content"
+    "description": "Language"
   }
 }

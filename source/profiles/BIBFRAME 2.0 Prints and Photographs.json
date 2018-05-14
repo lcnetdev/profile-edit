@@ -13,9 +13,11 @@
               "useValuesFrom": [
                 "http://mlvlp04.loc.gov:8230/resources/works"
               ],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Work"
+              }
             },
-            "propertyURI": "http://www.loc.gov/ontologies/bibframe/Work",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Work",
             "propertyLabel": "Lookup"
           },
           {
@@ -139,7 +141,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "8. Standard Number and Terms of Availability",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifier",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/identifiedBy",
             "remark": "http://desktop.loc.gov/saved/8._Standard_Number_and_Terms_of_Availability_Area"
           },
           {
@@ -165,7 +167,9 @@
               "useValuesFrom": [
                 "http://id.loc.gov/vocabulary/contentTypes"
               ],
-              "valueDataType": {},
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Content"
+              },
               "editable": "false",
               "defaultURI": "http://id.loc.gov/vocabulary/contentTypes/sti",
               "defaultLiteral": "still image"
@@ -196,8 +200,12 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {},
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/mediaTypes"
+              ],
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Media"
+              },
               "editable": "false",
               "defaultLiteral": "unmediated",
               "defaultURI": "http://id.loc.gov/vocabulary/mediaTypes/n"
@@ -218,7 +226,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "Subject Access",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Topic"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/subject"
           },
           {
             "mandatory": "false",
@@ -226,13 +234,13 @@
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
-              "valueTemplateRefs": [
-                ""
-              ],
+              "valueTemplateRefs": [],
               "useValuesFrom": [
                 "http://id.loc.gov/vocabulary/carriers"
               ],
-              "valueDataType": {},
+              "valueDataType": {
+                "dataTypeURI": "http://id.loc.gov/ontologies/bibframe/Carrier"
+              },
               "editable": "false",
               "defaultURI": "http://id.loc.gov/vocabulary/carriers/nb",
               "defaultLiteral": "sheet"
@@ -296,7 +304,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab/titleValue",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/mainTitle",
             "propertyLabel": "1B. Transcribed title proper",
             "remark": "http://desktop.loc.gov/search?view=document&id=Infobasedcrmg0Dash0Dash0Dash247&hl=true&fq=allresources|true#"
           },
@@ -310,7 +318,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab/Resource",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/StillImage",
             "propertyLabel": "1C. General material designation",
             "remark": "http://desktop.loc.gov/saved/GeneralMaterialDesignation"
           },
@@ -321,10 +329,12 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [],
-              "useValuesFrom": [],
+              "useValuesFrom": [
+                ""
+              ],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab/titleVariation",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/ParallelTitle",
             "propertyLabel": "1D. Parallel titles",
             "remark": "http://desktop.loc.gov/saved/ParallelTitles"
           },
@@ -340,7 +350,7 @@
               ],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab2/titleOther",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/VariantTitle",
             "propertyLabel": "1E. Other title information",
             "remark": "http://desktop.loc.gov/saved/OtherTitleInformation"
           },
@@ -355,7 +365,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "1F. Supplied and devised titles",
-            "propertyURI": "http://bibframe.org/vocab2/titleSupplied",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Title",
             "remark": "http://desktop.loc.gov/saved/SuppliedDevisedTitles"
           },
           {
@@ -368,7 +378,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab/responsibilityStatement",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/responsibilityStatement",
             "propertyLabel": "1G. Statements of responsibility",
             "remark": "http://desktop.loc.gov/saved/StatementsOfResponsibility"
           },
@@ -383,7 +393,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "1H. Material without a collective title",
-            "propertyURI": "http://bibframe.org/vocab/titleStatement",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Title",
             "remark": "http://desktop.loc.gov/saved/1H._Material_without_a_collective_title"
           },
           {
@@ -397,12 +407,12 @@
               "valueDataType": {}
             },
             "propertyLabel": "Translation of title by cataloging agency",
-            "propertyURI": "http://bibframe.org/vocab2/titleTranslation"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Title"
           }
         ],
         "resourceLabel": "Title and Statement of Responsibility",
         "id": "profile:bf2:Graphics:StatemenetOfResponsibility",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/title"
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Title"
       },
       {
         "propertyTemplates": [
@@ -417,7 +427,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "4B. Place of publication, distribution, production, etc.",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Place",
             "remark": "http://desktop.loc.gov/saved/PlacePublicationDistributionProduction"
           },
           {
@@ -431,7 +441,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "4C. Name of publisher, distributor, etc.",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Agent",
             "remark": "http://desktop.loc.gov/saved/NamePublisherDistributor"
           },
           {
@@ -460,7 +470,7 @@
             },
             "propertyLabel": "4E. Place of manufacture",
             "remark": "http://desktop.loc.gov/saved/PlaceManufacture",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Place"
           },
           {
             "mandatory": "false",
@@ -474,7 +484,7 @@
             },
             "propertyLabel": "4F. Name of manufacturer",
             "remark": "http://desktop.loc.gov/saved/NameManufacturer",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Agent"
           },
           {
             "mandatory": "false",
@@ -537,7 +547,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "5C. Other physical details",
-            "propertyURI": "http://bibframe.org/vocab2/otherPhysicalDetails",
+            "propertyURI": "http://id.loc.gov/ontologies/bflc/otherPhysicalDetails",
             "remark": "http://desktop.loc.gov/saved/5C._Other_physical_details"
           },
           {
@@ -551,7 +561,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "5D. Dimensions and format",
-            "propertyURI": "http://bibframe.org/vocab/dimensions",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/dimensions",
             "remark": "http://desktop.loc.gov/saved/5D._Dimensions_and_format"
           },
           {
@@ -565,13 +575,13 @@
               "valueDataType": {}
             },
             "propertyLabel": "5E. Accompanying material",
-            "propertyURI": "http://bibframe.org/vocab/accompaniedBy",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/accompaniedBy",
             "remark": "http://desktop.loc.gov/saved/5E._Accompanying_material"
           }
         ],
         "resourceLabel": "Physical Description",
         "id": "profile:bf2:Graphics:Description",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe"
+        "resourceURI": "http://id.loc.gov/ontologies/bflc/physicalDescription"
       },
       {
         "propertyTemplates": [
@@ -662,7 +672,7 @@
         ],
         "id": "profile:bf2:Graphics:Series",
         "resourceLabel": "Series and Multipart Resource",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/seriesStatement"
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Instance"
       },
       {
         "propertyTemplates": [
@@ -1010,7 +1020,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "8B. Standard number (ISBN)",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/"
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/Isbn"
           },
           {
             "mandatory": "false",
@@ -1041,7 +1051,7 @@
         ],
         "id": "profile:bf2:Graphics:Identifier",
         "resourceLabel": "Standard Number and Terms of Availability",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Isbnifier"
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Isbn"
       }
     ],
     "id": "profile:bf2:Graphics",

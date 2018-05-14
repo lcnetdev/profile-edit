@@ -152,4 +152,8 @@ profile:bf:Dimensions:AudioCD
 profile:bf:identifier:35mmFF
 profile:bf:Graphics:Subject
 resource
+profile:bf:Meetingprofile:bf:Jurisdiction
+profile:bf:Provider:
+profile:bf:Provider:Monograph
+profile:bf:Publication:Monograph
 profile:bf:Title:35mmFeatureFilm

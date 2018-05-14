@@ -13,45 +13,18 @@
               "useValuesFrom": [
                 "http://id.loc.gov/authorities/genreForms"
               ],
-              "valueDataType": {}
+              "valueDataType": {
+                "dataTypeURI": "http://www.loc.gov/mads/rdf/v1#GenreForm"
+              }
             },
-            "propertyLabel": "Lookup LCGFT",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/genreForm"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/genreForm",
-            "propertyLabel": "Input Term"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "resource",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [
-                "http://id.loc.gov/vocabulary/genreFormSchemes"
-              ],
-              "valueDataType": {},
-              "editable": "false",
-              "repeatable": "true"
-            },
-            "propertyLabel": "Source of term",
-            "propertyURI": "http://id.loc.gov/ontologies/bibframe/genreForm"
+            "propertyLabel": "Search LCGFT (RDA 6.3)",
+            "propertyURI": "http://www.loc.gov/mads/rdf/v1#authoritativeLabel",
+            "remark": "http://access.rdatoolkit.org/6.3.html"
           }
         ],
         "id": "profile:bf2:Form",
-        "resourceURI": "http://id.loc.gov/ontologies/bibframe/GenreForm",
-        "resourceLabel": "Form of Work",
+        "resourceURI": "http://www.loc.gov/mads/rdf/v1#GenreForm",
+        "resourceLabel": "Form/Genre",
         "contact": "NDMSO"
       }
     ],
