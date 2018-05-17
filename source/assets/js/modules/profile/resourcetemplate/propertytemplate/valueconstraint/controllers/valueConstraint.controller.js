@@ -53,7 +53,7 @@ angular.module('locApp.modules.profile.controllers')
 
         // Method to get the template references
         if(!$scope.selectList) {
-            Server.get('/server/getTemplateRefs', {})
+            Server.get('server/getTemplateRefs', {})
                 .then(function(response) {
                     $scope.selectList = response;
                     localStorageService.set('templateRefs', $scope.selectList);

@@ -14,7 +14,7 @@ angular.module('locApp.modules.profile.controllers')
                 } else {
                     template = e.originalEvent.srcElement.value;
                 }
-                Server.post('/server/updateTemplateRefs', {
+                Server.post('server/updateTemplateRefs', {
                    "template":template
                 });
 

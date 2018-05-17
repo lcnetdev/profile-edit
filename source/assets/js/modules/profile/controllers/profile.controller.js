@@ -71,7 +71,7 @@ angular.module('locApp.modules.profile.controllers')
         Vocab.retrieveVocabData();
 
         // HTTP request to get the data
-        Server.get('/server/get/' + $stateParams.id, {})
+        Server.get('server/get/' + $stateParams.id, {})
             .then(function(response) {
                 $scope.insertIntoForm(response);
                 $scope.continueImport();
@@ -95,7 +95,7 @@ angular.module('locApp.modules.profile.controllers')
             });
 
         // profiles titles call
-        Server.get('/server/list', {}, true)
+        Server.get('server/list', {}, true)
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
                     $scope.titleList.push(response[i].Profile.title);
@@ -323,7 +323,7 @@ angular.module('locApp.modules.profile.controllers')
          * to the server. Allows profiles to be completely renamed.
          */
         $scope.deleteThenSave = function() {
-            Server.deleteItem('/server/delete', {
+            Server.deleteItem('server/delete', {
                 name: $scope.oldTitle + ".json"
             })
                 .then(function() {
@@ -418,7 +418,7 @@ angular.module('locApp.modules.profile.controllers')
             $scope.profile.json = angular.toJson(jsonObj,4);
 
             // Save
-            Server.post('/server/save', {
+            Server.post('server/save', {
                 "name":$scope.profile.title + ".json",
                 "json":$scope.profile.json
             })
@@ -464,7 +464,7 @@ angular.module('locApp.modules.profile.controllers')
          * Deletes the profile from the server
          */
         $scope.deleteProfile = function() {
-            Server.deleteItem('/server/delete', {
+            Server.deleteItem('server/delete', {
                 name: $scope.profile.title + ".json"
             })
                 .then(function() {
