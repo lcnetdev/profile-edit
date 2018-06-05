@@ -21,7 +21,7 @@ angular.module('locApp.modules.profile.services')
          */
         server.get = function(url, params, useLocalStorage) {
             var deferred = $q.defer();
-            serverPath = url.match(/\/verso\//) ? '//' + serverHostname + ':3001' : serverPath;
+            // serverPath = url.match(/\/verso\//) ? '//' + serverHostname + ':3001' : serverPath;
             
             if(useLocalStorage && sessionStorage.getItem(url)) {
                 deferred.resolve(JSON.parse(sessionStorage.getItem(url)));
@@ -31,7 +31,7 @@ angular.module('locApp.modules.profile.services')
             $http({
                 //Include a random number to prevent early version of IE from
                 //caching the request
-                url: serverPath + url,
+                url: url,
                 method: "GET",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 params: params,
