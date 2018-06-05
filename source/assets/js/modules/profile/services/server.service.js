@@ -21,6 +21,7 @@ angular.module('locApp.modules.profile.services')
          */
         server.get = function(url, params, useLocalStorage) {
             var deferred = $q.defer();
+            serverPath = url.match(/\/verso\//) ? '//' + serverHostname + ':3001' : serverPath;
             
             if(useLocalStorage && sessionStorage.getItem(url)) {
                 deferred.resolve(JSON.parse(sessionStorage.getItem(url)));
