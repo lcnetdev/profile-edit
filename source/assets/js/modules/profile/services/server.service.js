@@ -5,7 +5,7 @@
  * Handles the http requests to and from the server
  */
 angular.module('locApp.modules.profile.services')
-    .factory('Server', function($q, $http, localStorageService) {
+    .factory('Server', function($q, $http, localStorageService, $sce) {
 
         var server = {};
 
@@ -27,12 +27,11 @@ angular.module('locApp.modules.profile.services')
                 deferred.resolve(JSON.parse(sessionStorage.getItem(url)));
                 return deferred.promise;
             }
-            
             // HTTP request to get the data
             $http({
                 //Include a random number to prevent early version of IE from
                 //caching the request
-                url: serverPath + url + '?' + Math.random(),
+                url: serverPath + url,
                 method: "GET",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 params: params,
