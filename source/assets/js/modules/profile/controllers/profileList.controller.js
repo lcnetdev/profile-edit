@@ -20,6 +20,7 @@ angular.module('locApp.modules.profile.controllers')
                     var parse = (record.Profile.date) ? record.Profile.date.split('-') : [];
                     var date = (parse.length > 0) ? new Date(parse[0], parse[1] - 1, parse[2]) : new Date();
                     record.Profile.date = date.toDateString().slice(4, date.length);
+                    record.Profile.versoId = response[i].id;
 
                     // push profile to list
                     $scope.profiles.push(record.Profile);
@@ -36,7 +37,7 @@ angular.module('locApp.modules.profile.controllers')
             columnDefs: [
                 {
                     field:'title', displayName:'Title', width: 160,
-                    cellTemplate: '<a href="#/profile/{{row.entity[col.field]}}"  class="pad-cell">{{ row.entity.title }}</a>'
+                    cellTemplate: '<a href="#/profile/{{row.entity.versoId}}"  class="pad-cell">{{ row.entity.title }}</a>'
                 },
                 {
                     field:'description', displayName:'Description'

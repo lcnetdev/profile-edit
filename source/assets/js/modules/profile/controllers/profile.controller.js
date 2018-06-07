@@ -71,9 +71,9 @@ angular.module('locApp.modules.profile.controllers')
         Vocab.retrieveVocabData();
 
         // HTTP request to get the data
-        Server.get('server/get/' + $stateParams.id, {})
+        Server.get('/verso/api/configs/' + $stateParams.id, {})
             .then(function(response) {
-                $scope.insertIntoForm(response);
+                $scope.insertIntoForm(response.json);
                 $scope.continueImport();
                 $scope.loading = true;
                 
