@@ -27,7 +27,8 @@
     "spin.js": "~2.3.1"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "grunt-dev": "grunt ngAnnotate uglify"
   },
   "author": "rsmith, rsegura",
   "license": "CC0-1.0",
