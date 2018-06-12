@@ -420,7 +420,7 @@ angular.module('locApp.modules.profile.controllers')
 
             delete $scope.profile.json;
 
-            $scope.profile.json = angular.toJson(jsonObj,4);
+            $scope.profile.json = angular.toJson(jsonObj);
 
             var versoModel = { 
                 "name": $scope.profile.title,
