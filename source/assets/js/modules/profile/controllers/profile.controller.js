@@ -289,7 +289,6 @@ angular.module('locApp.modules.profile.controllers')
         $scope.checkTitle = function() {
             
             var titleMatch = $scope.titleList.indexOf($scope.profile.title);
-            $scope.matchId = null;
 
             if(!$scope.validateProfile()){
                 return;
@@ -300,15 +299,14 @@ angular.module('locApp.modules.profile.controllers')
                 //watched by the alert directive to know when to display messages
                 $scope.alertVisible = !$scope.alertVisible;
             }
-            // no longer needed if not writing to file system
-            /* else if($scope.profile.title === $scope.oldTitle) {
+            else if($scope.profile.title === $scope.oldTitle) {
                 $scope.save();
-            } */
+            }
             else if(titleMatch >= 0) {
                 // display the warning message.
                 $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
                 $scope.confirmation = "Do you want to continue?";
-                // $scope.message = $scope.idList[titleMatch];
+                $stateParams.id = $scope.idList[titleMatch];
                 //watched by the warning directive to know when to display
                 //messages
                 $scope.warnVisible = !$scope.warnVisible;
