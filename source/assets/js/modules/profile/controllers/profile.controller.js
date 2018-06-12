@@ -295,9 +295,10 @@ angular.module('locApp.modules.profile.controllers')
                 //watched by the alert directive to know when to display messages
                 $scope.alertVisible = !$scope.alertVisible;
             }
-            else if($scope.profile.title === $scope.oldTitle) {
+            // no longer needed if not writing to file system
+            /* else if($scope.profile.title === $scope.oldTitle) {
                 $scope.save();
-            }
+            } */
             else if($scope.titleList.indexOf($scope.profile.title) >= 0) {
                 // display the warning message.
                 $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
@@ -306,12 +307,16 @@ angular.module('locApp.modules.profile.controllers')
                 //messages
                 $scope.warnVisible = !$scope.warnVisible;
             }
-            else if(typeof($scope.oldTitle) === "undefined") {
+            // no longer needed if not writing to file system
+            /* else if(typeof($scope.oldTitle) === "undefined") {
                 $scope.save();
             }
             else {
                 // Changeing titles, ask if they want to make a copy or replace
                 $scope.continueSave();
+            } */
+            else {
+                $scope.save();
             }
         };
 
