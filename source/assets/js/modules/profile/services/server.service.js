@@ -64,10 +64,10 @@ angular.module('locApp.modules.profile.services')
             var deferred = $q.defer();
 
             $http({
-                url: serverPath + url,
+                url: url,
                 method: "POST",
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: $.param(params)
+                headers: {'Content-Type': 'application/json'},
+                data: params
             }).
             success(function(response_json) {
                 deferred.resolve(response_json.data);

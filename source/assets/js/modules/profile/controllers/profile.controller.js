@@ -417,11 +417,15 @@ angular.module('locApp.modules.profile.controllers')
 
             $scope.profile.json = angular.toJson(jsonObj,4);
 
+            var versoModel = { 
+                "name": $scope.profile.title,
+                "configType": "profile",
+                "json": $scope.profile.json
+            };
+            versoModelStr = JSON.stringify(versoModel);
+
             // Save
-            Server.post('server/save', {
-                "name":$scope.profile.title + ".json",
-                "json":$scope.profile.json
-            })
+            Server.post('/verso/api/configs/' + $stateParams.id + '/replace', versoModelStr)
                 .then(function() {
                     $state.go('profile.list');
                  });
