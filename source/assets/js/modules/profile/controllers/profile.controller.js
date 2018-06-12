@@ -33,6 +33,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.searchText = "";
 
         $scope.titleList = [];
+        $scope.idList = [];
         $scope.vocabData = [];
         $scope.vocabDataFull = [];
         $scope.sssVocab = {};
@@ -95,10 +96,11 @@ angular.module('locApp.modules.profile.controllers')
             });
 
         // profiles titles call
-        Server.get('server/list', {}, true)
+        Server.get('/verso/api/configs?filter[where][configType]=profile', {}, true)
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
-                    $scope.titleList.push(response[i].Profile.title);
+                    $scope.titleList.push(response[i].json.Profile.title);
+                    $scope.idList.push(response[i].id);
                 }
             });
 
@@ -286,6 +288,9 @@ angular.module('locApp.modules.profile.controllers')
          */
         $scope.checkTitle = function() {
             
+            var titleMatch = $scope.titleList.indexOf($scope.profile.title);
+            $scope.matchId = null;
+
             if(!$scope.validateProfile()){
                 return;
             }            
@@ -299,10 +304,11 @@ angular.module('locApp.modules.profile.controllers')
             /* else if($scope.profile.title === $scope.oldTitle) {
                 $scope.save();
             } */
-            else if($scope.titleList.indexOf($scope.profile.title) >= 0) {
+            else if(titleMatch >= 0) {
                 // display the warning message.
                 $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
                 $scope.confirmation = "Do you want to continue?";
+                // $scope.message = $scope.idList[titleMatch];
                 //watched by the warning directive to know when to display
                 //messages
                 $scope.warnVisible = !$scope.warnVisible;
@@ -410,7 +416,6 @@ angular.module('locApp.modules.profile.controllers')
             //Close the title warning, just in case
             $scope.warningVisible = !$scope.warningVisible;
             $scope.message = "";
-            
 
             // get the object for the JSON serialization, validate, then
             // serialize if clean.Alert
