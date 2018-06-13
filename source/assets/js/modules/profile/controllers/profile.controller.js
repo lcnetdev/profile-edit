@@ -433,8 +433,10 @@ angular.module('locApp.modules.profile.controllers')
             };
             versoModelStr = JSON.stringify(versoModel);
 
+            var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
+
             // Save
-            Server.post('/verso/api/configs/' + $stateParams.id + '/replace', versoModelStr)
+            Server.post('/verso/api/configs/' + postUrl, versoModelStr)
                 .then(function() {
                     $state.go('profile.list');
                  });
