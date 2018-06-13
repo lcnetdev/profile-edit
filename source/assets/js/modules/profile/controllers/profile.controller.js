@@ -479,9 +479,7 @@ angular.module('locApp.modules.profile.controllers')
          * Deletes the profile from the server
          */
         $scope.deleteProfile = function() {
-            Server.deleteItem('server/delete', {
-                name: $scope.profile.title + ".json"
-            })
+            Server.deleteItem('/verso/api/configs/' + $stateParams.id, {})
                 .then(function() {
                         $state.go('profile.list');
                 }, function(err) {

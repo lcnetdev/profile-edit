@@ -93,9 +93,9 @@ angular.module('locApp.modules.profile.services')
             var deferred = $q.defer();
 
             $http({
-                url: serverPath + url,
+                url: url,
                 method: "DELETE",
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                headers: {'Content-Type': 'application/json'},
                 params: params
             })
             .then(function(response) {
