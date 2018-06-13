@@ -72,29 +72,30 @@ angular.module('locApp.modules.profile.controllers')
         Vocab.retrieveVocabData();
 
         // HTTP request to get the data
-        Server.get('/verso/api/configs/' + $stateParams.id, {})
-            .then(function(response) {
-                $scope.insertIntoForm(response.json);
-                $scope.continueImport();
-                $scope.loading = true;
-                
-                usSpinnerService.spin('spinner-1');
+        if ($stateParams.id) {
+            Server.get('/verso/api/configs/' + $stateParams.id, {})
+                .then(function(response) {
+                    $scope.insertIntoForm(response.json);
+                    $scope.continueImport();
+                    $scope.loading = true;
+                    
+                    usSpinnerService.spin('spinner-1');
 
-                $scope.addIndex = $scope.profile.resourceTemplates.length;
-                $scope.oldTitle = $scope.profile.title;
+                    $scope.addIndex = $scope.profile.resourceTemplates.length;
+                    $scope.oldTitle = $scope.profile.title;
 
-                // Create the default array
-                for(var i = 0; i < $scope.profile.resourceTemplates.length; i++) {
-                    $scope.resourceTemplatesBase.push($scope.profile.resourceTemplates[i]);
-                }
-                
-                $scope.addPage = ($state.current.name === 'profile.create');
-                
-                if($scope.addPage) {
-                    $scope.finishedLoading = true;
-                }
-            });
-
+                    // Create the default array
+                    for(var i = 0; i < $scope.profile.resourceTemplates.length; i++) {
+                        $scope.resourceTemplatesBase.push($scope.profile.resourceTemplates[i]);
+                    }
+                    
+                    $scope.addPage = ($state.current.name === 'profile.create');
+                    
+                    if($scope.addPage) {
+                        $scope.finishedLoading = true;
+                    }
+                });
+        };
         // profiles titles call
         Server.get('/verso/api/configs?filter[where][configType]=profile', {}, true)
             .then(function(response) {
