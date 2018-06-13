@@ -305,12 +305,13 @@ angular.module('locApp.modules.profile.controllers')
             }
             else if(titleMatch >= 0) {
                 // display the warning message.
-                $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
-                $scope.confirmation = "Do you want to continue?";
-                $stateParams.id = $scope.idList[titleMatch];
-                //watched by the warning directive to know when to display
-                //messages
-                $scope.warnVisible = !$scope.warnVisible;
+                // $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
+                $scope.message = 'The profile title "' + $scope.profile.title + '" already exists. Please choose a unique title.';
+                // $scope.confirmation = "Do you want to continue?";
+                // $stateParams.id = $scope.idList[titleMatch];
+                // watched by the warning directive to know when to display
+                // messages
+                $scope.alertVisible = !$scope.alertVisible;
             }
             // no longer needed if not writing to file system
             /* else if(typeof($scope.oldTitle) === "undefined") {
