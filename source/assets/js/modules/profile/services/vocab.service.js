@@ -105,9 +105,8 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             }
 
             // set the local storage with this data
-            var xmlData = response;
-            var jsonObj = converter.xml_str2json(xmlData);
-
+            var jsonObj = response.json;
+            
             var resource = {};
             var property = {};
 
@@ -145,7 +144,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
       
-        Server.get('server/vocabList.json', {}, false)
+        Server.get('/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][or][0][name]=Bibframe&filter[where][or][1][name]=MADSRDF', {}, false)
         .then(function(response){
             var listLength = 0;
             var returnNumber = 0;
@@ -155,10 +154,11 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             // loop through the list of vocabs and gather up the data.
             angular.forEach(response, function(value) {
 
+                var url = '/verso/api/configs/' + value.id;
                 // test that we hvae a key and this isn't a comment.
-                if(value.key != null) {
+                if(value.id != null) {
                     listLength++;
-                    _setVocabData(value.key, value.value, properties, resources)
+                    _setVocabData(value.name, url, properties, resources)
                         .then(function() {
                             returnNumber++;
 
