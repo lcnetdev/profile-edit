@@ -24,13 +24,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             var data = {};
 
             if(rdfResources.label != null) {
-               data.label = rdfResources.label.toString();
+               data.label = rdfResources.label.__text.toString();
             }
             else {
                 data.label = "";
             }
 
-            data.comment = (rdfResources.comment != null) ? rdfResources.comment.toString() : "";
+            data.comment = (rdfResources.comment != null) ? rdfResources.comment.__text.toString() : "";
             data.uri = rdfResources["_rdf:about"];
             resourceData.push(data);
             return resourceData;
@@ -40,13 +40,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             var data = {};
 
             if(value.label != null) {
-               data.label = value.label.toString();
+               data.label = value.label.__text.toString();
             }
             else {
                 data.label = "";
             }
 
-            data.comment = (value.comment != null) ? value.comment.toString() : "";
+            data.comment = (value.comment != null) ? value.comment.__text.toString() : "";
             data.uri = value["_rdf:about"];
             resourceData.push(data);
         });
@@ -61,13 +61,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             var data = {};
 
             if(rdfProperties.label != null) {
-               data.label = rdfProperties.label.toString();
+               data.label = rdfProperties.label.__text.toString();
             }
             else {
                 data.label = "";
             }
 
-            data.comment = (rdfProperties.comment != null) ? rdfProperties.comment.toString() : "";
+            data.comment = (rdfProperties.comment != null) ? rdfProperties.comment.__text.toString() : "";
             data.uri = rdfProperties["_rdf:about"];
             propertyData.push(data);
             return propertyData;
@@ -77,13 +77,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             var data = {};
 
             if(value.label != null) {
-               data.label = value.label.toString();
+               data.label = value.label.__text.toString();
             }
             else {
                 data.label = "";
             }
 
-            data.comment = (value.comment != null) ? value.comment.toString() : "";
+            data.comment = (value.comment != null) ? value.comment.__text.toString() : "";
             data.uri = value["_rdf:about"];
             propertyData.push(data);
         });
