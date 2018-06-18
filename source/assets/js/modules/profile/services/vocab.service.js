@@ -94,7 +94,6 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     // Method that will set the vocab data for each list.
     var _setVocabData = function(name, url, properties, resources) {
         var item = $q.defer();
-        var converter = new X2JS();
 
         Server.get(url,{},false)
         .then(function(response) {
