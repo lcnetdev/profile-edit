@@ -244,12 +244,10 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             queue.resolve(languageList);
         }
         else {
-            var converter = new X2JS();
-
             Server.get('/verso/api/configs?filter[where][configType]=vocabulary&filter[where][name]=Languages', {}, false)
             .then(function(response) {
-                var xmlData = response;
-                var jsonObj = converter.xml_str2json(xmlData);
+                var jsonObj = response[0].json;
+                console.log(jsonObj);
 
                 var data = jsonObj.RDF.MADSScheme.hasTopMemberOfMADSScheme;
                 var language;
