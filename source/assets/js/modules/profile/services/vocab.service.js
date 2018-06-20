@@ -247,7 +247,6 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             Server.get('/verso/api/configs?filter[where][configType]=vocabulary&filter[where][name]=Languages', {}, false)
             .then(function(response) {
                 var jsonObj = response[0].json;
-                console.log(jsonObj);
 
                 var data = jsonObj.RDF.MADSScheme.hasTopMemberOfMADSScheme;
                 var language;
