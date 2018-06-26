@@ -33,6 +33,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.searchText = "";
 
         $scope.titleList = [];
+        $scope.idList = [];
         $scope.vocabData = [];
         $scope.vocabDataFull = [];
         $scope.sssVocab = {};
@@ -71,34 +72,36 @@ angular.module('locApp.modules.profile.controllers')
         Vocab.retrieveVocabData();
 
         // HTTP request to get the data
-        Server.get('server/get/' + $stateParams.id, {})
-            .then(function(response) {
-                $scope.insertIntoForm(response);
-                $scope.continueImport();
-                $scope.loading = true;
-                
-                usSpinnerService.spin('spinner-1');
+        if ($stateParams.id) {
+            Server.get('/verso/api/configs/' + $stateParams.id, {})
+                .then(function(response) {
+                    $scope.insertIntoForm(response.json);
+                    $scope.continueImport();
+                    $scope.loading = true;
+                    
+                    usSpinnerService.spin('spinner-1');
 
-                $scope.addIndex = $scope.profile.resourceTemplates.length;
-                $scope.oldTitle = $scope.profile.title;
+                    $scope.addIndex = $scope.profile.resourceTemplates.length;
+                    $scope.oldTitle = $scope.profile.title;
 
-                // Create the default array
-                for(var i = 0; i < $scope.profile.resourceTemplates.length; i++) {
-                    $scope.resourceTemplatesBase.push($scope.profile.resourceTemplates[i]);
-                }
-                
-                $scope.addPage = ($state.current.name === 'profile.create');
-                
-                if($scope.addPage) {
-                    $scope.finishedLoading = true;
-                }
-            });
-
+                    // Create the default array
+                    for(var i = 0; i < $scope.profile.resourceTemplates.length; i++) {
+                        $scope.resourceTemplatesBase.push($scope.profile.resourceTemplates[i]);
+                    }
+                    
+                    $scope.addPage = ($state.current.name === 'profile.create');
+                    
+                    if($scope.addPage) {
+                        $scope.finishedLoading = true;
+                    }
+                });
+        };
         // profiles titles call
-        Server.get('server/list', {}, true)
+        Server.get('/verso/api/configs?filter[where][configType]=profile', {}, true)
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
-                    $scope.titleList.push(response[i].Profile.title);
+                    $scope.titleList.push(response[i].json.Profile.title);
+                    $scope.idList.push(response[i].id);
                 }
             });
 
@@ -286,6 +289,8 @@ angular.module('locApp.modules.profile.controllers')
          */
         $scope.checkTitle = function() {
             
+            var titleMatch = $scope.titleList.indexOf($scope.profile.title);
+
             if(!$scope.validateProfile()){
                 return;
             }            
@@ -298,20 +303,26 @@ angular.module('locApp.modules.profile.controllers')
             else if($scope.profile.title === $scope.oldTitle) {
                 $scope.save();
             }
-            else if($scope.titleList.indexOf($scope.profile.title) >= 0) {
+            else if(titleMatch >= 0) {
                 // display the warning message.
-                $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
-                $scope.confirmation = "Do you want to continue?";
-                //watched by the warning directive to know when to display
-                //messages
-                $scope.warnVisible = !$scope.warnVisible;
+                // $scope.message = "This profile has a matching title to another, saving this will overwrite that one.";
+                $scope.message = 'The profile title "' + $scope.profile.title + '" already exists. Please choose a unique title.';
+                // $scope.confirmation = "Do you want to continue?";
+                // $stateParams.id = $scope.idList[titleMatch];
+                // watched by the warning directive to know when to display
+                // messages
+                $scope.alertVisible = !$scope.alertVisible;
             }
-            else if(typeof($scope.oldTitle) === "undefined") {
+            // no longer needed if not writing to file system
+            /* else if(typeof($scope.oldTitle) === "undefined") {
                 $scope.save();
             }
             else {
                 // Changeing titles, ask if they want to make a copy or replace
                 $scope.continueSave();
+            } */
+            else {
+                $scope.save();
             }
         };
 
@@ -405,7 +416,6 @@ angular.module('locApp.modules.profile.controllers')
             //Close the title warning, just in case
             $scope.warningVisible = !$scope.warningVisible;
             $scope.message = "";
-            
 
             // get the object for the JSON serialization, validate, then
             // serialize if clean.Alert
@@ -415,13 +425,19 @@ angular.module('locApp.modules.profile.controllers')
 
             delete $scope.profile.json;
 
-            $scope.profile.json = angular.toJson(jsonObj,4);
+            $scope.profile.json = angular.toJson(jsonObj);
+
+            var versoModel = { 
+                "name": $scope.profile.title,
+                "configType": "profile",
+                "json": $scope.profile.json
+            };
+            versoModelStr = JSON.stringify(versoModel);
+
+            var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
 
             // Save
-            Server.post('server/save', {
-                "name":$scope.profile.title + ".json",
-                "json":$scope.profile.json
-            })
+            Server.post('/verso/api/configs/' + postUrl, versoModelStr)
                 .then(function() {
                     $state.go('profile.list');
                  });
@@ -464,9 +480,7 @@ angular.module('locApp.modules.profile.controllers')
          * Deletes the profile from the server
          */
         $scope.deleteProfile = function() {
-            Server.deleteItem('server/delete', {
-                name: $scope.profile.title + ".json"
-            })
+            Server.deleteItem('/verso/api/configs/' + $stateParams.id, {})
                 .then(function() {
                         $state.go('profile.list');
                 }, function(err) {

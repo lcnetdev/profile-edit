@@ -10,6 +10,7 @@
         <script>
             var is_ie8 = false;
             var serverPath = (window.location.pathname === '/') ? '' : window.location.pathname;
+            var serverHostname = window.location.hostname;
         </script>
         
         <!--[if lte IE 8]>
@@ -62,9 +63,9 @@
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/font-awesome/font-awesome.min.css" />
         
         <!-- Production JavaScript -->
-        <script src="assets/js/dist/profile-editor.min.js"></script>
+        <!--<script src="assets/js/dist/profile-editor.min.js"></script>-->
         <!-- Dev JavaScript -->
-        <!-- <script src="assets/js/dist/concat.js"></script> -->
+        <script src="assets/js/dist/concat.js"></script>
         
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/dist/profile-editor.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/jquery.fileupload.css" />

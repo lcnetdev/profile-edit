@@ -5,7 +5,7 @@
  * Handles the http requests to and from the server
  */
 angular.module('locApp.modules.profile.services')
-    .factory('Server', function($q, $http, localStorageService) {
+    .factory('Server', function($q, $http, localStorageService, $sce) {
 
         var server = {};
 
@@ -21,17 +21,17 @@ angular.module('locApp.modules.profile.services')
          */
         server.get = function(url, params, useLocalStorage) {
             var deferred = $q.defer();
+            // serverPath = url.match(/\/verso\//) ? '//' + serverHostname + ':3001' : serverPath;
             
             if(useLocalStorage && sessionStorage.getItem(url)) {
                 deferred.resolve(JSON.parse(sessionStorage.getItem(url)));
                 return deferred.promise;
             }
-            
             // HTTP request to get the data
             $http({
                 //Include a random number to prevent early version of IE from
                 //caching the request
-                url: serverPath + url + '?' + Math.random(),
+                url: url,
                 method: "GET",
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 params: params,
@@ -64,10 +64,10 @@ angular.module('locApp.modules.profile.services')
             var deferred = $q.defer();
 
             $http({
-                url: serverPath + url,
+                url: url,
                 method: "POST",
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                data: $.param(params)
+                headers: {'Content-Type': 'application/json'},
+                data: params
             }).
             success(function(response_json) {
                 deferred.resolve(response_json.data);
@@ -93,9 +93,9 @@ angular.module('locApp.modules.profile.services')
             var deferred = $q.defer();
 
             $http({
-                url: serverPath + url,
+                url: url,
                 method: "DELETE",
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                headers: {'Content-Type': 'application/json'},
                 params: params
             })
             .then(function(response) {

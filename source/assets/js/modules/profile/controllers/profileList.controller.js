@@ -12,16 +12,18 @@ angular.module('locApp.modules.profile.controllers')
         $scope.profiles = [];
         $scope.searchText = "";
 
-        Server.get('server/list', {})
+        Server.get('/verso/api/configs?filter[where][configType]=profile', {})
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
                     // Logic to format the date correctly
-                    var parse = (response[i].Profile.date) ? response[i].Profile.date.split('-') : [];
+                    var record = response[i].json;
+                    var parse = (record.Profile.date) ? record.Profile.date.split('-') : [];
                     var date = (parse.length > 0) ? new Date(parse[0], parse[1] - 1, parse[2]) : new Date();
-                    response[i].Profile.date = date.toDateString().slice(4, date.length);
+                    record.Profile.date = date.toDateString().slice(4, date.length);
+                    record.Profile.versoId = response[i].id;
 
                     // push profile to list
-                    $scope.profiles.push(response[i].Profile);
+                    $scope.profiles.push(record.Profile);
                 }
                 $scope.sortByParam('title', 'asc');
                 $scope.addBlanks();
@@ -35,7 +37,7 @@ angular.module('locApp.modules.profile.controllers')
             columnDefs: [
                 {
                     field:'title', displayName:'Title', width: 160,
-                    cellTemplate: '<a href="#/profile/{{row.entity[col.field]}}"  class="pad-cell">{{ row.entity.title }}</a>'
+                    cellTemplate: '<a href="#/profile/{{row.entity.versoId}}"  class="pad-cell">{{ row.entity.title }}</a>'
                 },
                 {
                     field:'description', displayName:'Description'
