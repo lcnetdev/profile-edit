@@ -20,7 +20,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     var buildResources = function(rdfResources) {
         var resourceData = [];
 
-        if(!Array.isArray(rdfResources)) {
+        if(!Array.isArray(rdfResources) && rdfResources !== undefined) {
             var data = {};
 
             if(rdfResources.label != null) {
@@ -39,6 +39,9 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         angular.forEach(rdfResources, function(value) {
             var data = {};
 
+            if(value.label === undefined) {
+                value.label = null;
+            }
             if(value.label != null) {
                data.label = value.label.__text.toString();
             }
@@ -57,7 +60,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     var buildProperties = function(rdfProperties) {
         var propertyData = [];
 
-        if(!Array.isArray(rdfProperties)) {
+        if(!Array.isArray(rdfProperties) && rdfProperties !== undefined) {
             var data = {};
 
             if(rdfProperties.label != null) {
@@ -75,7 +78,9 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
         angular.forEach(rdfProperties, function(value) {
             var data = {};
-
+            if(value.label === undefined) {
+                value.label = null;
+            }
             if(value.label != null) {
                data.label = value.label.__text.toString();
             }
@@ -142,8 +147,10 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     vocab.setVocabData = function() {
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
-      
-        Server.get('/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][or][0][name]=Bibframe&filter[where][or][1][name]=MADSRDF', {}, false)
+        
+        const vurl = '/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][name][neq]=Languages';
+
+        Server.get(vurl, {}, false)
         .then(function(response){
             var listLength = 0;
             var returnNumber = 0;
