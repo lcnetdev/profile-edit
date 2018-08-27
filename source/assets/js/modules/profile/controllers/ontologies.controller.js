@@ -100,26 +100,26 @@ angular.module('locApp.modules.profile.controllers')
          * @ngdoc function
          * @name search
          * @description
-         * Updates scope.profiles to contain only those profiles containing the
+         * Updates scopes.ontologies to contain only those ontologies containing the
          * text found in the search query input
          */
         $scope.search = function() {
             var textBox = document.getElementById("search_query");
             var text = textBox.value.toLowerCase();
-            //copy the existing profiles into a master list if necessary
-            $scope.masterProfileList = $scope.masterProfileList !== undefined ? $scope.masterProfileList : $scope.profiles.slice();
+            //copy the existing ontologies into a master list if necessary
+            $scope.masterOntologyList = $scope.masterOntologyList !== undefined ? $scope.masterOntologyList : $scope.ontologies.slice();
 
             if(text !== "") {
-                $scope.profiles = [];
-                angular.forEach($scope.masterProfileList, function(profile) {
-                   if(angular.toJson(profile).toLowerCase().indexOf(text) >= 0) {
-                       $scope.profiles.push(profile);
+                $scope.ontologies = [];
+                angular.forEach($scope.masterOntologyList, function(ontology) {
+                   if(angular.toJson(ontology).toLowerCase().indexOf(text) >= 0) {
+                       $scope.ontologies.push(ontology);
                    }
                 });
             } else {
-                $scope.profiles = $scope.masterProfileList.slice();
+                $scope.ontologies = $scope.masterOntologyList.slice();
             }
-            $scope.sortByParam('title', 'asc');
+            // $scope.sortByParam('title', 'asc');
             textBox.value='';
             $scope.addBlanks();
         };
