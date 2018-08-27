@@ -18,15 +18,18 @@ angular.module('locApp.modules.profile.controllers')
                     // Logic to format the date correctly
                     var oSource = response[i];
                     var name = oSource.name;
+                    var oid = oSource.id;
                     oSource.json.RDF.Class.forEach(function(oClass) {
                         oClass.oType = 'Resource'
                         oClass.source = name;
+                        oClass.id = oid;
                         $scope.ontologies.push(oClass);
                     });
                     if (oSource.json.RDF.Property !== undefined) {
                         oSource.json.RDF.Property.forEach(function(oProp) {
                             oProp.oType = 'Property';
                             oProp.source = name;
+                            oProp.id = oid;
                             $scope.ontologies.push(oProp);
                         });
                     }
@@ -46,7 +49,7 @@ angular.module('locApp.modules.profile.controllers')
                 },
                 {
                     field:'label.__text', displayName:'Label', width: 160,
-                    cellTemplate: '<a href="#/ontologies/{{row.entity.versoId}}"  class="pad-cell">{{ row.entity.label.__text }}</a>'
+                    cellTemplate: '<a href="#/profile/ontologies/?id={{row.entity.id}}&uri={{row.entity[\'_rdf:about\']}}"  class="pad-cell">{{ row.entity.label.__text }}</a>'
                 },
                 {
                     field:'oType', displayName:'Type', width: 80
