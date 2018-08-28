@@ -99,8 +99,14 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     // Method that will set the vocab data for each list.
     var _setVocabData = function(name, url, properties, resources) {
         var item = $q.defer();
-
-        Server.get(url,{},false)
+        console.log(name);
+        console.log(url);
+        Server.$jsonp(url,{},false)
+        .then(function(response) {
+            console.log(response);
+            item.resolve("Finished");
+        })
+        /* Server.get(url,{},false)
         .then(function(response) {
             // if a vocab file is empty then we will pass over it and return.
             if(response === undefined || response === "") {
@@ -124,7 +130,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             // Resolve the queue
             item.resolve("Finished");
-        });
+        }); */
 
         return item.promise;
     };
@@ -148,7 +154,8 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
         
-        const vurl = '/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][name][neq]=Languages';
+        // const vurl = '/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][name][neq]=Languages';
+        const vurl = '/verso/api/configs?filter[where][configType]=ontology';
 
         Server.get(vurl, {}, false)
         .then(function(response){
@@ -159,12 +166,12 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             // loop through the list of vocabs and gather up the data.
             angular.forEach(response, function(value) {
+                var url = value.json.url;
 
-                var url = '/verso/api/configs/' + value.id;
                 // test that we hvae a key and this isn't a comment.
                 if(value.id != null) {
                     listLength++;
-                    _setVocabData(value.name, url, properties, resources)
+                    _setVocabData(value.json.label, url, properties, resources)
                         .then(function() {
                             returnNumber++;
 
@@ -307,4 +314,3 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
     return vocab;
 });
-
