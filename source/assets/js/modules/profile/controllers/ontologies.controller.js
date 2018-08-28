@@ -12,29 +12,13 @@ angular.module('locApp.modules.profile.controllers')
         $scope.ontologies = [];
         $scope.searchText = "";
 
-        Server.get('/verso/api/configs?filter[where][configType]=vocabulary&filter[where][name][neq]=Languages', {})
+        Server.get('/verso/api/configs?filter[where][configType]=ontology', {})
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
-                    // Logic to format the date correctly
-                    var oSource = response[i];
-                    var name = oSource.name;
-                    var oid = oSource.id;
-                    oSource.json.RDF.Class.forEach(function(oClass) {
-                        oClass.oType = 'Resource'
-                        oClass.source = name;
-                        oClass.id = oid;
-                        $scope.ontologies.push(oClass);
-                    });
-                    if (oSource.json.RDF.Property !== undefined) {
-                        oSource.json.RDF.Property.forEach(function(oProp) {
-                            oProp.oType = 'Property';
-                            oProp.source = name;
-                            oProp.id = oid;
-                            $scope.ontologies.push(oProp);
-                        });
-                    }
+                    response[i].metadata.updateDate = response[i].metadata.updateDate.substring(0, 10);
+                    $scope.ontologies.push(response[i]);
                 }
-                $scope.addBlanks();
+                // $scope.addBlanks();
             });
             console.log($scope.ontologies);
         /**
@@ -45,17 +29,19 @@ angular.module('locApp.modules.profile.controllers')
             data: "ontologies",
             columnDefs: [
                 {
-                    field:'source', displayName:'Source', width: 120
+                    field:'json.label', displayName:'Label', width: 200,
+                    // cellTemplate: '<input type="text" value="{{row.entity.name}}"></input>'
                 },
                 {
-                    field:'label.__text', displayName:'Label', width: 160,
-                    cellTemplate: '<a href="#/profile/ontologies/?id={{row.entity.id}}&uri={{row.entity[\'_rdf:about\']}}"  class="pad-cell">{{ row.entity.label.__text }}</a>'
+                    field:'json.url', displayName:'URL',
+                    // cellTemplate: '<input type="text" value="{{row.entity.json.url}}" size="100%"></input>'
                 },
                 {
-                    field:'oType', displayName:'Type', width: 80
+                    field:'metadata.updateDate', displayName:'Modified', width: 120,
                 },
                 {
-                    field:'comment.__text', displayName:'Description'
+                    field:'actions', displayName:'Actions', width: 120,
+                    cellTemplate: '<div class="text-center"><a class="btn"><span class="fa fa-pencil fa-fw"></span></a><a class="btn"><span class="fa fa-trash-o fa-fw"></span></a></div>'
                 },
             ],
             enableHorizontalScrollbar: false,
