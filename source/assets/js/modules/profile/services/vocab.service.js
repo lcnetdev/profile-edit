@@ -53,13 +53,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             data.uri = value["_rdf:about"];
             resourceData.push(data);
         });
-
+        console.log(resourceData);
         return resourceData;
     };
 
     var buildProperties = function(rdfProperties) {
         var propertyData = [];
-
+        console.log(rdfProperties);
         if(!Array.isArray(rdfProperties) && rdfProperties !== undefined) {
             var data = {};
 
@@ -73,6 +73,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             data.comment = (rdfProperties.comment != null) ? rdfProperties.comment.__text.toString() : "";
             data.uri = rdfProperties["_rdf:about"];
             propertyData.push(data);
+            
             return propertyData;
         }
 
@@ -88,7 +89,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
                 data.label = "";
             }
 
-            data.comment = (value.comment != null) ? value.comment.__text.toString() : "";
+            data.comment = (value.comment != null && value.comment.__text !== undefined) ? value.comment.__text.toString() : "";
             data.uri = value["_rdf:about"];
             propertyData.push(data);
         });
@@ -112,7 +113,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             var parser = new X2JS();
             var xjson = parser.xml_str2json(response);
             console.log(xjson);
-            
+
             // set the local storage with this data
             var resource = {};
             var property = {};
@@ -122,7 +123,8 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             resources.push(resource);
 
             property.key = name;
-            property.value = buildProperties(xjson.RDF.Property);
+            // property.value = buildProperties(xjson.RDF.Property);
+            property.value = buildProperties(xjson.RDF.ObjectProperty);
             properties.push(property);
 
             // Resolve the queue
