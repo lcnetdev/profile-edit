@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>BIBFRAME Profiles: Introduction and Specification</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta charset="UTF-8">
+                <link rel="stylesheet" href="/css/blue/style.css" type="text/css" media="print, projection, screen">
+                    <link href="/css/bootstrap.css" rel="stylesheet">
+                        <link href="/css/style-doc.css" rel="stylesheet">
+                        </head>
+                        <body class="report draft">
+                            <div class="row-fluid overview">
+                                <div class="offset1 span10" id="main_body">
+                                    <div id="header">
+                                        <h2 class="title">BIBFRAME Profiles: Introduction and Specification</h2>
+                                        <h3 class="subTitle">1 May 2014</h3>
+                                    </div>
+                                    <hr>
+                                        <dl class="identifiers">
+                                            <dt>This version:</dt>
+                                            <dd>
+                                                <a href="/documentation/bibframe-profiles/20140501.html">http://bibframe.org/documentation/bibframe-profiles/20140501.html</a>
+                                            </dd>
+                                            <dt>Latest version:</dt>
+                                            <dd>
+                                                <a href="/documentation/bibframe-profiles/">http://bibframe.org/documentation/bibframe-profiles/</a>
+                                            </dd>
+                                            <dt>Previous version:</dt>
+                                            <dd>
+                                                <a href="/documentation/bibframe-profiles/20140226.html">http://bibframe.org/documentation/bibframe-profiles/20140226.html</a>
+                                            </dd>
+                                        </dl>
+                                        <dl class="editors">
+                                            <dt>Editors:</dt>
+                                            <dd>Eric Miller, Vicki Mueller, Uche Ogbuji, Mark Baker, Zepheira</dd>
+                                        </dl>
+                                         <dl class="editors">
+                                            <dt>Additional editor (publication prep - 1 May 2014 version):</dt>
+                                            <dd>Kevin Ford, Library of Congress</dd>
+                                        </dl>
+                                        <div class="status">
+                                            <h2>
+                                                <a id="status" name="status"></a>Status of this Document
+                                            </h2>
+                                            <p class="alert alert-info">
+                                                <i>This document is a draft. Other documents may supersede this document.</i>
+                                            </p>
+                                            <p
+                                                xmlns:dct="http://purl.org/dc/terms/"
+                                                xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                                                <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">
+                                                    <img src="http://i.creativecommons.org/l/zero/1.0/88x31.png" style="border-style: none;" alt="CC0">
+                                                    </a>
+                                                    <br>
+                                                    </p>
+                                                    <div>
+                                                        <p>To the extent possible under law, 
+                                                            <a rel="dct:publisher" href="http://loc.gov/">
+                                                                <span property="dct:title">Library of Congress</span>
+                                                            </a>
+has waived all copyright and related or neighboring rights to this
+work. This work is published from the United States.
+                                                        </p>
+                                                    </div>
+                                                    <p>This document has been made available to the BIBFRAME Community for
+review. This is a discussion paper. It may be superseded in the future
+with an updated version that may represent minor corrections or major
+changes. In either case, access to previous versions will be maintained.</p>
+                                                    <p> Please send general comments about this document to the public 
+                                                        <a href="http://listserv.loc.gov/listarch/bibframe.html">Bibliographic
+Framework Initiative discussion list</a>. 
+                                                    </p>
+                                                </div>
+                                                <hr>
+                                                    <div class="toc">
+                                                        <h2>
+                                                            <a id="contents" name="contents"></a>Table of Contents
+                                                        </h2>
+                                                        <div class="toc">
+                                                            <ol>
+                                                                <li>
+                                                                    <a href="#abstract">
+                                                                        <b>Abstract</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#introduction">
+                                                                        <b>Introduction</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#basicStructure">
+                                                                        <b>Basic Structure</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#validation">
+                                                                        <b>Validation</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#serialization">
+                                                                        <b>Serialization</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#usageScenarios">
+                                                                        <b>Usage Scenarios</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#examples">
+                                                                        <b>Examples</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#grammar">
+                                                                        <b>Detailed grammar</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#implementation">
+                                                                        <b>Implementation</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#history">
+                                                                        <b>History</b>
+                                                                    </a>
+                                                                </li>
+                                                            </ol>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                        <div class="body">
+                                                            <div class="section">
+                                                                <a id="abstract" name="abstract" class="anchor"></a>
+                                                                <h2>Abstract</h2>
+                                                                <p>This document introduces and defines BIBFRAME Profiles, and
+                                                                describes how they are created, maintained and used. It gives an
+                                                                overview of the purpose of BIBFRAME Profiles, describes how they can be
+                                                                used to support unique community's descriptive practices, and provides
+                                                                specific examples of how profiles can be constructed.</p>
+                                                            </div>
+                                                            <div class="section">
+                                                                <a id="introduction" name="introduction" class="anchor"></a>
+                                                                <h2>Introduction</h2>
+                                                                <p>BIBFRAME is the result of the Bibliographic Framework Initiative. It is a framework or metamodel for discovery and exchange of library and other memory 
+                                                                organization information using Web technology, publicly or privately. The BIBFRAME metamodel is designed to be lightweight, flexible and able
+                                                                to accommodate the declarative needs of both existing (RDA, DACS, VRA,
+                                                                etc..) and yet-to-be-developed community vocabularies. To best accomodate these communities the BIBFRAME RDF Schema is intentionally underspecified in terms of 
+                                                                constraints such as domain and range. This same flexibility comes at a cost; without a way of constraining these vocabularies, authoring tools, for example, 
+                                                                are unable to provide guidance to content authors for specific vocabularies and derived models. BIBFRAME Profiles provide such supplementary descriptions.</p>
+                                                                <p>A BIBFRAME Profile is a document, or set of documents, that puts a
+                                                                Profile (e.g. local cataloging practices) into a broader context of functional requirements,
+                                                                domain models, guidelines on syntax and usage, and possibly data
+                                                                formats.</p>
+                                                                <p>This BIBFRAME Profile document describes an information model
+                                                                and reference serialization to support a means for identifying and describing
+                                                                structural constraints. A Profile defines a means in which a resource can be constrained to enumerate the the properties that may be used to 
+                                                                describe it, and the ways the property values surrogate may be given.</p>
+                                                                <div class="alert alert-info">Note: The concept of a value surrogate is derived from DCMI, and
+                                                                represents a separation between the objects expressed to exemplify statement patterns and actual, real-world values that might 
+                                                                be used in practice. These are not related to database theory surrogate
+                                                                keys, nor Unicode encoding surrogates.</div>
+                                                                <p>A BIBFRAME Profile is primarily a means for an application, e.g. cataloging tool, to
+                                                                guide a cataloger in the creation or modification of a BIBFRAME
+                                                                record. But such Profiles can also be used in other ways such as a formal
+                                                                representation of the constraints associated with a content description
+                                                                standard (e.g. RDA, DACS, etc.) or agreed upon representation for
+                                                                interoperability.
+
+
+                                                                    <div class="alert alert-info">Note: The notion of a BIBFRAME Record here conforms to one or more RDF
+                                                                assertions collected to satisfy a particular usage scenario, and should not be thought of in terms of files or
+                                                                documents.</div>
+                                                                </p>
+                                                                <p>A BIBFRAME Profile does not address the following:</p>
+                                                                <ul>
+                                                                    <li>Human-readable documentation and / or cataloging rules.</li>
+                                                                    <li>Definition of vocabulary terms.</li>
+                                                                    <li>Version management and / or governance of vocabulary terms.</li>
+                                                                </ul>
+                                                                <p>A BIBFRAME Profile contains the formal syntactic constraints only,
+                                                                and will need to be combined with human-readable information, semantic
+                                                                expression, usage guidelines, etc. in order fully useful by a
+                                                                community. However, the design of the BIBFRAME Profile information
+                                                                model is intended to facilitate the merging of BIBFRAME information and
+                                                                external information of the above kinds. Therefore, apart from the
+                                                                specifications outlined in this document, BIBFRAME Profiles are owned
+                                                                and maintained by their community and are independent from BIBFRAME as
+                                                                a whole. This independence is key to the ability to support multiple
+                                                                community needs.</p>
+                                                            </div>
+                                                            <div class="section">
+                                                                <a id="basicStructure" name="basicStructure" class="anchor"></a>
+                                                                <h2>Basic Structure</h2>
+                                                                <p>A BIBFRAME Profile is defined by a set of "resources templates," each of which is further defined by an array of "property templates," used to describe 
+                                                                the possible metadata structures in a conforming
+                                                                record. "Value Constraints" can be applied to properties and are defined as a means to define or 
+                                                                constrain the permissible values associated with properties associated with property templates.
+                                                                
+                                                                <p>While templates are used to express structures, constraints are used
+                                                                to limit those structures. It is important to note that the constraints defined by BIBFRAME Profiles
+                                                                do not replace or override the semantic constraints defined by such
+                                                                standards as RDF Schema and OWL, but rather reflect a more narrowly focused local cataloging practice or community
+                                                                patterns of use.</p>
+                                                                
+                                                                <p>The following is a breakdown of the particular characteristics
+                                                                associated with the Profile and the corresponsing Resource, Property and Value Constraint templates.</p>
+                                                                    <div class="subsection">
+                                                                        <a id="s-profile" name="s-profile" class="anchor"></a>
+                                                                        <h3>Profile</h3>
+                                                                        <div class="alert">The following properties are assocated with a BIBFRAME Profile structure which are designated by the 
+                                                                            <code>"Profile"</code> object or array.
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-id" name="s-p-id" class="anchor"></a>
+                                                                            <h4>Identifier</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>id</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Unique identifier associated with the profile</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-desc" name="s-p-desc" class="anchor"></a>
+                                                                            <h4>Title</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>title</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Textual title associated with the profile</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-desc" name="s-p-desc" class="anchor"></a>
+                                                                            <h4>Description</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>description</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Textual description associated with the profile</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-date" name="s-p-date" class="anchor"></a>
+                                                                            <h4>Date</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>date</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Date associated with the profile</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Date</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-contact" name="s-p-contact" class="anchor"></a>
+                                                                            <h4>Contact</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>contact</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Contact information associated with the profile</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-resourceTemplate" name="s-p-resourceTemplate" class="anchor"></a>
+                                                                            <h4>Remark</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>remark</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Comment or guiding statement intended to be presented as supplementary information in user display.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-resourceTemplate" name="s-p-resourceTemplate" class="anchor"></a>
+                                                                            <h4>Resource Templates</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>resourceTemplates</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>An array representing one or more Resource Templates.  See section 3.2.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Array</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-example" name="s-p-example" class="anchor"></a>
+                                                                            <h4>Example</h4>
+                                                                            <pre>
+{
+    "Profile": {
+        "id": "bfp:Monograph",
+        "title": "Monograph",
+        "description": "An example monograph profile reflecting the cataloging practices of example public library",
+        "date": "2013-05-01",
+        "contact": "Example Public Library cataloging help desk, info@examplelib.org",
+        "resourceTemplates": [
+            { ... }
+        ]
+     }
+}
+</pre>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- resource template -->
+                                                                    <div class="subsection">
+                                                                        <a id="s-resource" name="s-resource" class="anchor"></a>
+                                                                        <h3>Resource Template</h3>
+                                                                        <div class="alert">A Resource Template construct describes one of the various resources (Works, Instances, etc.) associated with a given Profile. 
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-id" name="s-r-id" class="anchor"></a>
+                                                                            <h4>Identifier</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>id</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Identifier associated with a resource template.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-resouceClass" name="s-r-class" class="anchor"></a>
+                                                                            <h4>Resource Identifier</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>resourceURI</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>URI of the RDF resource associated with the resource template.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-label" name="s-r-label" class="anchor"></a>
+                                                                            <h4>Resource Label</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>resourceLabel</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Localized label associated with the resource.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-propertyTemplate" name="s-r-propertyTemplate" class="anchor"></a>
+                                                                            <h4>Property Templates</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>propertyTemplates</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>An array representing one or more Property Templates.  See section 3.3.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Array</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-resourceTemplate" name="s-p-resourceTemplate" class="anchor"></a>
+                                                                            <h4>Remark</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>remark</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Comment or guiding statement intended to be presented as supplementary information in user display. A common use for this is to notify a user of code lists or schemata associated with the expected value of this resource.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-example" name="s-r-example" class="anchor"></a>
+                                                                            <h4>Example</h4>
+                                                                            <p>The following example expresses a resource template for a "Book" and relates it to the semantics of BIBFRAME's Book definition.</p>
+                                                                            <pre>
+...
+"resourceTemplate": [
+    {
+        "id": "bfp:Work:Book",
+        "resourceLabel": "Book",
+        "resourceURI": "http://bibframe.org/vocab/Text",
+        "propertyTemplates": [
+                { ... }
+        ]
+    }
+...
+</pre>
+                                                                            <div class="alert alert-info">Note: Strings such as "bfp:Work:Book" in this document are not meant to be qualified names (QNames) in the XML namespaces sense, as also used for RDF serializations. They are just a convenient convention for expressing identifier strings, with no special meanings for the colons.</div>
+                                                                            <p>The following example expresses a resource template which has no properties, and has a value space derived from a one of two enumeratied lists.</p>
+                                                                            <pre>
+...
+"resourceTemplate": [
+    {
+        "id": "bfp:MediaCategory",
+        "resourceLabel": "Media Category",
+        "resourceURI": "http://bibframe.org/vocab/mediaCategory",
+        "remark":  "Values derived from http://id.loc.gov/vocabulary/mediaTypes or
+                                        http://rdvocab.info/termList/RDAMediaType"
+    }
+...
+</pre>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- property template -->
+                                                                    <div class="subsection">
+                                                                        <a id="s-property" name="s-property" class="anchor"></a>
+                                                                        <h3>Property Template</h3>
+                                                                        <div>A Property Template construct describes one of the various properties associated with a particular resource.
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-id" name="s-p-id" class="anchor"></a>
+                                                                            <h4>Identifier</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>propertyURI</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>URI of the RDF property being described.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-property" name="s-p-property" class="anchor"></a>
+                                                                            <h4>Property Label</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>propertyLabel</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Preferred, human readable label associated with this property.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-minOccur" name="s-p-minOccur" class="anchor"></a>
+                                                                            <h4>Mandatory</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>mandatory</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Indication that the property is mandatory.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>"true" or "false"</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>false</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-maxOccur" name="s-p-maxOccur" class="anchor"></a>
+                                                                            <h4>Repeatable</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>repeatable</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Indication that the property is repeatable.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>"true" or "false"</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>true</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-type" name="s-p-type" class="anchor"></a>
+                                                                            <h4>Type</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>type</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Type of value (literal / resource) that is allowed by this
+property.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text or URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>literal</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-valueContraint" name="s-p-valueContraint" class="anchor"></a>
+                                                                            <h4>Value Constraint</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>valueConstraint</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Constraint associated with the value.  See sections 3.4 and 3.5</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Sub-desription</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-resourceTemplate" name="s-p-resourceTemplate" class="anchor"></a>
+                                                                            <h4>Remark</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>remark</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Comment or guiding statement intended to be presented as supplementary information in user display.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-example" name="s-p-example" class="anchor"></a>
+                                                                            <h4>Example</h4>
+                                                                            <p>The following example expresses a mandatory property whose value is a literal string.</p>
+                                                                            <pre>
+...
+    "propertyTemplate": [
+        { ... },
+        {
+            "propertyURI": "http://bibframe.org/vocab/titleStatement",
+            "propertyLabel": "Title"
+            "mandatory": "true",
+            "type": "literal"
+        },
+        { ... } 
+     ]
+...
+</pre>
+                                                                            <p>The following example expresses an optional property whose value is a resource.</p>
+                                                                            <pre>
+...
+    "propertyTemplate": [
+        { ... },
+        {
+            "propertyURI": "http://bibframe.org/vocab/subject",
+            "propertyLabel": "Subject",
+            "type": "resource",
+            "valueConstraint": {
+             ...
+            }
+        },
+        { ... } 
+     ]
+...
+</pre>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- literal value template -->
+                                                                    <div class="subsection">
+                                                                        <a id="s-valueConstraint" name="s-valueConstraint" class="anchor"></a>
+                                                                        <h3>Value Constraint</h3>
+                                                                        <div class="alert">A Value Constraint construct describes an expectations placed on the value of a property. The following are 
+                                                                        used for specifying expectations on literal values.
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-lang" name="s-lv-lang" class="anchor"></a>
+                                                                            <h4>Language</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>valueLanguage</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Language specified for a literal.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-lang-id" name="s-lv-lang-id" class="anchor"></a>
+                                                                            <h4>Language URI</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>languageURI</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>URI associated with the language of the literal.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-lang-label" name="s-lv-lang-label" class="anchor"></a>
+                                                                            <h4>Language Label</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>languageLabel</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Preferred, human readable label associated with the language of the literal.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Sub-desription</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-dt" name="s-lv-dt" class="anchor"></a>
+                                                                            <h4>Datatype</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>valueDataType</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Description specifying a datatype for a literal</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Sub-desription</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-resouceClass" name="s-r-class" class="anchor"></a>
+                                                                            <h4>Value Template Reference(s)</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>valueTemplateRefs</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>An array of one or more resource template identifiers (see section 3.2.1) of the resource templates that define the expected value.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-resouceClass" name="s-r-class" class="anchor"></a>
+                                                                            <h4>Use Values From</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>useValuesFrom</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>An array of identifiers that identify value lists from which acceptable values should come.  Scheme URIs are expected, but differing communities may develop differing solutions.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-rv-vtr-e" name="s-rv-vtr-e" class="anchor"></a>
+                                                                            <h4>Editable</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>editable</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Whether the value provided for the property is meant to be modified by a cataloguer. If not, the specified default value is in effect fixed.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>"true" or "false"</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-rv-vtr-dl" name="s-rv-dt-vtr-dl" class="anchor"></a>
+                                                                            <h4>Default URI</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>defaultURI</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Preferred, unique identifier associated with the property.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-resourceTemplate" name="s-p-resourceTemplate" class="anchor"></a>
+                                                                            <h4>Remark</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>remark</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Comment or guiding statement intended to be presented as supplementary information in user display.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-r-example" name="s-r-example" class="anchor"></a>
+                                                                            <h4>Example</h4>
+                                                                            <p>The following example expresses an additional expectation on the BIBFRAME subject property that its value be a Person, Place or Organization.</p>
+                                                                            <pre>
+...
+    "propertyTemplates": [
+        { ... },
+        {
+            "propertyURI": "http://bibframe.org/vocab/subject",
+            "propertyLabel": "Subject"
+            "type": "resource",
+            "valueConstraint": {
+                "valueTemplateRefs": [ "bfp:Agent:Person",
+                                      "bfp:Agent:Organization",
+                                      "bfp:Authority:Place" 
+                ]
+            }
+        },
+        { ... } 
+     ]
+...
+</pre>
+                                                                            <p>The following example expresses a property with the expectation that its value be a resource, fixed at the given default value, which is of the given value type.</p>
+                                                                            <pre>
+...
+    "propertyTemplates": [
+        { ... },
+        {
+            "propertyURI": "http://bibframe.org/vocab/carrierCategory",
+            "propertyLabel": "Carrier Category",
+            "type": "resource",
+            "valueConstraint": {
+                "remark": "The fixed value of this property is of type bfp:CarrierCategory",
+                "editable": "false",
+                "defaultURI": "http://id.loc.gov/vocabulary/carriers/cr",
+            }
+        },
+        { ... }
+    ]
+...
+</pre>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="subsection">
+                                                                        <a id="s-lv-dt" name="s-lv-dt" class="anchor"></a>
+                                                                        <h3>Value DataType</h3>
+                                                                        <div>A Value DataType construct describes a data type expectation on a literal value.</div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-dt-id" name="s-lv-dt-id" class="anchor"></a>
+                                                                            <h4>DataType ID</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>dataTypeURI</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>URI associated with the DataType.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>URI</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-dt-label" name="s-lv-dt-label" class="anchor"></a>
+                                                                            <h4>DataType Label</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>dataTypeLabel</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Preferred, human readable label associated with the DataType.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-dt-label" name="s-lv-dt-label" class="anchor"></a>
+                                                                            <h4>DataType Label Hint</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>dataTypeLabelHint</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Short, human readable label primarily for display purposes.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                    <dt>Default</dt>
+                                                                                    <dd>None</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-p-resourceTemplate" name="s-p-resourceTemplate" class="anchor"></a>
+                                                                            <h4>Remark</h4>
+                                                                            <blockquote>
+                                                                                <dl class="dl-horizontal">
+                                                                                    <dt>Name</dt>
+                                                                                    <dd>remark</dd>
+                                                                                    <dt>Summary</dt>
+                                                                                    <dd>Comment or guiding statement intended to be presented as supplementary information in user display.</dd>
+                                                                                    <dt>Value</dt>
+                                                                                    <dd>Text</dd>
+                                                                                </dl>
+                                                                            </blockquote>
+                                                                        </div>
+                                                                        <div class="subsubsection">
+                                                                            <a id="s-lv-dt-example" name="s-lv-dt-example" class="anchor"></a>
+                                                                            <h4>Example</h4>
+                                                                            <p>The following example expresses that a date property is expected to have a literal conforming to a variation on the ISO 8601 date standard.</p>
+                                                                            <pre>
+...
+    "propertyTemplates": [
+        { ... },
+        {
+            "propertyURI": "http://example.org/vocab/vra/beginDate",
+            "propertyLabel": "Begin Date"
+            "type": "literal",
+            "valueConstraint": {
+                "valueDataType": {
+                    "dataTypeURI": "http://bibframe.org/vocab/proposed/ISO8601",
+                    "dataTypeLabel": "ISO 8601",
+                    "dataTypeLabelHint": "ISO"
+                }
+            }
+        }, 
+        { ... } 
+     ]
+...
+</pre>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="section">
+                                                                    <a id="validation" name="validation" class="anchor"></a>
+                                                                    <h2>Validation</h2>
+                                                                    <div class="alert alert-info">Note: This section is very much a draft at present.  Validation will be more seriously considered at a following stage.</div>
+                                                                    <p>In order to examine whether a particular set of instance data
+                                                                    matches a particular profile, the process of validation is defined as
+                                                                    follows:</p>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <b>Binding of descriptions to resource templates:</b> Each
+                                                                    description is bound to a Resource Template by evaluating the
+                                                                    Resource Constraint of each Resource Template against the described
+                                                                    resource. Each description must be bound to exactly one Resource
+                                                                    Template.
+                                                                        </li>
+                                                                        <li>
+                                                                            <b>Binding of statements to property templates:</b> Each statement, 
+                                                                            of each description, is bound to a Property Template in the
+                                                                    corresponding Resource Template by evaluating the Property Constraint.
+                                                                    Each statement must be bound to exactly one Property Template.
+                                                                        </li>
+                                                                        <li>
+                                                                            <b>Evaluating datatyping constraints:</b> Now that all metadata in the
+                                                                    description set has been bound to a template, all constraints can be
+                                                                    verified.
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="section">
+                                                                    <a id="serialization" name="serialization" class="anchor"></a>
+                                                                    <h2>Serialization</h2>
+                                                                    <p>The detailed grammar for a BIBFRAME Profile is defined in subsequent sections, using a variant of Backaus-Naur Form (BNF).
+                                                                    For simplicity and consistency sake, an JSON serialization will be used
+                                                                    in this document.</p>
+                                                                    <div class="alert alert-info">Note: We're considering a Turtle serialization as an alternative as it may be easier to understand and process by this community. Feedback on this point would be appreciated. </div>
+                                                                </div>
+                                                                <div class="section">
+                                                                    <a id="usageScenarios" name="usageScenarios" class="anchor"></a>
+                                                                    <h2>Usage Scenarios</h2>
+                                                                    <div class="subsection">
+                                                                        <a id="constrainingResource" name="constrainingResource" class="anchor"></a>
+                                                                        <p>The following section outlines a set of templating patterns that reflect common usage scenarios.</p>
+                                                                        <h3>Constraining the resource</h3>
+                                                                        <p>The following BIBFRAME Profile matches descriptions with a BIBFRAME Person resource.</p>
+                                                                        <pre>
+{
+    "Profile": {
+        "id": "profile:bf:Agents",
+        "title": "BIBFRAME Agents",
+        "resourceTemplates": [
+            {
+                "id": "profile:bf:Agent",
+                "resourceURI": "http://bibframe.org/vocab/Agent",
+                "resourceLabel": "Agent",
+                "propertyTemplates": [
+                    {
+                        "propertyURI": "http://bibframe.org/vocab/hasAuthority",
+                        "propertyLabel": "Lookup",
+                        "type": "resource",
+                        "valueConstraint": {
+                            "repeatable": "false",
+                            "useValuesFrom": [
+                                "http://id.loc.gov/authorities/names"
+                            ]
+                        }
+                    },
+                    {
+                        "propertyURI": "http://bibframe.org/vocab/authorizedAccessPoint",
+                        "propertyLabel": "Authorized access point",
+                        "type": "literal"
+                    }
+                ]
+            }
+        ]
+    }
+}
+                    
+</pre>
+                                                                    </div>
+                                                                    <div class="subsection">
+                                                                        <a id="constrainingProperty" name="constrainingProperty" class="anchor"></a>
+                                                                        <h3>Constraining the property</h3>
+                                                                        <p>The following BIBFRAME Profile adds a mandatory foaf:name property to the previous example.</p>
+                                                                        <pre>
+{
+    "Profile": {
+        "id": "profile:bf:Agents",
+        "title": "BIBFRAME Agents",
+        "resourceTemplates": [
+            {
+                "id": "profile:bf:Agent",
+                "resourceURI": "http://bibframe.org/vocab/Agent",
+                "resourceLabel": "Agent",
+                "propertyTemplates": [
+                    {
+                        "propertyURI": "http://bibframe.org/vocab/hasAuthority",
+                        "propertyLabel": "Lookup",
+                        "type": "resource",
+                        "valueConstraint": {
+                            "repeatable": "false",
+                            "useValuesFrom": [
+                                "http://id.loc.gov/authorities/names"
+                            ]
+                        }
+                    },
+                    {
+                        "propertyURI": "http://bibframe.org/vocab/authorizedAccessPoint",
+                        "propertyLabel": "Authorized access point",
+                        "type": "literal"
+                    },                    <span style="color:red">
+                    {
+                        "propertyURI": "http://xmlns.com/foaf/0.1/name",
+                        "propertyLabel": "Name"
+                        "mandatory": "true",
+                        "type": "literal"
+                    }</span>
+                ]
+            }
+        ]
+    }
+}
+                    
+</pre>
+
+                                                                    </div>
+                                                                    <div class="subsection">
+                                                                        <a id="constrainingValue" name="constrainingValue" class="anchor"></a>
+                                                                        <h3>Constraining the value (Resource)</h3>
+                                                                        <p>The following BIBFRAME Profile expresses an expectation that the value be one of several possible resources.</p>
+                                                                        <pre>
+...
+    "propertyTemplates": [
+        { ... },
+        {
+            "propertyURI": "http://bibframe.org/vocab/subject",
+            "propertyLabel": "Subject"
+            "type": "resource",
+                                                                            <span style="color:red">
+            "valueConstraint": {
+                "valueTemplateRefs": [ "bfp:Agent:Person",
+                                      "bfp:Agent:Organization",
+                                      "bfp:Authority:Place" 
+                ]
+            }</span>
+        },
+        { ... } 
+     ]
+...
+
+                                                                        </pre>
+                                                                    </div>
+                                                                    <div class="subsection">
+                                                                        <a id="constrainingValue" name="constrainingValue" class="anchor"></a>
+                                                                        <h3>Constraining the value (DataType)</h3>
+                                                                        <p>The following BIBFRAME Profile expresses an expectation that the value be a literal with a particular data type (in this case ISO 8601 date).</p>
+                                                                        <pre>
+...
+    "propertyTemplates": [
+        { ... },
+        {
+            "propertyURI": "http://example.org/vocab/vra/beginDate",
+            "propertyLabel": "Begin Date"
+            "type": "literal",
+                                                                            <span style="color:red">
+            "valueConstraint": {
+                "valueDataType": {
+                    "dataTypeURI": "http://bibframe.org/vocab/proposed/ISO8601",
+                    "dataTypeLabel": "ISO 8601",
+                    "dataTypeLabelHint": "ISO"
+                }
+            }</span>
+        }, 
+        { ... } 
+     ]
+...
+
+                                                                        </pre>
+                                                                    </div>
+                                                                    <div class="subsection">
+                                                                        <h3>Considerations</h3>
+                                                                        <p>BIBFRAME Profiles do not require any particular level of
+                                                                        expectations or constraints. Communities can deploy profiles using strict or relaxed
+                                                                        mechanisms according to their needs. Overly strict constraints can
+                                                                        reduce flexibility in applying and evolving vocabularies. Overly lax
+                                                                        expectations can reduce levels of interoperability. It is up to each
+                                                                        community to measure this tradeoff as needed.</p>
+                                                                        <p>BIBFRAME Profiles do not override or replace the semantic
+                                                                        constraints defined by RDF Schema or OWL (Web Ontology Language), but
+                                                                        rather provide a means for a community to define the set of classes and
+                                                                        properties that it requires.</p>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- section -->
+                                                                <div class="section">
+                                                                    <a id="examples" name="examples" class="anchor"></a>
+                                                                    <h2>Examples</h2>
+                                                                    <p>The following sections provide examples of how communities of
+                                                                        practice might use BIBFRAME Profile to support various requirements.</p>
+                                                                    <div class="subsection">
+                                                                        <a id="exSimple" name="exSimple" class="anchor"></a>
+                                                                        <h3>Default BIBFRAME Profile for simple editing interface.</h3>
+                                                                        <p>The following is an example of a default BIBFRAME Profile for simple
+                                                                        editing interface. Human readable labels for the display are extracted
+                                                                        from the RDF schema associated with the class identifiers.</p>
+                                                                        <pre>
+{
+    "Profile": {
+        "id": "bfp:Monograph:Book",
+        "title": "Monograph -- Book",
+        "description": "An example profile reflecting the cataloging practices of example public library",
+        "date": "2014-05-01",
+        "contact": "Example Public Library cataloging help desk, info@examplelib.org",
+        "resourceTemplates": [
+            {
+                "id": "bfp:Work:Book",
+                "resourceLabel": "Book",
+                "resourceURI": "http://bibframe.org/vocab/Text",
+                "propertyTemplates": [
+                    {
+                        "propertyURI": "http://bibframe.org/vocab/title",
+                        "propertyLabel": "Title",
+                        "type": "literal"
+                    },
+                    {
+                        "propertyURI": "http://bibframe.org/vocab/subject",
+                        "propertyLabel": "Subject",
+                        "type": "resource",
+                        "valueConstraint": {
+                            "valueTemplateRefs": [ "bfp:Agent:Person", 
+                                                    "bfp:Agent:Organization", 
+                                                    "bfp:Authority:Place", 
+                                                    "bfp:Authority:ClassificationEntity", 
+                                                    "bfp:Authority:Topic" ]
+                        }
+                    },
+                    {
+                        "propertyURI": "http://id.loc.gov/vocabulary/relators/aut",
+                        "propertyLabel": "Author",
+                        "type": "resource",
+                        "repeatable": "true",
+                        "valueConstraint": {
+                            "valueTemplateRefs": [ "bfp:Agent:Person", 
+                                                    "bfp:Agent:Organization", 
+                                                    "bfp:Agent:Meeting" ]
+                        }
+                    }
+                ]
+            }
+        ]
+   }
+}
+</pre>
+
+                                                                    </div>
+                                                                    <div class="subsection">
+                                                                        <a id="exRDA" name="exRDA" class="anchor"></a>
+                                                                        <h3>RDA as a BIBFRAME Profile</h3>
+                                                                        <p>The following image reflects at a conceptual level how BIBFRAME
+Profiles may be used to express high level RDA's notion of Work,
+Expression, Instance and Manifestation as BIBFRAME classes.</p>
+                                                                        <p class="offset1">
+                                                                            <img class="img-thumbnail" src="wemi-bibframe-profile.png">
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="subsection">
+                                                                            <a id="exVRA" name="exVRA" class="anchor"></a>
+                                                                            <h3>VRA as a BIBFRAME Profile</h3>
+                                                                            <p>The following example fragment reflects VRA projected as  BIBFRAME Profile. Additional catalog-friendly
+labels have been added to the resources and properties defined as a way
+of expressing VRA in a cataloging interface.</p>
+                                                                            <pre>
+{
+    "Profile": {
+        "id": "bfp:VRA",
+        "title": "VRA BIBFRAME Profile",
+        "description": "The following profile is a draft attempt at reflecting VRA core semantics in the BIBFRAME / RDF model",
+        "date": "2014-10-31",
+        "contact": "Eric Miller, em@zepheira.com",
+        "resourceTemplates": [
+            {
+                "id": "bfp:work",
+                "resourceLabel": "Work",
+                "resourceURI": "http://bibframe.org/vocab/Work",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/title",
+                            "propertyLabel": "Title"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/alternativeTitle",
+                            "propertyLabel": "Alternative Title"
+                        },
+                        {
+                            "propertyURI": "http://id.loc.gov/vocabulary/relators/arc",
+                            "propertyLabel": "A:Architect",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:ULAN:Agent"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://id.loc.gov/vocabulary/relators/art",
+                            "propertyLabel": "A:Painter",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:ULAN:Agent"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://id.loc.gov/vocabulary/relators/scl",
+                            "propertyLabel": "A:Carver",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:ULAN:Agent"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/culturalConcext",
+                            "propertyLabel": "Language",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bp:language"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://example.org/vocab/vra/beginDate",
+                            "propertyLabel": "Begin Date",
+                            "type": "literal",
+                            "valueConstraint": {
+                                "valueDataType": {
+                                    "resourceURI": "http://bibframe.org/vocab/proposed/ISO8601",
+                                    "valueLabel": "ISO 8601",
+                                    "valueLabelHint": "ISO"
+                                }
+                            }
+                        },
+                        {
+                            "propertyURI": "http://example.org/vocab/vra/consecratedDate",
+                            "propertyLabel": "Consecrated Date",
+                            "type": "literal",
+                            "valueConstraint": {
+                                "valueDataType": {
+                                    "resourceURI": "http://bibframe.org/vocab/proposed/ISO8601",
+                                    "valueLabel": "ISO 8601",
+                                    "valueLabelHint": "ISO"
+                                }
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/description",
+                            "propertyLabel": "Description",
+                            "type": "literal"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/inscription",
+                            "propertyLabel": "Inscription",
+                            "type": "literal"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/location",
+                            "propertyLabel": "Location",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:TGN:Place"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/material",
+                            "propertyLabel": "Material",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:AAT:Authority"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/measurement",
+                            "propertyLabel": "Measurement",
+                            "type": "literal"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/relatedTo",
+                            "propertyLabel": "Relation",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bf:work"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/rights",
+                            "propertyLabel": "Rights",
+                            "type": "literal"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/source",
+                            "propertyLabel": "Source",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:WebResource"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/stateEdition",
+                            "propertyLabel": "State Edition"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/stylePeriod",
+                            "propertyLabel": "Style / Period",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:AAT:Period"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/subject",
+                            "propertyLabel": "Subject",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["LCSAF:Topic"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/technique",
+                            "propertyLabel": "Technique",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:AAT:Technique"]
+                            }
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/textref",
+                            "propertyLabel": "Reference"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/vra/workType",
+                            "propertyLabel": "Work Type",
+                            "repeatable": "true",
+                            "type": "resource",
+                            "valueConstraint": {
+                                "valueTemplateRefs": ["bfp:AAT:WorkType"]
+                            }
+                        }
+                    ]
+            },
+            {
+                "id": "bfp:depicts",
+                "resourceLabel": "Image",
+                "resourceURI": "http://bibframe.org/vocab/Image",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/width",
+                            "propertyLabel": "Width",
+                            "type": "literal"
+                        },
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/height",
+                            "propertyLabel": "Height",
+                            "type": "literal"
+                        }
+		            ]
+            },		    
+            {
+                "id": "bfp:ULAN:Agent",
+                "resourceLabel": "Agent",
+                "resourceURI": "http://bibframe.org/vocab/rda/Agent",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/label",
+                            "propertyLabel": "Label",
+                            "type": "literal"
+                        }
+                    ]
+            },
+            {
+                "id": "bfp:AAT:Authority",
+                "resourceLabel": "Authority",
+                "resourceURI": "http://bibframe.org/vocab/rda/Authority",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/label",
+                            "propertyLabel": "Label",
+                            "type": "literal"
+                        }
+                    ]
+            },
+            {
+                "id": "bfp:AAT:Period",
+                "resourceLabel": "Period",
+                "resourceURI": "http://bibframe.org/vocab/rda/Period",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/label",
+                            "propertyLabel": "Label",
+                            "type": "literal"
+                        }
+                    ]
+            },
+            {
+                "id": "bfp:AAT:Technique",
+                "resourceLabel": "Technique",
+                "resourceURI": "http://bibframe.org/vocab/rda/Technique",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/label",
+                            "propertyLabel": "Label",
+                            "type": "literal"
+                        }
+                    ]
+            },
+            {
+                "id": "bfp:AAT:WorkType",
+                "resourceLabel": "Type of Work",
+                "resourceURI": "http://bibframe.org/vocab/rda/WorkType",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/label",
+                            "propertyLabel": "Label",
+                            "type": "literal"
+                        }
+                    ]
+            },
+            {
+                "id": "bfp:TGN:Place",
+                "resourceLabel": "Place",
+                "resourceURI": "http://bibframe.org/vocab/rda/Place",
+                "propertyTemplates": [
+                        {
+                            "propertyURI": "http://bibframe.org/vocab/label",
+                            "propertyLabel": "Label",
+                            "type": "literal"
+                        }
+                    ]
+            },
+            {
+				
+                "id": "bp:language",
+                "resourceURI": "http://bibframe.org/vocab/LanguageEntity",
+                "resourceLabel": "Language",
+                "propertyTemplates": [
+                        {
+                            "mandatory": "true",
+                            "propertyURI": "http://bibframe.org/vocab/label",
+							"propertyLabel": "Label",
+                            "type": "literal"
+							
+                        }
+                    ]
+			}
+        ]
+    }
+}
+
+</pre>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- section -->
+                                                                    <div class="section">
+                                                                        <a id="grammar" name="grammar" class="anchor"></a>
+                                                                        <h2>Detailed Grammar of Profile</h2>
+                                                                        <p>The syntax descriptions in this section use the Extended Backus-Naur
+                                                                        Form notation to describe the essential BIBFRAME Profile syntax
+                                                                        elements. The EBNF here is condensed for human readability. The
+                                                                        requirement that the property and type names in end-tags exactly match
+                                                                        the names in the corresponding start-tags is implied by the XML rules.
+                                                                        All syntactic flexibilities of JSON are also implicitly included; e.g.
+                                                                        whitespace rules, quoting using either single quote (') or double quote
+                                                                        (&amp;quote;), character escaping, case sensitivity, and language
+                                                                        tagging.</p>
+                                                                        <pre>
+                                                                            <br />Profile ::= id | title | description | date | contact | remark | resourceTemplates*
+
+                                                                            <br />resourceTemplates ::= id | resourceURI | resourceLabel | remark | propertyTemplates*
+
+                                                                            <br />propertyTemplates ::= propertyURI | propertyLabel | mandatory? | repeatable? | type | valueConstraint | remark
+
+                                                                            <br />valueContraint ::= valueLanguage | languageURI | languageLabel | valueDataType | valueTemplateRefs | editable | defaultURI | remark
+
+                                                                            <br />valueDataType ::= dataTypeURI | dataTypeLabel | dataTypeLabelHint | remark
+
+                                                                            <br />valueTemplateRefs ::= editable | defaultURI | defaultLabel
+
+                                                                            <br />mandatory ::= "true" | "false"
+
+                                                                            <br />repeatable ::= "true" | "false"
+
+                                                                            <br />editable ::= "true" | "false"
+
+                                                                            <br />id :: = URI
+
+                                                                            <br />resourceURI :: = URI
+
+                                                                            <br />propertyURI :: = URI
+
+                                                                            <br />languageURI :: = URI
+
+                                                                            <br />dataTypeURI :: = URI
+
+                                                                            <br />valueTemplateRefs :: = URI
+
+                                                                            <br />defaultURI :: = URI
+
+                                                                            <br />type ::= literal | resource
+
+                                                                            <br />literal ::= valueLanguage | langaugeURI | languageLabel | valueDataType
+
+                                                                            <br />resource ::= valueTemplateRefs | editable | defaultURI
+
+                                                                        </pre>
+                                                                    </div>
+                                                                    <div class="section">
+                                                                        <a id="implementation" name="implementation" class="anchor"></a>
+                                                                        <h2>Implementation</h2>
+                                                                        <p>To date, cataloging input tools required advance knowledge of the
+                                                                        potential input fields and function. Implementing BIBFRAME Profiles
+                                                                        specific to communities creates an environment that is organic and able
+                                                                        to grow/evolve outside of the cataloging tool. As BIBFRAME Profiles
+                                                                        contain the description, statements and constraints specific to a
+                                                                        community, it carries the necessary descriptions for the community. The
+                                                                        cataloging tool may be agnostic the community and simply pull in the
+                                                                        BIBFRAME Profile needed for the cataloging exercise. By pointing at the
+                                                                        BIBFRAME Profile, the tool is always presenting the most recent version
+                                                                        of the BIBFRAME Profile to the user and is able to switch between
+                                                                        BIBFRAME Profile without changing the fundamental code of the tool
+                                                                        itself.</p>
+                                                                    </div>
+                                                                    <div class="section">
+                                                                        <a id="history" name="history" class="anchor"></a>
+                                                                        <h2>History and Relationship to Other Efforts</h2>
+                                                                        <p>BIBFRAME Profiles were designed / based / influenced by various
+                                                                        discussions related to how best to loosely "package" RDF vocabularies
+                                                                        to allow for defining vocabulary profiles reflecting best practices.
+                                                                        Many of these design decisions were based on early experience /
+                                                                        experimentation building the OCLC CORC (Cooperative Online Resource
+                                                                        Cataloging) toolkit, along with various discussions that resulted in
+                                                                        early Dublin Core specifications including DCMI's "Application
+                                                                        profiles" and "Description Set Profiles". BIBFRAME Profiles in
+                                                                        particular mirror some of the development of the DCMI Description Set
+                                                                        Profiles, but differs in the alignment with RDF rather than DCAM and in
+                                                                        minimizing the contraint capability that does not create conflicts with
+                                                                        RDF Schema and / or OWL. Various W3C discussions, along with further
+                                                                        Zepheira implementation related to implementing RDF editing platforms
+                                                                        have also contributed to this design.</p>
+                                                                        <p>@@ Talk about schemarama, W3C RDF Validation workshop, Google's
+                                                                        effort on simple validation, etc. @@</p>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- body -->
+                                                            </div>
+                                                            <!-- offset -->
+                                                        </div>
+                                                        <!-- row -->
+                                                        <div class="footer">
+                                                            <div class="container">
+                                                                <p>BIBFRAME.ORG is a collaborative effort of 
+                                                                    <a href="http://loc.gov/">US Library of Congress</a>, 
+                                                                    <a href="http://zepheira.com/">Zepheira</a> and <a href="/contribute/">you!</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </body>
+                                        </html>

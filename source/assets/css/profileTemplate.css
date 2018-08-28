@@ -120,7 +120,7 @@ i {
     position: relative;
     width: auto;
     min-width: 640px;
-    max-width: 1000px;
+    max-width: 2000px;
 }
 
 .panel-collapse, .panel-heading, .propertyItem {
