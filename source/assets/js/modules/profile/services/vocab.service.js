@@ -109,19 +109,20 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
                 item.reject("No data");
                 return;
             }
-
-            // set the local storage with this data
-            var jsonObj = response.json;
+            var parser = new X2JS();
+            var xjson = parser.xml_str2json(response);
+            console.log(xjson);
             
+            // set the local storage with this data
             var resource = {};
             var property = {};
 
             resource.key = name;
-            resource.value = buildResources(jsonObj.RDF.Class);
+            resource.value = buildResources(xjson.RDF.Class);
             resources.push(resource);
 
             property.key = name;
-            property.value = buildProperties(jsonObj.RDF.Property);
+            property.value = buildProperties(xjson.RDF.Property);
             properties.push(property);
 
             // Resolve the queue
