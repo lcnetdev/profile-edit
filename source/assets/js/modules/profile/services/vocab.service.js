@@ -101,12 +101,8 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         var item = $q.defer();
         console.log(name);
         console.log(url);
-        Server.$jsonp(url,{},false)
-        .then(function(response) {
-            console.log(response);
-            item.resolve("Finished");
-        })
-        /* Server.get(url,{},false)
+        
+        Server.get(url,{},false)
         .then(function(response) {
             // if a vocab file is empty then we will pass over it and return.
             if(response === undefined || response === "") {
@@ -130,7 +126,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             // Resolve the queue
             item.resolve("Finished");
-        }); */
+        });
 
         return item.promise;
     };
@@ -166,7 +162,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             // loop through the list of vocabs and gather up the data.
             angular.forEach(response, function(value) {
-                var url = value.json.url;
+                var url = '/profile-edit/server/whichrt?uri=' + value.json.url;
 
                 // test that we hvae a key and this isn't a comment.
                 if(value.id != null) {
