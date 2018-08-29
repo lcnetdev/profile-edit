@@ -18,9 +18,9 @@ angular.module('locApp.modules.profile.controllers')
                     response[i].metadata.updateDate = response[i].metadata.updateDate.substring(0, 10);
                     $scope.ontologies.push(response[i]);
                 }
-                // $scope.addBlanks();
+                $scope.addBlanks();
             });
-            console.log($scope.ontologies);
+
         /**
          * Defines the table parameters for use in the ui-grid
          */
@@ -30,7 +30,7 @@ angular.module('locApp.modules.profile.controllers')
             columnDefs: [
                 {
                     field:'json.label', displayName:'Label', width: 200,
-                    // cellTemplate: '<input type="text" value="{{row.entity.name}}"></input>'
+                    cellTemplate: '<a href="#/profile/ontologies/{{row.entity.id}}" class="pad-cell">{{row.entity.json.label}}</a>'
                 },
                 {
                     field:'json.url', displayName:'URL',
@@ -38,14 +38,17 @@ angular.module('locApp.modules.profile.controllers')
                 },
                 {
                     field:'metadata.updateDate', displayName:'Modified', width: 120,
-                },
-                {
-                    field:'actions', displayName:'Actions', width: 120,
-                    cellTemplate: '<div class="text-center"><a class="btn"><span class="fa fa-pencil fa-fw"></span></a><a class="btn"><span class="fa fa-trash-o fa-fw"></span></a></div>'
-                },
+                }
             ],
             enableHorizontalScrollbar: false,
             enableVerticalScrollbar: false
+        };
+
+        if ($stateParams.id) {
+            Server.get('/verso/api/configs/' + $stateParams.id, {})
+                .then(function(response) {
+                    $scope.ontology = response;
+                });
         };
 
         /**
