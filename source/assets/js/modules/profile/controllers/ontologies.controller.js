@@ -11,7 +11,8 @@ angular.module('locApp.modules.profile.controllers')
         $scope.numItems = 10;
         $scope.ontologies = [];
         $scope.searchText = "";
-
+        console.log($state);
+        if ($state.current.name == 'profile.ontologies') {
         Server.get('/verso/api/configs?filter[where][configType]=ontology', {})
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
@@ -20,7 +21,7 @@ angular.module('locApp.modules.profile.controllers')
                 }
                 $scope.addBlanks();
             });
-
+        }
         /**
          * Defines the table parameters for use in the ui-grid
          */
@@ -50,6 +51,15 @@ angular.module('locApp.modules.profile.controllers')
                     $scope.ontology = response;
                 });
         };
+
+        $scope.ontologySubmit = function() {
+            console.log($scope.ontology);
+            var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
+            Server.post('/verso/api/configs/' + postUrl, $scope.ontology)
+                .then(function() {
+                    $state.go('profile.ontologies');
+                 });
+        }
 
         /**
          * @ngdoc function
