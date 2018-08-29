@@ -54,6 +54,9 @@ angular.module('locApp.modules.profile.controllers')
 
         $scope.ontologySubmit = function() {
             console.log($scope.ontology);
+            if (!$scope.ontology.name) {
+                $scope.ontology.name = $scope.ontology.json.label + '-ontology';
+            }
             var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
             Server.post('/verso/api/configs/' + postUrl, $scope.ontology)
                 .then(function() {
