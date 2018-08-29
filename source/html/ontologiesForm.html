@@ -2,12 +2,37 @@
     <h3 class="portlet-title">
         <u>Edit {{ontology.json.label}} Ontology</u>
     </h3>
-    <input type="text" name="label" ng-model="ontology.json.label">
-    <input type="text" name="url" ng-model="ontology.json.url">
-    <hr>
+    <table>
+        <tbody>
+            <tr>
+                <td><label for="id">ID</label></td>
+                <td><input type="text" name="id" ng-model="ontology.id" size="60" disabled></td>
+            </tr>
+            <tr>
+                <td><label for="label">Label</label></td>
+                <td><input type="text" name="label" ng-model="ontology.json.label" size="60"></td>
+            </tr>
+            <tr>
+                <td><label for="url">URL</label></td>
+                <td><input type="text" name="url" ng-model="ontology.json.url" size="60"></td>
+            </tr>
+            <tr>
+                <td><label for="note">Note</label></td>
+                <td><input type="text" name="url" ng-model="ontology.json.note" size="60"></td>
+            </tr>
+            <tr>
+                <td><label for="created">Created</label></td>
+                <td><input type="text" name="created" ng-model="ontology.metadata.createDate" size="60" disabled></td>
+            </tr>
+            <tr>
+                <td><label for="modified">Modified</label></td>
+                <td><input type="text" name="modified" ng-model="ontology.metadata.updateDate" size="60" disabled></td>
+            </tr>
+        </tbody>
+    </table>
     <div>{{ontology}}</div>
     <ul id="sssTab1" class="nav nav-tabs">
-        <li class="nav-right btn-raised" ng-if="profile.id">
+        <li class="nav-right btn-raised" ng-if="profile.ontology.id">
             <button type="button" class="btn btn-danger" ng-click="verifyDelete(deleteProfile)">
                 <i class="fa fa-trash-o" style="margin-right: 5px;"></i>
                 Delete
