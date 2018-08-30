@@ -1,12 +1,13 @@
 <form name="ontologiesForm" ng-submit="ontologySubmit()" novalidate sss-alert sss-warning sss-override>
     <h3 class="portlet-title">
-        <u>Edit {{ontology.json.label}} Ontology</u>
+        <u>Edit {{ontology.json.label}}</u>
     </h3>
     <table>
         <tbody>
             <tr>
                 <td><label for="id">ID</label></td>
-                <td><input type="text" name="id" ng-model="ontology.id" size="60" disabled></td>
+                <td>{{ontology.id}}</td>
+                <!-- <td><input type="text" name="id" ng-model="ontology.id" size="60" disabled></td> -->
             </tr>
             <tr>
                 <td><label for="label">Label</label></td>
@@ -22,15 +23,17 @@
             </tr>
             <tr>
                 <td><label for="created">Created</label></td>
-                <td><input type="text" name="created" ng-model="ontology.metadata.createDate" size="60" disabled></td>
+                <td>{{ontology.metadata.createDate}}</td>
+                <!-- <td><input type="text" name="created" ng-model="ontology.metadata.createDate" size="60" disabled></td> -->
             </tr>
             <tr>
                 <td><label for="modified">Modified</label></td>
-                <td><input type="text" name="modified" ng-model="ontology.metadata.updateDate" size="60" disabled></td>
+                <td>{{ontology.metadata.updateDate}}</td>
+                <!-- <td><input type="text" name="modified" ng-model="ontology.metadata.updateDate" size="60" disabled></td> -->
             </tr>
         </tbody>
     </table>
-    <pre>{{ontology}}</pre>
+
     <ul id="sssTab1" class="nav nav-tabs">
         <li class="nav-right btn-raised" ng-if="ontology.id">
             <button type="button" class="btn btn-danger" ng-click="verifyDelete(ontologyDelete)">
