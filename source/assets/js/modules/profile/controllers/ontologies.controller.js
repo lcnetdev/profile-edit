@@ -7,7 +7,7 @@
  * ontologies list
  */
 angular.module('locApp.modules.profile.controllers')
-    .controller('ontologiesController', function($scope, $state, $stateParams, Server) {
+    .controller('ontologiesController', function($scope, $state, $stateParams, Server, localStorageService) {
         $scope.numItems = 10;
         $scope.ontologies = [];
         $scope.searchText = "";
@@ -60,6 +60,7 @@ angular.module('locApp.modules.profile.controllers')
             var url = '/verso/api/configs/' + postUrl;
             Server.post(url, $scope.ontology)
                 .then(function() {
+                    localStorageService.clearAll();
                     $state.go('profile.ontologies');
                  })
         }
@@ -68,6 +69,7 @@ angular.module('locApp.modules.profile.controllers')
             var url = '/verso/api/configs/' + $scope.ontology.id;
             Server.deleteItem(url, {})
                 .then(function() {
+                    localStorageService.clearAll();
                     $state.go('profile.ontologies')
                 })
         }

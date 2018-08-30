@@ -53,13 +53,11 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             data.uri = value["_rdf:about"];
             resourceData.push(data);
         });
-        console.log(resourceData);
         return resourceData;
     };
 
     var buildProperties = function(rdfProperties) {
         var propertyData = [];
-        console.log(rdfProperties);
         if(!Array.isArray(rdfProperties) && rdfProperties !== undefined) {
             var data = {};
 
@@ -100,8 +98,6 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     // Method that will set the vocab data for each list.
     var _setVocabData = function(name, url, properties, resources) {
         var item = $q.defer();
-        console.log(name);
-        console.log(url);
         
         Server.get(url,{},false)
         .then(function(response) {
@@ -112,7 +108,6 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             }
             var parser = new X2JS();
             var xjson = parser.xml_str2json(response);
-            console.log(xjson);
 
             // set the local storage with this data
             var resource = {};
