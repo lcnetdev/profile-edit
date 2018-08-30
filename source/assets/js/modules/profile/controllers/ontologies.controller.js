@@ -56,13 +56,11 @@ angular.module('locApp.modules.profile.controllers')
                 $scope.ontology.name = $scope.ontology.json.label + '-ontology';
             }
             $scope.ontology.configType = 'ontology';
-            console.log($scope.ontology);
             var postUrl = ($scope.ontology.id != null) ? $stateParams.id + '/replace' : '';
-            console.log(postUrl);
             Server.post('/verso/api/configs/' + postUrl, $scope.ontology)
                 .then(function() {
                     $state.go('profile.ontologies');
-                 });
+                 })
         }
 
         /**
