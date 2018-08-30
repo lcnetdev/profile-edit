@@ -73,7 +73,6 @@ angular.module('locApp.modules.profile.controllers')
         }
 
         $scope.verifyDelete = function(callback) {
-            console.log('hello delete');
             $scope.deleteToggle = !$scope.deleteToggle;
             $scope.confirm = callback;
         };
