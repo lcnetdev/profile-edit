@@ -57,11 +57,26 @@ angular.module('locApp.modules.profile.controllers')
             }
             $scope.ontology.configType = 'ontology';
             var postUrl = ($scope.ontology.id != null) ? $stateParams.id + '/replace' : '';
-            Server.post('/verso/api/configs/' + postUrl, $scope.ontology)
+            var url = '/verso/api/configs/' + postUrl;
+            Server.post(url, $scope.ontology)
                 .then(function() {
                     $state.go('profile.ontologies');
                  })
         }
+
+        $scope.ontologyDelete = function() {
+            var url = '/verso/api/configs/' + $scope.ontology.id;
+            Server.deleteItem(url, {})
+                .then(function() {
+                    $state.go('profile.ontologies')
+                })
+        }
+
+        $scope.verifyDelete = function(callback) {
+            console.log('hello delete');
+            $scope.deleteToggle = !$scope.deleteToggle;
+            $scope.confirm = callback;
+        };
 
         /**
          * @ngdoc function
