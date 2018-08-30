@@ -11,7 +11,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.numItems = 10;
         $scope.ontologies = [];
         $scope.searchText = "";
-        console.log($state);
+
         if ($state.current.name == 'profile.ontologies') {
         Server.get('/verso/api/configs?filter[where][configType]=ontology', {})
             .then(function(response) {
@@ -53,11 +53,13 @@ angular.module('locApp.modules.profile.controllers')
         };
 
         $scope.ontologySubmit = function() {
-            console.log($scope.ontology);
             if (!$scope.ontology.name) {
                 $scope.ontology.name = $scope.ontology.json.label + '-ontology';
             }
-            var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
+            $scope.ontology.configType = 'ontology';
+            console.log($scope.ontology);
+            var postUrl = ($scope.ontology.id != null) ? $stateParams.id + '/replace' : '';
+            console.log(postUrl);
             Server.post('/verso/api/configs/' + postUrl, $scope.ontology)
                 .then(function() {
                     $state.go('profile.ontologies');
