@@ -34,8 +34,7 @@ angular.module('locApp.modules.profile.controllers')
                     cellTemplate: '<a href="#/profile/ontologies/{{row.entity.id}}" class="pad-cell">{{row.entity.json.label}}</a>'
                 },
                 {
-                    field:'json.url', displayName:'URL',
-                    // cellTemplate: '<input type="text" value="{{row.entity.json.url}}" size="100%"></input>'
+                    field:'json.url', displayName:'URL'
                 },
                 {
                     field:'metadata.updateDate', displayName:'Modified', width: 120,
@@ -45,7 +44,7 @@ angular.module('locApp.modules.profile.controllers')
             enableVerticalScrollbar: false
         };
 
-        if ($stateParams.id) {
+        if ($stateParams.id && $stateParams.id != 'create') {
             Server.get('/verso/api/configs/' + $stateParams.id, {})
                 .then(function(response) {
                     $scope.ontology = response;
