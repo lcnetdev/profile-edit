@@ -1,4 +1,4 @@
-<form name="ontologiesForm" ng-submit="ontologySubmit()" novalidate sss-alert sss-warning sss-override sss-datepicker>
+<form name="ontologiesForm" ng-submit="ontologySubmit()" novalidate sss-alert sss-warning sss-override>
     <h3 class="portlet-title">
         <u>Edit {{ontology.json.label}} Ontology</u>
     </h3>
@@ -10,11 +10,11 @@
             </tr>
             <tr>
                 <td><label for="label">Label</label></td>
-                <td><input type="text" name="label" ng-model="ontology.json.label" size="60"></td>
+                <td><input type="text" name="label" ng-model="ontology.json.label" size="60" required></td>
             </tr>
             <tr>
                 <td><label for="url">URL</label></td>
-                <td><input type="text" name="url" ng-model="ontology.json.url" size="60"></td>
+                <td><input type="text" name="url" ng-model="ontology.json.url" size="60" required></td>
             </tr>
             <tr>
                 <td><label for="note">Note</label></td>
@@ -30,16 +30,16 @@
             </tr>
         </tbody>
     </table>
-
+    <pre>{{ontology}}</pre>
     <ul id="sssTab1" class="nav nav-tabs">
         <li class="nav-right btn-raised" ng-if="ontology.id">
-            <button type="button" class="btn btn-danger" ng-click="verifyDelete(deleteProfile)">
+            <button type="button" class="btn btn-danger" ng-click="verifyDelete(ontologyDelete)">
                 <i class="fa fa-trash-o" style="margin-right: 5px;"></i>
                 Delete
             </button>
         </li>
         <li class="nav-right pushed-right">
-            <button type="submit" class="btn btn-default">
+            <button type="submit" class="btn btn-default" ng-if="ontology.json.label">
                 <i class="fa fa-save" style="margin-right: 5px;"></i>
                 Save
             </button>
@@ -52,4 +52,21 @@
         </li>
     </ul>
 </form>
+
+<div id="deleteModal" sss-delete class="modal modal-styled fade in" aria-hidden="true" style="display: none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="closeDelete" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3>Are you Sure?</h3>
+                </div>
+                <div class="modal-body">
+                    <button class="btn btn-secondary" ng-click="confirm();" onclick="$('#closeDelete').click();">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" onclick="$('#closeDelete').click();">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a id="delete_message" data-toggle="modal" href="#deleteModal" onclick="return false;" style="display: none;"></a>
     
