@@ -39,6 +39,24 @@ angular.module('locApp.modules.profile', [
                 templateUrl: 'html/profileForm.html',
                 controller: 'profileController'
             })
+            .state('profile.ontologies', {
+                parent: 'profile',
+                url: '/ontologies',
+                templateUrl: 'html/ontologies.html',
+                controller: 'ontologiesController'
+            })
+            .state('profile.ontologies.edit', {
+                parent: 'profile',
+                url: '/ontologies/{id}',
+                templateUrl: 'html/ontologiesForm.html',
+                controller: 'ontologiesController'
+            })
+            .state('profile.ontologies.create', {
+                parent: 'profile',
+                url: '/ontologies/create',
+                templateUrl: 'html/ontologiesForm.html',
+                controller: 'ontologiesController'
+            })
             .state('profile.edit', {
                 parent: 'profile',
                 url: '/{id}',

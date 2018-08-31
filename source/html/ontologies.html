@@ -1,0 +1,40 @@
+<div class="portlet sss-min-width">
+    <form id="search_bar" class="mainnav-form pull-right" role="search">
+        <input id="search_query" type="text" name="searchBar" class="form-control input-md mainnav-search-query" ng-model="searchText" placeholder="Search"/>
+        <button ng-click="search()" class="btn btn-sm mainnav-form-btn">
+            <i class="fa fa-search"></i>
+        </button>
+    </form>
+    <h3 class="portlet-title sss-header-min-width">
+        <u>Ontologies Maintenance</u>
+    </h3>
+    <a class="pull-right new-ontology" ui-sref="profile.ontologies.create">
+        <i class="fa fa-plus"></i>
+        New Ontology
+    </a>
+    <div class="dataTables_wrapper form-inline">
+        <div class="col-xs-12">
+            
+            <div ui-grid="ontologiesGrid" ui-grid-pagination class="grid"> </div>
+
+        </div>
+        
+        <div class="row dt-rb page-footer">
+            <div class="pull-left col-sm-6 page-info">
+                <div class="dataTables_info">Showing Page {{ gridApi.pagination.getPage() }} of {{ gridApi.pagination.getTotalPages() }}</div>
+            </div>
+
+            <div id="pagination_field" class="col-sm-6">
+                <div class="dataTables_paginate paging_bootstrap">
+                    <button type="button" class="btn btn-secondary" ng-click="gridApi.pagination.previousPage()">
+                        previous page
+                    </button>
+                    <button type="button" class="btn btn-secondary" ng-click="gridApi.pagination.nextPage()">
+                        next page
+                    </button>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+</div>

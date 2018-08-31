@@ -41,7 +41,10 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             if(value.label === undefined) {
                 value.label = null;
+            } else if (value.label.__text === undefined) {
+                value.label = null;
             }
+
             if(value.label != null) {
                data.label = value.label.__text.toString();
             }
@@ -53,13 +56,11 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             data.uri = value["_rdf:about"];
             resourceData.push(data);
         });
-
         return resourceData;
     };
 
     var buildProperties = function(rdfProperties) {
         var propertyData = [];
-
         if(!Array.isArray(rdfProperties) && rdfProperties !== undefined) {
             var data = {};
 
@@ -73,14 +74,19 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             data.comment = (rdfProperties.comment != null) ? rdfProperties.comment.__text.toString() : "";
             data.uri = rdfProperties["_rdf:about"];
             propertyData.push(data);
+            
             return propertyData;
         }
 
         angular.forEach(rdfProperties, function(value) {
             var data = {};
+
             if(value.label === undefined) {
                 value.label = null;
+            } else if (value.label.__text === undefined) {
+                value.label = null;
             }
+
             if(value.label != null) {
                data.label = value.label.__text.toString();
             }
@@ -88,7 +94,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
                 data.label = "";
             }
 
-            data.comment = (value.comment != null) ? value.comment.__text.toString() : "";
+            data.comment = (value.comment != null && value.comment.__text !== undefined) ? value.comment.__text.toString() : "";
             data.uri = value["_rdf:about"];
             propertyData.push(data);
         });
@@ -99,7 +105,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     // Method that will set the vocab data for each list.
     var _setVocabData = function(name, url, properties, resources) {
         var item = $q.defer();
-
+        
         Server.get(url,{},false)
         .then(function(response) {
             // if a vocab file is empty then we will pass over it and return.
@@ -107,19 +113,25 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
                 item.reject("No data");
                 return;
             }
+            var parser = new X2JS();
+            var xjson = parser.xml_str2json(response);
 
             // set the local storage with this data
-            var jsonObj = response.json;
-            
             var resource = {};
             var property = {};
 
             resource.key = name;
-            resource.value = buildResources(jsonObj.RDF.Class);
+            resource.value = buildResources(xjson.RDF.Class);
             resources.push(resource);
 
             property.key = name;
-            property.value = buildProperties(jsonObj.RDF.Property);
+
+            if (xjson.RDF.Property !== undefined){
+                property.value = buildProperties(xjson.RDF.Property);
+            } else {
+                property.value = buildProperties(xjson.RDF.ObjectProperty);
+            }
+
             properties.push(property);
 
             // Resolve the queue
@@ -148,7 +160,8 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
         
-        const vurl = '/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][name][neq]=Languages';
+        // const vurl = '/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][name][neq]=Languages';
+        const vurl = '/verso/api/configs?filter[where][configType]=ontology';
 
         Server.get(vurl, {}, false)
         .then(function(response){
@@ -159,12 +172,12 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             // loop through the list of vocabs and gather up the data.
             angular.forEach(response, function(value) {
+                var url = 'server/whichrt?uri=' + value.json.url;
 
-                var url = '/verso/api/configs/' + value.id;
                 // test that we hvae a key and this isn't a comment.
                 if(value.id != null) {
                     listLength++;
-                    _setVocabData(value.name, url, properties, resources)
+                    _setVocabData(value.json.label, url, properties, resources)
                         .then(function() {
                             returnNumber++;
 
@@ -307,4 +320,3 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
     return vocab;
 });
-

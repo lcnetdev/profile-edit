@@ -97,7 +97,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-ng-annotate');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify-es');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-plato');
 	grunt.loadNpmTasks('grunt-ngdocs');
