@@ -41,7 +41,10 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             if(value.label === undefined) {
                 value.label = null;
+            } else if (value.label.__text === undefined) {
+                value.label = null;
             }
+
             if(value.label != null) {
                data.label = value.label.__text.toString();
             }
@@ -77,9 +80,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
         angular.forEach(rdfProperties, function(value) {
             var data = {};
+
             if(value.label === undefined) {
                 value.label = null;
+            } else if (value.label.__text === undefined) {
+                value.label = null;
             }
+
             if(value.label != null) {
                data.label = value.label.__text.toString();
             }
@@ -118,8 +125,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             resources.push(resource);
 
             property.key = name;
-            // property.value = buildProperties(xjson.RDF.Property);
-            property.value = buildProperties(xjson.RDF.ObjectProperty);
+
+            if (xjson.RDF.Property !== undefined){
+                property.value = buildProperties(xjson.RDF.Property);
+            } else {
+                property.value = buildProperties(xjson.RDF.ObjectProperty);
+            }
+
             properties.push(property);
 
             // Resolve the queue
