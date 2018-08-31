@@ -160,7 +160,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
             // loop through the list of vocabs and gather up the data.
             angular.forEach(response, function(value) {
-                var url = '/profile-edit/server/whichrt?uri=' + value.json.url;
+                var url = 'server/whichrt?uri=' + value.json.url;
 
                 // test that we hvae a key and this isn't a comment.
                 if(value.id != null) {
