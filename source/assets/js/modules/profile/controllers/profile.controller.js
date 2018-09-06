@@ -7,7 +7,7 @@
  */
 angular.module('locApp.modules.profile.controllers')
 
-    .controller('profileController', function($scope, $state, $stateParams, $filter, Alert, Server, FormHandler, ProfileHandler, Vocab, usSpinnerService) {
+    .controller('profileController', function($scope, $state, $stateParams, $filter, Alert, Server, FormHandler, ProfileHandler, Vocab, usSpinnerService, localStorageService) {
 
         $scope.addPage = ($state.current.name === 'profile.create');
 
@@ -439,6 +439,7 @@ angular.module('locApp.modules.profile.controllers')
             // Save
             Server.post('/verso/api/configs/' + postUrl, versoModelStr)
                 .then(function() {
+                    localStorageService.remove('templateRefs');
                     $state.go('profile.list');
                  });
         };

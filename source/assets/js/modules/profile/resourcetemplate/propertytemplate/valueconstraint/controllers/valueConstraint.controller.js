@@ -5,7 +5,7 @@
  * Handles the scope variable for value constraints
  */
 angular.module('locApp.modules.profile.controllers')
-    .controller('ValueConstraintController', function($scope, localStorageService) {
+    .controller('ValueConstraintController', function($scope, Server, localStorageService) {
         $scope.selectList = localStorageService.get('templateRefs');
         $scope.constraintFields = [];
         $scope.templateFields = [];
@@ -54,15 +54,16 @@ angular.module('locApp.modules.profile.controllers')
         // Method to get the template references
         if(!$scope.selectList) {
             var rts = [];
-            var proftext = sessionStorage.getItem('/verso/api/configs?filter[where][configType]=profile');
-            var profjson = JSON.parse(proftext);
-            profjson.forEach(function(prof) {
-                prof.json.Profile.resourceTemplates.forEach(function(rt) {
-                    rts.push(rt.id);
+            Server.get('/verso/api/configs?filter[where][configType]=profile', {})
+                .then(function(response) {
+                    response.forEach(function(prof) {
+                        prof.json.Profile.resourceTemplates.forEach(function(rt){
+                            rts.push(rt.id);
+                        });
+                    });
+                    $scope.selectList = rts;
+                    localStorageService.set('templateRefs', $scope.selectList);
                 });
-            });
-            $scope.selectList = rts;
-            localStorageService.set('templateRefs', $scope.selectList);
         }
 
         /**
