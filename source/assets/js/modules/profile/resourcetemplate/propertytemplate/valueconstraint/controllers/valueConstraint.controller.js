@@ -5,7 +5,7 @@
  * Handles the scope variable for value constraints
  */
 angular.module('locApp.modules.profile.controllers')
-    .controller('ValueConstraintController', function($scope, Server, localStorageService) {
+    .controller('ValueConstraintController', function($scope, localStorageService) {
         $scope.selectList = localStorageService.get('templateRefs');
         $scope.constraintFields = [];
         $scope.templateFields = [];
