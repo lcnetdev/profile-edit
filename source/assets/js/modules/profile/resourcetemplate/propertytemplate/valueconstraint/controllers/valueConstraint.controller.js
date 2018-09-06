@@ -54,23 +54,15 @@ angular.module('locApp.modules.profile.controllers')
         // Method to get the template references
         if(!$scope.selectList) {
             var rts = [];
-            Server.get('/verso/api/configs?filter[where][configType]=profile', {})
-                .then(function(response) {
-                    response.forEach(function(prof) {
-                        prof.json.Profile.resourceTemplates.forEach(function(rt){
-                            rts.push(rt.id);
-                        });
-                    });
-                    console.log(rts.length);
-                    $scope.selectList = rts;
-                    localStorageService.set('templateRefs', $scope.selectList);
+            var proftext = sessionStorage.getItem('/verso/api/configs?filter[where][configType]=profile');
+            var profjson = JSON.parse(proftext);
+            profjson.forEach(function(prof) {
+                prof.json.Profile.resourceTemplates.forEach(function(rt) {
+                    rts.push(rt.id);
                 });
-                /* Server.get('server/getTemplateRefs', {})
-                .then(function(response) {
-                    console.log(response);
-                    $scope.selectList = response;
-                    localStorageService.set('templateRefs', $scope.selectList);
-                }); */
+            });
+            $scope.selectList = rts;
+            localStorageService.set('templateRefs', $scope.selectList);
         }
 
         /**
