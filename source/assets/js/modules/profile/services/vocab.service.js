@@ -9,9 +9,11 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
 
     var choosenResource = -1;
     var choosenProperty = -1;
+    var choosenDatatype = -1
 
     var vocabResourceData = [];
     var vocabPropertyData = [];
+    var vocabDatatypeData = [];
     
     var languageList = [];
 
@@ -102,8 +104,50 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         return propertyData;
     };
 
+    var buildDatatypes = function(rdfDatatypes) {
+        var datatypeData = [];
+
+        if(!Array.isArray(rdfDatatypes) && rdfDatatypes !== undefined) {
+            var data = {};
+
+            if(rdfDatatypes.label != null) {
+               data.label = rdfDatatypes.label.__text.toString();
+            }
+            else {
+                data.label = "";
+            }
+
+            data.comment = (rdfDatatypes.comment != null) ? rdfDatatypes.comment.__text.toString() : "";
+            data.uri = rdfDatatypes["_rdf:about"];
+            datatypeData.push(data);
+            return datatypeData;
+        }
+
+        angular.forEach(rdfDatatypes, function(value) {
+            var data = {};
+
+            if(value.label === undefined) {
+                value.label = null;
+            } else if (value.label.__text === undefined) {
+                value.label = null;
+            }
+
+            if(value.label != null) {
+               data.label = value.label.__text.toString();
+            }
+            else {
+                data.label = "";
+            }
+
+            data.comment = (value.comment != null) ? value.comment.__text.toString() : "";
+            data.uri = value["_rdf:about"];
+            datatypeData.push(data);
+        });
+        return datatypeData;
+    };
+
     // Method that will set the vocab data for each list.
-    var _setVocabData = function(name, url, properties, resources) {
+    var _setVocabData = function(name, url, properties, resources, datatypes) {
         var item = $q.defer();
         
         Server.get(url,{},false)
@@ -119,6 +163,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             // set the local storage with this data
             var resource = {};
             var property = {};
+            var datatype = {};
 
             resource.key = name;
             resource.value = buildResources(xjson.RDF.Class);
@@ -131,8 +176,11 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             } else {
                 property.value = buildProperties(xjson.RDF.ObjectProperty);
             }
-
             properties.push(property);
+
+            datatype.key = name;
+            datatype.value = buildDatatypes(xjson.RDF.DatatypeProperty);
+            datatypes.push(datatype);
 
             // Resolve the queue
             item.resolve("Finished");
@@ -142,12 +190,14 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
     };
 
     // Method to set the local storage of resource and properties
-    var _setLocalStorage = function(resources, properties) {
+    var _setLocalStorage = function(resources, properties, datatypes) {
         localStorageService.set("resourceReference", resources);
         localStorageService.set("propertyReference", properties);
+        localStorageService.set("datatypeReference", datatypes);
         // Set Vocab data
         vocabResourceData = resources;
         vocabPropertyData = properties;
+        vocabDatatypeData = datatypes;
     };
 
     /**
@@ -169,6 +219,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             var returnNumber = 0;
             var resources = [];
             var properties = [];
+            var datatypes = [];
 
             // loop through the list of vocabs and gather up the data.
             angular.forEach(response, function(value) {
@@ -177,13 +228,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
                 // test that we hvae a key and this isn't a comment.
                 if(value.id != null) {
                     listLength++;
-                    _setVocabData(value.json.label, url, properties, resources)
+                    _setVocabData(value.json.label, url, properties, resources, datatypes)
                         .then(function() {
                             returnNumber++;
 
                             // Set local storage once we have all the data.
                             if(returnNumber >= listLength) {
-                                _setLocalStorage(resources, properties);
+                                _setLocalStorage(resources, properties, datatypes);
                             }
                         }, function() {
                             returnNumber++;
@@ -219,6 +270,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         else {
             vocabResourceData = localStorageService.get("resourceReference");
             vocabPropertyData = localStorageService.get("propertyReference");
+            vocabDatatypeData = localStorageService.get("datatypeReference");
         }
     };
 
