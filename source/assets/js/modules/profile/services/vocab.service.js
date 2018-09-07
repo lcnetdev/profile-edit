@@ -189,8 +189,22 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         return item.promise;
     };
 
+    // Method to removed extra whitespace from labels and comments.
+    var cleanVocabs = function(oType) {
+        oType.forEach(function(r) {
+            r.value.forEach(function(d) {
+                d.label = d.label.replace(/\s+/g,' ');
+                d.comment = d.comment.replace(/\s+/g,' ');
+            })
+        });
+    }
+
     // Method to set the local storage of resource and properties
     var _setLocalStorage = function(resources, properties, datatypes) {
+        cleanVocabs(resources);
+        cleanVocabs(properties);
+        cleanVocabs(datatypes);
+
         localStorageService.set("resourceReference", resources);
         localStorageService.set("propertyReference", properties);
         localStorageService.set("datatypeReference", datatypes);
