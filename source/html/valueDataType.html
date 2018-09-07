@@ -12,6 +12,11 @@
                         popover="URI associated with the DataType"
                         popover-title="Data Type URI" popover-trigger="mouseenter"
                         popover-placement="right"/>
+
+                    <a id="datatypeChoose" data-toggle="modal" href="#chooseDatatype" ng-click="updateChosenResource(resourceTemplate, parentList);" onclick="event.returnValue = false; return false;">
+                        <i class="fa fa-bars" style="margin-right: 10px;"></i>
+                        {{!resourceTemplate.resourceURI ? "Select Resource" : "Change Resource" }}
+                    </a>
                     
                     <div class="error" ng-show="propertyForm.dataTypeURI.$dirty && propertyForm.dataTypeURI.$invalid">
                         <small class="error">url is invalid</small>
@@ -51,4 +56,36 @@
         </tbody>
     </table>
     
+</div>
+
+<div id="chooseResource" sss-closeChooseResource class="modal modal-styled fade in" aria-hidden="true" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="chooserClose" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title">{{vocabHeader || "Chose Vocab Template"}}</h3>
+            </div>
+            <div class="modal-body">
+                <!--Put the select in a div so that ff styles it correctly-->
+                <div id="select_box_holder">
+                    <select name="chooseVocab" ng-options="option.value as option.key for option in selectData"
+                        ng-model="sssSelected" ng-change="selectVocab();" class="form-control">
+                        <option value="" selected>Select Vocabulary File</option>
+                    </select>
+                </div>
+                
+                <form class="mainnav-form vocab-search" id="template_search_bar" role="search">
+                    <input type="text" name="search" class="form-control input-md mainnav-search-query" ng-model="searchText" placeholder="Search"/>
+                    <button ng-click="searchVocab()" class="btn btn-sm mainnav-form-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <select multiple id="resourcePick" name="chooseResource" class="form-control" ng-options="vocab as vocab.label for vocab in vocabData" ng-model="sssVocab" ng-change="fillData();">
+                        </select>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
 </div>
