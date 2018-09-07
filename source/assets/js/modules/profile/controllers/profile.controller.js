@@ -242,7 +242,7 @@ angular.module('locApp.modules.profile.controllers')
                 }
             }
             
-            $scope.vocabHeader = "Choose Datatype";
+            $scope.vocabHeader = "Choose Data Type";
         };
 
         /**
