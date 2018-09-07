@@ -303,10 +303,16 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
      */
     vocab.updateChosenProperty = function(item) {
         choosenProperty = item;
-
         vocab.fillData = fillProperty;
 
         return vocabPropertyData;
+    };
+
+    vocab.updateChosenDatatype = function(item) {
+        choosenDatatype = item;
+        vocab.fillData = fillDatatype;
+
+        return vocabDatatypeData;
     };
     
     vocab.getLanguages = function() {
@@ -359,7 +365,6 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         resource.resourceURI = vocab.uri;
         resource.resourceLabel = vocab.label;
         resource.remark = vocab.comment;
-
     };
 
     fillProperty = function(vocab) {
@@ -367,7 +372,13 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         property.propertyURI = vocab.uri;
         property.propertyLabel = vocab.label;
         property.remark = vocab.comment;
+    };
 
+    fillDatatype = function(vocab) {
+        var datatype = choosenDatatype;
+        datatype.dataTypeURI = vocab.uri;
+        datatype.dataTypeLabel = vocab.label;
+        datatype.remark = vocab.comment;
     };
 
     return vocab;
