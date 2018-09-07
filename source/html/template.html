@@ -1,16 +1,19 @@
 <div id="{{item}}_{{parentId}}">
     <div>
         <label for="template">Template</label>
-        <input id="templateInput_{{item}}_{{parentId}}" type="text" name="template" list="templateList" sss-template ng-model="valueConstraint.valueTemplateRefs[parentId]" 
+        <!-- <input id="templateInput_{{item}}_{{parentId}}" type="text" name="template" list="templateList" ng-model="valueConstraint.valueTemplateRefs[parentId]" 
                 popover="A resource template identifier that defines the expected value."
                 popover-title="Value Template Reference" popover-trigger="mouseenter"
-                popover-placement="right"/>
-        <datalist id="templateList">
+                popover-placement="right"/> -->
+        <!-- <datalist id="templateList"> -->
             <select id="templateSelect_{{item}}_{{parentId}}"
                     ng-options="item for item in selectList track by item"
-                    ng-model="valueConstraint.valueTemplateRefs[parentId]">
+                    ng-model="valueConstraint.valueTemplateRefs[parentId]"
+                    popover="A resource template identifier that defines the expected value."
+                    popover-title="Value Template Reference" popover-trigger="mouseenter"
+                    popover-placement="right">
             </select>
-        </datalist>
+        <!-- </datalist> -->
         <a href="#" onclick="event.returnValue = false; return false;" ng-click="verifyDelete(deleteTemplate)">
             <i class="fa fa-trash-o"></i>
         </a>
