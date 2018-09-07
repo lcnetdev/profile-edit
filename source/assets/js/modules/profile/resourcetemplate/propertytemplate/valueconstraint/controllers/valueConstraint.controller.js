@@ -61,6 +61,7 @@ angular.module('locApp.modules.profile.controllers')
                             rts.push(rt.id);
                         });
                     });
+                    rts.sort();
                     $scope.selectList = rts;
                     localStorageService.set('templateRefs', $scope.selectList);
                 });
