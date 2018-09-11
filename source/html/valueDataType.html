@@ -1,6 +1,5 @@
 <div ng-controller="ValueDataTypeController">
     <h5>Value Data Type</h5>
-    
     <table>
         <tbody>
             <tr>
@@ -12,6 +11,11 @@
                         popover="URI associated with the DataType"
                         popover-title="Data Type URI" popover-trigger="mouseenter"
                         popover-placement="right"/>
+
+                    <a id="datatypeChoose" data-toggle="modal" href="#chooseResource" ng-click="updateChosenDatatype(valueDataType);" onclick="event.returnValue = false; return false;">
+                        <i class="fa fa-bars" style="margin-right: 10px;"></i>
+                        {{!valueDataType.dataTypeURI ? "Select Data Type" : "Change Data Type" }}
+                    </a>
                     
                     <div class="error" ng-show="propertyForm.dataTypeURI.$dirty && propertyForm.dataTypeURI.$invalid">
                         <small class="error">url is invalid</small>

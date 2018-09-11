@@ -134,6 +134,7 @@ angular.module('locApp.modules.profile.controllers')
         };
         
         var isResource = false;
+        var isProperty = false;
 
         /**
          * @ngdoc function
@@ -148,8 +149,11 @@ angular.module('locApp.modules.profile.controllers')
             if (isResource) {
                 $scope.selectedResource = $scope.sssSelected;
             }
-            else {
+            else if (isProperty) {
                 $scope.selectedProperty = $scope.sssSelected;
+            }
+            else {
+                $scope.selectedDatatype = $scope.sssSelected
             }
         };
 
@@ -193,6 +197,7 @@ angular.module('locApp.modules.profile.controllers')
             $scope.selectData = Vocab.updateChosenProperty(item);
             $scope.sssVocab = {};
             isResource = false;
+            isProperty = true;
             
             //Use a traditional for loop to break out of it when 
             //the proper data is found
@@ -208,6 +213,36 @@ angular.module('locApp.modules.profile.controllers')
             }
             
             $scope.vocabHeader = "Choose Property Template";
+        };
+
+        /**
+         * @ngdoc function
+         * @name updateChosenDatatype
+         * Populates resourceNumber.propertyNumber with the correct data
+         * @param {Number} resourceNumber - the number of the resource template
+         * @param {Number} propertyNumber - the numer of the property template
+         */
+
+        $scope.updateChosenDatatype = function(item) {
+            $scope.selectData = Vocab.updateChosenDatatype(item);
+            $scope.sssVocab = {};
+            isResource = false;
+            isProperty = false;
+            
+            //Use a traditional for loop to break out of it when 
+            //the proper data is found
+            for(var i = 0; i < $scope.selectData.length; i++) {
+                if($scope.selectData[i].value === $scope.selectedDatatype) {
+                    $scope.sssSelected = $scope.selectedDatatype;
+                    $scope.selectVocab();
+                    break;
+                } else {
+                    $scope.vocabData = [];
+                    $scope.vocabDataFull = [];
+                }
+            }
+            
+            $scope.vocabHeader = "Choose Data Type";
         };
 
         /**

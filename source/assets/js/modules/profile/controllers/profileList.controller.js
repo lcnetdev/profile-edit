@@ -36,7 +36,7 @@ angular.module('locApp.modules.profile.controllers')
             data: "profiles",
             columnDefs: [
                 {
-                    field:'title', displayName:'Title', width: 160,
+                    field:'title', displayName:'Title', width: 350,
                     cellTemplate: '<a href="#/profile/{{row.entity.versoId}}"  class="pad-cell">{{ row.entity.title }}</a>'
                 },
                 {
