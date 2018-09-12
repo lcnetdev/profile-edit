@@ -123,4 +123,14 @@ angular.module('locApp.modules.profile.controllers')
             var defaults = {"defaultURI":"", "defaultLiteral":""};
             $scope.valueConstraint.defaults.push(defaults);
         };
+
+        /**
+         * @ngdoc function
+         * @name deleteDefault
+         * @description
+         * Deletes a defaults row
+         */
+        $scope.deleteDefault = function(index) {
+            $scope.valueConstraint.defaults.splice(index);
+        };
     });

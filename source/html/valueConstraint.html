@@ -87,13 +87,15 @@
                     <input name="defaultLiteral" ng-model="d.defaultLiteral"
                             popover="Value constraint default literal value."
                             popover-title="Default Literal" popover-trigger="mouseenter"
-                            popover-placement="left">
-                    </select>
+                            popover-placement="left"/>
+                    <a href="#" onclick="event.returnValue = false; return false;" ng-click="deleteDefault($index)">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
                 </td>
             </tr>
         </tbody>
     </table>
-    {{ valueConstraint | json}}
+    
     <a id="addDefault" ng-click="addDefault()" style="display: block;">
         <i class="fa fa-plus"></i>
         Add Default
