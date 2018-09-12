@@ -70,12 +70,12 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr ng-repeat="d in valueConstraint.defaults">
                 <td>
                     <label for="editable">Default URI</label>
                 </td>
                 <td>
-                    <input name="defaultURI" ng-model="valueConstraint.defaultURI"
+                    <input name="defaultURI" ng-model="d.defaultURI"
                             popover="Value constraint default value URI."
                             popover-title="Default URI" popover-trigger="mouseenter"
                             popover-placement="right"/>
@@ -84,7 +84,7 @@
                     <label for="editable">Default Literal</label>
                 </td>
                 <td>
-                    <input name="defaultLiteral" ng-model="valueConstraint.defaultLiteral"
+                    <input name="defaultLiteral" ng-model="d.defaultLiteral"
                             popover="Value constraint default literal value."
                             popover-title="Default Literal" popover-trigger="mouseenter"
                             popover-placement="left">
@@ -93,7 +93,12 @@
             </tr>
         </tbody>
     </table>
-    
+    {{ valueConstraint | json}}
+    <a id="addDefault" ng-click="addDefault()" style="display: block;">
+        <i class="fa fa-plus"></i>
+        Add Default
+    </a>
+
     <div id="valueDataType" class="propertyItems">
         <div ng-repeat="field in constraintFields" sss-field item="{{field}}" html='html/valueDataType.html'></div>
     </div>

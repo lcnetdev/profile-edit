@@ -112,4 +112,15 @@ angular.module('locApp.modules.profile.controllers')
             $scope.deleteItem($scope.parentId, $scope.valueFields);
             $scope.deleteItem($scope.parentId, $scope.valueConstraint.useValuesFrom);
         };
+
+        /**
+         * @ngdoc function
+         * @name addDefault
+         * @description
+         * Adds a row to defaults 
+         */
+        $scope.addDefault = function() {
+            var defaults = {"defaultURI":"", "defaultLiteral":""};
+            $scope.valueConstraint.defaults.push(defaults);
+        };
     });
