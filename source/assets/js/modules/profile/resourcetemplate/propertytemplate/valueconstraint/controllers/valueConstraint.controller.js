@@ -146,3 +146,4 @@ angular.module('locApp.modules.profile.controllers')
             $scope.valueConstraint.defaults.splice(index,1);
         };
     });
+    
