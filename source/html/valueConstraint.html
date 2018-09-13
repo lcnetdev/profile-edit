@@ -99,7 +99,7 @@
                     <label for="editable">Default Literal</label>
                 </td>
                 <td>
-                    <input name="defaultLiteral" ng-model="d.defaultLiteral"
+                    <input name="defaultLiteral" ng-model="d.defaultLiteral" ng-pattern="/{{ valueConstraint.validatePattern }}/"
                             popover="Value constraint default literal value."
                             popover-title="Default Literal" popover-trigger="mouseenter"
                             popover-placement="left"/>
