@@ -143,6 +143,6 @@ angular.module('locApp.modules.profile.controllers')
          * Deletes a defaults row
          */
         $scope.deleteDefault = function(index) {
-            $scope.valueConstraint.defaults.splice(index);
+            $scope.valueConstraint.defaults.splice(index,1);
         };
     });
