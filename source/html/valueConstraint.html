@@ -70,6 +70,21 @@
                     </select>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="validatePattern">Validate Pattern</label>
+                </td>
+                <td>
+                    <input name="validatePattern" ng-model="valueConstraint.validatePattern"
+                           popover="Regular expression for input validation."
+                           popover-title="Validate Pattern" popover-trigger="mouseenter"
+                           popover-placement="right"/>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
             <tr ng-repeat="d in valueConstraint.defaults">
                 <td>
                     <label for="editable">Default URI</label>
