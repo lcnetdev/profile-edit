@@ -5,7 +5,7 @@
  * handles the scope variable for resource templates
  */
 angular.module('locApp.modules.profile.controllers')
-    .controller('resourceTemplateController', function($scope, Scrub, localStorageService) {
+    .controller('resourceTemplateController', function($scope, Scrub, localStorageService, $http) {
         $scope.resourceFields = [];
         $scope.resourceTemplate = {};
         $scope.addIndexResource = 0;
@@ -138,6 +138,24 @@ angular.module('locApp.modules.profile.controllers')
                 if (t == $scope.resourceTemplate.id) {
                     $scope.resourceForm.resourceId.$invalid = true;
                 };
+            });
+        };
+
+        /**
+         * @ngdoc function
+         * @name checkURI
+         * @description
+         * Check if URI resolves
+         */
+        $scope.checkURI = function() {
+            var url = 'server/whichrt?uri=' + $scope.resourceTemplate.resourceURI;
+            $http({
+                method: 'HEAD',
+                url: url
+            })
+            .then(function (response) {
+            }, function (response) {
+                console.log($scope.resourceTemplate.resourceURI + ' did not resolve!')
             });
         };
     });

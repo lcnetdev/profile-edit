@@ -44,6 +44,7 @@
                     </td>
                     <td>
                        <input  type="url" name="resourceURI" ng-model="resourceTemplate.resourceURI" required
+                               ng-blur="checkURI()"
                                popover="URI of the RDF resource associated with the resource template"
                                popover-title="Resource URI" popover-trigger="mouseenter"
                                popover-placement="left"/>
