@@ -72,10 +72,25 @@
             </tr>
             <tr>
                 <td>
+                    <label for="validatePattern">Validate Pattern</label>
+                </td>
+                <td>
+                    <input name="validatePattern" ng-model="valueConstraint.validatePattern"
+                           popover="Regular expression for input validation."
+                           popover-title="Validate Pattern" popover-trigger="mouseenter"
+                           popover-placement="right"/>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr ng-repeat="d in valueConstraint.defaults">
+                <td>
                     <label for="editable">Default URI</label>
                 </td>
                 <td>
-                    <input name="defaultURI" ng-model="valueConstraint.defaultURI"
+                    <input name="defaultURI" ng-model="d.defaultURI"
                             popover="Value constraint default value URI."
                             popover-title="Default URI" popover-trigger="mouseenter"
                             popover-placement="right"/>
@@ -84,16 +99,23 @@
                     <label for="editable">Default Literal</label>
                 </td>
                 <td>
-                    <input name="defaultLiteral" ng-model="valueConstraint.defaultLiteral"
+                    <input name="defaultLiteral" ng-model="d.defaultLiteral" ng-pattern="/{{ valueConstraint.validatePattern }}/"
                             popover="Value constraint default literal value."
                             popover-title="Default Literal" popover-trigger="mouseenter"
-                            popover-placement="left">
-                    </select>
+                            popover-placement="left"/>
+                    <a href="#" onclick="event.returnValue = false; return false;" ng-click="deleteDefault($index)">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
                 </td>
             </tr>
         </tbody>
     </table>
     
+    <a id="addDefault" ng-click="addDefault()" style="display: block;">
+        <i class="fa fa-plus"></i>
+        Add Default
+    </a>
+
     <div id="valueDataType" class="propertyItems">
         <div ng-repeat="field in constraintFields" sss-field item="{{field}}" html='html/valueDataType.html'></div>
     </div>

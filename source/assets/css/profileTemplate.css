@@ -296,7 +296,7 @@ div.page-footer div.page-info {
 @media (max-width: 767px) {
     #search_bar {
         position: absolute;
-        //top: 44em;
+        /* top: 44em; */
         top: 9.8em;
         left: 2.4em;
     }
@@ -344,7 +344,7 @@ div.page-footer div.page-info {
 }
 
 .popover {
-    //min-width: 100px;
+    /* min-width: 100px; */
     max-width: 250px;
     width: auto;
 }
@@ -408,7 +408,7 @@ td label {
 }
 
 #wrapper {
-    //max-width: 1583px;
+    /* max-width: 1583px; */
     margin-left: 0px;
 }
 
@@ -512,4 +512,8 @@ div[id^=resourceTemplates] {
 
 div#deleteModal div.modal-body {
     text-align: center;
+}
+
+[name="defaultLiteral"].ng-invalid {
+    color: red;
 }

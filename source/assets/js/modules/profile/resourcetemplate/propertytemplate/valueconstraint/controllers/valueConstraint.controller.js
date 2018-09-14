@@ -51,6 +51,18 @@ angular.module('locApp.modules.profile.controllers')
             $scope.loadCount++;
         }
 
+        // create new defaults array if it doesn't exist
+        if ($scope.valueConstraint.defaults === undefined) {
+            $scope.valueConstraint.defaults = [];
+        }
+
+        // we better move the defaults data to the old model to the new one.
+        if ($scope.valueConstraint.defaultURI || $scope.valueConstraint.defaultLiteral) {
+            var defObject = { "defaultURI" : $scope.valueConstraint.defaultURI, "defaultLiteral" : $scope.valueConstraint.defaultLiteral };
+            $scope.valueConstraint.defaults[0] = defObject;
+            delete $scope.valueConstraint.defaultURI;
+            delete $scope.valueConstraint.defaultLiteral
+        }
         // Method to get the template references
         if(!$scope.selectList) {
             var rts = [];
@@ -112,4 +124,26 @@ angular.module('locApp.modules.profile.controllers')
             $scope.deleteItem($scope.parentId, $scope.valueFields);
             $scope.deleteItem($scope.parentId, $scope.valueConstraint.useValuesFrom);
         };
+
+        /**
+         * @ngdoc function
+         * @name addDefault
+         * @description
+         * Adds a row to defaults 
+         */
+        $scope.addDefault = function() {
+            var defaults = {"defaultURI":"", "defaultLiteral":""};
+            $scope.valueConstraint.defaults.push(defaults);
+        };
+
+        /**
+         * @ngdoc function
+         * @name deleteDefault
+         * @description
+         * Deletes a defaults row
+         */
+        $scope.deleteDefault = function(index) {
+            $scope.valueConstraint.defaults.splice(index,1);
+        };
     });
+    
