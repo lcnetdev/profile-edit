@@ -33,6 +33,7 @@
                     </td>
                     <td>
                         <input type="url" name="propertyURI" ng-model="propertyTemplate.propertyURI" required
+                               ng-blur="checkPropertyURI()"
                                popover="URI of the RDF property being described"
                                popover-title="Property URI" popover-trigger="mouseenter"
                                popover-placement="right"/>
@@ -41,7 +42,10 @@
                         </div>
                         <div class="error" ng-show="!propertyForm.propertyURI.$error.required && propertyForm.propertyURI.$dirty && propertyForm.propertyURI.$invalid">
                            <small class="error">url is invalid</small>
-                        </div> 
+                        </div>
+                        <div class="warn" ng-show="propertyForm.propertyURI.$warn">
+                            <small class="fa fa-warning red">URI did not resolve!</small>
+                        </div>
                     </td>
                     <td>
                         <label for="propertyLabel">Property Label</label>
