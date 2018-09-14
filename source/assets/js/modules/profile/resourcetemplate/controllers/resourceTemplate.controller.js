@@ -148,6 +148,7 @@ angular.module('locApp.modules.profile.controllers')
          * Check if URI resolves
          */
         $scope.checkURI = function() {
+            $scope.resourceForm.resourceURI.$warn = false;
             var url = 'server/whichrt?uri=' + $scope.resourceTemplate.resourceURI;
             $http({
                 method: 'HEAD',
@@ -156,6 +157,7 @@ angular.module('locApp.modules.profile.controllers')
             .then(function (response) {
             }, function (response) {
                 console.log($scope.resourceTemplate.resourceURI + ' did not resolve!')
+                $scope.resourceForm.resourceURI.$warn = true;
             });
         };
     });

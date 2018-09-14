@@ -35,7 +35,7 @@
                                popover-title="Resource ID" popover-trigger="mouseenter"
                                popover-placement="right"/>
                         <div class="error" ng-show="resourceForm.resourceId.$invalid">
-                            <small class="error">Not unique</small>
+                            <small class="error">ID not unique</small>
                         </div>
                     </td>
 
@@ -43,7 +43,7 @@
                         <label for="resourceURI">Resource URI</label>
                     </td>
                     <td>
-                       <input  type="url" name="resourceURI" ng-model="resourceTemplate.resourceURI" required
+                        <input  type="url" name="resourceURI" ng-model="resourceTemplate.resourceURI" required
                                ng-blur="checkURI()"
                                popover="URI of the RDF resource associated with the resource template"
                                popover-title="Resource URI" popover-trigger="mouseenter"
@@ -51,9 +51,12 @@
                         <div class="error" style="display: inline-block;" ng-show="resourceForm.resourceURI.$error.required">
                             <i class="fa fa-warning red"></i>
                         </div>
-                       <div class="error" ng-show="!resourceForm.resourceURI.$error.required && resourceForm.resourceURI.$dirty && resourceForm.resourceURI.$invalid">
-                           <small class="error">uri is invalid</small>
-                       </div>
+                        <div class="error" ng-show="!resourceForm.resourceURI.$error.required && resourceForm.resourceURI.$dirty && resourceForm.resourceURI.$invalid">
+                             <small class="error">uri is invalid</small>
+                        </div>
+                        <div class="warn" ng-show="resourceForm.resourceURI.$warn">
+                            <small class="fa fa-warning red">URI did not resolve!</small>
+                        </div>
                     </td>
                 </tr>
 
