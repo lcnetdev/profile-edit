@@ -28,6 +28,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.profile = {};
         $scope.profile.resourceTemplates = [];
         $scope.resourceTemplatesBase = [];
+        $scope.propertyTypes = [];
 
         $scope.oldTitle = "";
         $scope.searchText = "";
@@ -103,6 +104,12 @@ angular.module('locApp.modules.profile.controllers')
                     $scope.titleList.push(response[i].json.Profile.title);
                     $scope.idList.push(response[i].id);
                 }
+            });
+
+        // Get propertyTypes
+        Server.get('/verso/api/configs?filter[where][name]=propertyTypes', {}, true)
+            .then(function(response) {
+                $scope.propertyTypes = response[0].json;
             });
 
         /**

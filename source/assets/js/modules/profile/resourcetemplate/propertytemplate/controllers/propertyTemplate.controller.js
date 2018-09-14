@@ -17,7 +17,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.resources = [];
         $scope.propResourceBase = [];
         $scope.addIndexProperty = 0;
-        
+
         $scope.resNest = $scope.getResNest();
         
         // Logic for creating/retreveing object

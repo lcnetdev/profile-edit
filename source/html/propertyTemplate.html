@@ -62,10 +62,12 @@
                         <label for="type">Type</label>
                     </td>
                     <td>
-                        <input name="type" ng-model="propertyTemplate.type"
+                        <select name="type" ng-model="propertyTemplate.type"
+                               ng-options="item for item in propertyTypes"
                                popover="Type or value that is allowed by this property."
                                popover-title="Type" popover-trigger="mouseenter"
-                               popover-placement="right"/>
+                               popover-placement="right">
+                        </select>
                     </td>
                     <td>
                         <label for="remark">Guiding statement for the use of this resource</label>
