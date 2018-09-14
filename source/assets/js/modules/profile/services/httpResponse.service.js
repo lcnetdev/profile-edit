@@ -33,6 +33,10 @@ angular.module('locApp.modules.profile.services')
         responseService.responseError = function(rejection) {
             //watched by the alert directive to know when to show messages
             console.log(rejection);
+            if (rejection.message === undefined && rejection.status !== undefined) {
+                var url = rejection.config.url.replace(/.+uri=/,'');
+                rejection.message = 'There was a problem loading ' + url + ' (' + rejection.status + ' ' + rejection.statusText + ')';
+            }
             if(rejection.message.match(/Syntax error/) || rejection.message.match(/Unexpected token/) || rejection.message.match(/JSON.parse/)) {
                 responseService.alertError = !responseService.alertError;
                 responseService.errorMessage = "There was an error parsing the response. Please review the file and try again.";
