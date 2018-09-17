@@ -461,18 +461,18 @@ angular.module('locApp.modules.profile.controllers')
             delete $scope.profile.json;
 
             $scope.profile.json = angular.toJson(jsonObj);
+            var versoJson = angular.fromJson($scope.profile.json);
 
             var versoModel = { 
                 "name": $scope.profile.title,
                 "configType": "profile",
-                "json": $scope.profile.json
+                "json": versoJson
             };
-            versoModelStr = JSON.stringify(versoModel);
 
             var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
 
             // Save
-            Server.post('/verso/api/configs/' + postUrl, versoModelStr)
+            Server.post('/verso/api/configs/' + postUrl, versoModel)
                 .then(function() {
                     localStorageService.remove('templateRefs');
                     $state.go('profile.list');
