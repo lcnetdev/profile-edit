@@ -5,7 +5,7 @@
  * handles the scope variable for resource templates
  */
 angular.module('locApp.modules.profile.controllers')
-    .controller('resourceTemplateController', function($scope, Vocab, Scrub) {
+    .controller('resourceTemplateController', function($scope, Scrub, localStorageService, $http) {
         $scope.resourceFields = [];
         $scope.resourceTemplate = {};
         $scope.addIndexResource = 0;
@@ -124,6 +124,40 @@ angular.module('locApp.modules.profile.controllers')
             },
             distance: '10'
         };
+
+        /**
+         * @ngdoc function
+         * @name checkID
+         * @description
+         * Check if the template id is unique
+         */
+        $scope.checkID = function() {
+            $scope.resourceForm.resourceId.$invalid = false;
+            var templateRefs = localStorageService.get('templateRefs');
+            templateRefs.find(function (t) {
+                if (t == $scope.resourceTemplate.id) {
+                    $scope.resourceForm.resourceId.$invalid = true;
+                };
+            });
+        };
+
+        /**
+         * @ngdoc function
+         * @name checkURI
+         * @description
+         * Check if URI resolves
+         */
+        $scope.checkURI = function() {
+            $scope.resourceForm.resourceURI.$warn = false;
+            var url = 'server/whichrt?uri=' + $scope.resourceTemplate.resourceURI;
+            $http({
+                method: 'HEAD',
+                url: url
+            })
+            .then(function (response) {
+            }, function (response) {
+                console.log($scope.resourceTemplate.resourceURI + ' did not resolve!')
+                $scope.resourceForm.resourceURI.$warn = true;
+            });
+        };
     });
-
-

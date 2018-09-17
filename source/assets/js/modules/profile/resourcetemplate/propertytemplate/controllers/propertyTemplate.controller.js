@@ -5,7 +5,7 @@
  * Handles the scope variable for property templates
 */
 angular.module('locApp.modules.profile.controllers')
-    .controller('propertyTemplateController', function($scope, $state, $stateParams, Scrub) {
+    .controller('propertyTemplateController', function($scope, $state, $stateParams, Scrub, $http) {
         $scope.propertyFields = [];
         $scope.propertyTemplate = {
             mandatory:  'false',
@@ -17,7 +17,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.resources = [];
         $scope.propResourceBase = [];
         $scope.addIndexProperty = 0;
-        
+
         $scope.resNest = $scope.getResNest();
         
         // Logic for creating/retreveing object
@@ -112,6 +112,26 @@ angular.module('locApp.modules.profile.controllers')
                 $scope.propertyTemplate.resourceTemplates = $scope.rearrangeData($scope.resources, $scope.propResourceBase);
             },
             distance: '10'
+        };
+
+        /**
+         * @ngdoc function
+         * @name checkPropertyURI
+         * @description
+         * Check if the property URI resolves
+         */
+        $scope.checkPropertyURI = function() {
+            $scope.propertyForm.propertyURI.$warn = false;
+            var url = 'server/whichrt?uri=' + $scope.propertyTemplate.propertyURI;
+            $http({
+                method: 'HEAD',
+                url: url
+            })
+            .then(function (response) {
+            }, function (response) {
+                console.log($scope.propertyTemplate.propertyURI + ' did not resolve!')
+                $scope.propertyForm.propertyURI.$warn = true;
+            });
         };
         
     });
