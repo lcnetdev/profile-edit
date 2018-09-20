@@ -1,5 +1,0 @@
-[
-    {"comment": "Bibframe RDF files"},
-    {"key": "Bibframe", "value": "/server/bibframe.rdf"},
-    {"key": "MADSRDF", "value": "/server/mads.rdf"}
-]
