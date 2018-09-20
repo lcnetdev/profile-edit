@@ -1,6 +1,6 @@
 {
   "name": "profile-editor",
-  "version": "1.1.1",
+  "version": "1.3.0",
   "description": "Bibframe Profile Editor",
   "main": "Gruntfile.js",
   "dependencies": {
