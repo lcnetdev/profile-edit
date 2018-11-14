@@ -11,7 +11,7 @@ angular.module('locApp.modules.profile.services')
 
         handler.errors = [];
 
-        var profAttributes = ["id","title","description","date","contact","remark","resourceTemplates"];
+        var profAttributes = ["id","title","description","date","author","contact","remark","adherence","resourceTemplates", "source"];
         var resAttributes = ["id","resourceURI","resourceURL","resourceLabel","propertyTemplates","contact","remark"];
         var propAttributes = ["propertyURI","propertyLabel","mandatory","repeatable","type","valueConstraint","remark", "resourceTemplates"];
         var consAttributes = ["valueLanguage","languageURI","languageLabel","valueDataType","valueTemplateRefs","useValuesFrom","editable","remark", "repeatable", "defaultURI", "defaultLiteral", "defaults", "validatePattern"];
