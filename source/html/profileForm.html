@@ -248,15 +248,15 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="contact">Contact</label>
+                                    <label for="author">Author</label>
                                 </td>
                                 <td>
-                                    <input name="contact" ng-model="profile.contact"
+                                    <input name="author" ng-model="profile.author"
                                            popover="Contact information associated with the profile."
-                                           popover-title="Contact" popover-trigger="mouseenter"
+                                           popover-title="Profile Author" popover-trigger="mouseenter"
                                            popover-placement="right"/>
                                 </td>
-
+    
                                 <td>
                                     <label for="remark">Remark</label>
                                 </td>
@@ -266,6 +266,30 @@
                                            popover-title="Remark" popover-trigger="mouseenter"
                                            popover-placement="left"/>
                                 </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <label for="adherence">Adherence</label>
+                              </td>
+                              <td>
+                                <input name="adherence" ng-model="profile.adherence"
+                                       popover="What rules this profile follows" popover-trigger="mouseenter"
+                                       popover-title="Adherence"
+                                       popover-placement="right" />
+                              </td>
+                              <td>
+                                <label for="source">Source</label>
+                              </td>
+                              <td>
+                                <input type="url" name="source" ng-model="profile.source"
+                                       ng-blur="checkSourceURI()"
+                                       popover="Link to more information about profile" popover-trigger="mouseenter"
+                                       popover-title="Source URL"
+                                       popover-placeholder="left" />
+                                 <div class="warn" ng-show="profileForm.source.$warn">
+                                     <small class="fa fa-warning red">URI did not resolve!</small>
+                                 </div>
+                              </td>
                             </tr>
                         </tbody>
                     </table>

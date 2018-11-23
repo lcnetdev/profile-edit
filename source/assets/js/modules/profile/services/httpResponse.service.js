@@ -33,12 +33,14 @@ angular.module('locApp.modules.profile.services')
         responseService.responseError = function(rejection) {
             //watched by the alert directive to know when to show messages
             console.log(rejection);
-            if(rejection.message.match(/Syntax error/) || rejection.message.match(/Unexpected token/) || rejection.message.match(/JSON.parse/)) {
-                responseService.alertError = !responseService.alertError;
-                responseService.errorMessage = "There was an error parsing the response. Please review the file and try again.";
-            } else {
-                responseService.alertError = !responseService.alertError;
-                responseService.errorMessage = rejection.message;
+            if(rejection.message !== undefined){
+                if(rejection.message.match(/Syntax error/) || rejection.message.match(/Unexpected token/) || rejection.message.match(/JSON.parse/)) {
+                    responseService.alertError = !responseService.alertError;
+                    responseService.errorMessage = "There was an error parsing the response. Please review the file and try again.";
+                } else {
+                    responseService.alertError = !responseService.alertError;
+                    responseService.errorMessage = rejection.message;
+                }
             }
             return $q.reject(rejection);
         };
