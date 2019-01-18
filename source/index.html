@@ -271,7 +271,10 @@
         var cooks = document.cookie;
         var ll = document.getElementById('login-logout');
         if (cooks.match(/access_token=|current_user=/)) {
-            ll.innerText = 'Logout';
+            var userEnc = cooks.replace(/.*?current_user=(.+?)(;|$).*/, "$1")
+            var userDec = decodeURIComponent(userEnc);
+            var user = JSON.parse(userDec);
+            ll.innerText = 'Logout ' + user.username;
             ll.href = '#/profile/logout'
         } else {
             ll.innerText = 'Login';
