@@ -90,9 +90,16 @@
                         <img src="assets/images/bibframe-newlogo.png"/>
                         <span class="bold">Library of Congress&nbsp;</span>
                         <span class="normal">Bibframe Profile Editor</span>
-
                     </div>
+                    <div class="collapse navbar-collapse visible-print">
+                        <ul class="nav navbar-nav navbar-right">
+                                <li><a id="login-logout" href="/login.html" style="padding-top: 10px; padding-bottom: 10px">Login</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
+                
+                </header>
             </header>
             <!-- <![endif]-->
             
@@ -259,6 +266,19 @@
     <script>
         var year = new Date(Date.now()).getFullYear();
         $('#copyrightTest').html("Copyright &copy; " + year + " Library of Congress");
+    </script>
+    <script>
+        var cooks = document.cookie;
+        var ll = document.getElementById('login-logout');
+        if (cooks.match(/access_token=|current_user=/)) {
+            var userEnc = cooks.replace(/.*?current_user=(.+?)(;|$).*/, "$1")
+            var userDec = decodeURIComponent(userEnc);
+            var user = JSON.parse(userDec);
+            ll.innerText = 'Logout ' + user.username;
+            ll.href = '#/profile/logout'
+        } else {
+            ll.innerText = 'Login';
+        }
     </script>
     
 </html>
