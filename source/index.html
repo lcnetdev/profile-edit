@@ -267,5 +267,15 @@
         var year = new Date(Date.now()).getFullYear();
         $('#copyrightTest').html("Copyright &copy; " + year + " Library of Congress");
     </script>
+    <script>
+        var cooks = document.cookie;
+        var ll = document.getElementById('login-logout');
+        if (cooks.match(/access_token=|current_user=/)) {
+            ll.innerText = 'Logout';
+            ll.href = '/logout.html'
+        } else {
+            ll.innerText = 'Login';
+        }
+    </script>
     
 </html>
