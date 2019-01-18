@@ -7,7 +7,7 @@
  */
 angular.module('locApp.modules.profile.controllers')
 
-    .controller('profileController', function($scope, $state, $stateParams, $filter, Alert, Server, FormHandler, ProfileHandler, Vocab, usSpinnerService, localStorageService) {
+    .controller('profileController', function($scope, $state, $stateParams, $filter, $http, Alert, Server, FormHandler, ProfileHandler, Vocab, usSpinnerService, localStorageService) {
 
         $scope.addPage = ($state.current.name === 'profile.create');
 
@@ -56,7 +56,27 @@ angular.module('locApp.modules.profile.controllers')
         $scope.loadCount = 0;
         $scope.loaded = 0;
 
-        
+
+        /**
+         * @ngdoc function
+         * @name checkURL
+         * @description
+         * Check if URI resolves
+        */
+        $scope.checkSourceURI = function() {
+            $scope.profileForm.source.$warn = false;
+            var url = $scope.profile.source
+            $http({
+                method: 'HEAD',
+                url: url
+            })
+            .then(function (response) {
+            }, function (response) {
+                console.log($scope.profile.source + ' did not resolve!')
+                $scope.profileForm.source.$warn = true;
+            });
+
+        };        
         
         $scope.$watch('loaded', function() {
            if($scope.loaded >= $scope.loadCount && $scope.loadCount !== 0) {

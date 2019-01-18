@@ -122,7 +122,7 @@ angular.module('locApp.modules.profile.controllers')
          */
         $scope.checkPropertyURI = function() {
             $scope.propertyForm.propertyURI.$warn = false;
-            var url = 'server/whichrt?uri=' + $scope.propertyTemplate.propertyURI;
+            var url = $scope.propertyTemplate.propertyURI;
             $http({
                 method: 'HEAD',
                 url: url

@@ -170,12 +170,24 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             resources.push(resource);
 
             property.key = name;
-
-            if (xjson.RDF.Property !== undefined){
-                property.value = buildProperties(xjson.RDF.Property);
-            } else {
-                property.value = buildProperties(xjson.RDF.ObjectProperty);
+            //the intent is to have all properties in one list
+            if (xjson.RDF.Property === undefined){
+                xjson.RDF.Property = [xjson.RDF.ObjectProperty, xjson.RDF.SymetricProperty, xjson.RDF.DatatypeProperty].filter(function(el) { return el != null; }).flat(); 
+                xjson.RDF.Property.sort(function compare(a, b) {
+                    // Use toUpperCase() to ignore character casing
+                    const propA = a.label.toString().toUpperCase();
+                    const propB = b.label.toString().toUpperCase();
+                    
+                    let comparison = 0;
+                    if (propA > propB) {
+                        comparison = 1;
+                    } else if (propA < propB) {
+                        comparison = -1;
+                  }
+                    return comparison;
+                });
             }
+            property.value = buildProperties(xjson.RDF.Property);
             properties.push(property);
 
             datatype.key = name;
@@ -247,8 +259,10 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
                             returnNumber++;
 
                             // Set local storage once we have all the data.
+                            // The Value Data Type should use the Class list, not the literal property (datatypes) list
                             if(returnNumber >= listLength) {
-                                _setLocalStorage(resources, properties, datatypes);
+                                //_setLocalStorage(resources, properties, datatypes);
+                                _setLocalStorage(resources, properties, resources);
                             }
                         }, function() {
                             returnNumber++;
