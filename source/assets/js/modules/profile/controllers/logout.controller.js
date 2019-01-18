@@ -7,7 +7,7 @@
 angular.module('locApp.modules.profile.controllers')
     .controller('logoutController', function($scope, $state, Server) {
     
-        Server.post('/verso/api/Users/logoutx', {})
+        Server.post('/verso/api/Users/logout', {})
             .then(function(response) {
                 // $state.go('profile.list', {}, {reload: true});
                 document.location = '/profile-edit/';
