@@ -517,3 +517,9 @@ div#deleteModal div.modal-body {
 [name="defaultLiteral"].ng-invalid {
     color: red;
 }
+
+.headerlinks {
+    font-size: 14px;
+    margin-right: 20px;
+    padding: 7px;
+}
