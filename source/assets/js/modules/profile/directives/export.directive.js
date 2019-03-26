@@ -15,7 +15,8 @@ angular.module('locApp.modules.profile.controllers')
                         var raw = FormHandler.getFormData(scope.profile, attrs.sssExport === "brief");
                         var name = ProfileHandler.getName(raw) + ".json";
                         var json = angular.toJson(raw);
-                        var dataStr = "data:text/json; charset=utf-8," + json;
+                        // Need to URI encode for any '#' chars in, e.g. propertyURI
+                        var dataStr = "data:text/json; charset=utf-8," + encodeURIComponent(json);
                         var downloadAnchorNode = document.createElement('a');
                         downloadAnchorNode.setAttribute("href", dataStr);
                         downloadAnchorNode.setAttribute("download", name);
