@@ -1,35 +1,35 @@
 <div ng-controller="propertyTemplateController" class="panel-heading">
-    <h4 class="panel-title profile-header">
-        <span class="accordion-toggle property-panel" data-toggle="collapse" data-parent="#propertyTemplates_{{propNest}}" href="#property_{{item}}" style="display: inline-block">
-            <i class="fa accordion-caret"></i>
-            <i class="fa faq-accordion-caret"></i>
+    <h4 class="panel-property-title profile-header">
+
+        <span style="font-size: 14px" data-toggle="collapse" data-parent="#propertyTemplates_{{propNest}}" href="#property_{{item}}" style="display: inline-block">
             <span popover="Type: {{propertyTemplate.type || 'None'}}"
         popover-title="Property URI: {{propertyTemplate.propertyURI || 'Undefined'}}"
-        popover-placement="right" popover-trigger="mouseenter">{{ propertyTemplate.propertyLabel || "Property Template"}}
+        popover-placement="right" popover-trigger="mouseenter">
+            <i class="fa fa-caret-right" style="color: black"></i>
+            {{ propertyTemplate.propertyLabel || "Property Template"}}
             </span>
             <i id="error" class="fa fa-exclamation red" ng-show="propertyForm.$invalid || !propertyValid(propertyTemplate)"></i>
         </span>
-        
-        <a id="propertyChoose" class="pull-right" data-toggle="modal" href="#chooseResource" ng-click="updateChosenProperty(propertyTemplate);" onclick="event.returnValue = false; return false;">
-            <i class="fa fa-bars"></i>
-            {{!propertyTemplate.propertyURI ? "Select Property" : "Change Property" }}
-        </a>
-        
-        <a id="deleteIcon" href="#" ng-click="verifyDelete(deleteProperty)" class="pull-right" onclick="event.returnValue = false; return false;">
-            <i class="fa fa-trash-o"></i>
-            Delete {{propertyTemplate.propertyLabel || "Property Template"}}
-        </a>
+        <span class="pull-right">
+          <a id="deleteIcon" href="#" ng-click="verifyDelete(deleteProperty)" class="" onclick="event.returnValue = false; return false;">
+              <i class="fa fa-trash-o"></i>Delete
+          </a>
+          <a id="propertyChoose" data-toggle="modal" href="#chooseResource" ng-click="updateChosenProperty(propertyTemplate);" onclick="event.returnValue = false; return false;">
+              <i class="fa fa-bars property-bars"></i>
+              {{!propertyTemplate.propertyURI ? "Select Property" : "Change Property" }}
+          </a>
+        </span>
     </h4>
 </div>
 
 <div ng-controller="propertyTemplateController" id="property_{{item}}" class="panel-collapse collapse">
     <div class="panel-body">
-        
+
         <table>
             <tbody>
                 <tr>
                     <td>
-                        <label for="propertyURI">Property URI</label>
+                        <label for="propertyURI">Property URI*</label>
                     </td>
                     <td>
                         <input type="url" name="propertyURI" ng-model="propertyTemplate.propertyURI" required
@@ -48,7 +48,7 @@
                         </div>
                     </td>
                     <td>
-                        <label for="propertyLabel">Property Label</label>
+                        <label for="propertyLabel">Property Label*</label>
                     </td>
                     <td>
                         <input name="propertyLabel" ng-model="propertyTemplate.propertyLabel"
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="type">Type</label>
+                        <label for="type">Type*</label>
                     </td>
                     <td>
                         <select name="type" ng-model="propertyTemplate.type"
@@ -70,7 +70,7 @@
                         </select>
                     </td>
                     <td>
-                        <label for="remark">Guiding statement for the use of this resource</label>
+                        <label for="remark">Guiding statement for the use of this property</label>
                     </td>
                     <td>
                         <input name="remark" ng-model="propertyTemplate.remark"
@@ -110,13 +110,5 @@
             <div ng-repeat="field in propertyFields" sss-field item={{field}} html='html/valueConstraint.html'></div>
         </div>
 
-        <div id="propertyResources">
-            <h5>Resources</h5>
-            <div id="resources_{{resNest}}" class="resources panel-group accordion-panel" ui-sortable="propResourceSortOption" ng-model="resources">
-                <div ng-form novalidate name="resourceForm" class="panel panel-default" ng-repeat="field in resources" sss-field item={{field}} html='html/resourceTemplate.html'></div>
-            </div>
-            <button class="btn btn-secondary" ng-click="addPropertyResource();" onclick="return false;">Add Resource</button>
-        </div>
-        
     </div>
 </div>
