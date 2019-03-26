@@ -148,11 +148,12 @@
 </div>
 
 <form name="profileForm" ng-submit="checkTitle()" novalidate sss-alert sss-warning sss-override sss-datepicker>
-    <h3 class="portlet-title">
-        <u>{{profile.title || profile.id || "Profile"}}</u>
-    </h4>
     <ul id="sssTab1" class="nav nav-tabs">
-        
+        <li class="nav-left">
+            <h3 class="portlet-title">
+                <u>{{profile.title || profile.id || "Profile"}}</u>    
+            </h3>
+        </li>
         <li class="nav-right btn-raised" ng-if="profile.id">
             <button type="button" class="btn btn-danger" ng-click="verifyDelete(deleteProfile)">
                 <i class="fa fa-trash-o" style="margin-right: 5px;"></i>
@@ -171,29 +172,30 @@
                 Cancel
             </button>
         </li>
-        
+        <li class="nav-right headerlinks">* Required</li>        
     </ul>
-    
     <div id="profile-panel" class="panel-group accordion-panel">
         <div class="panel panel-default">
             
             <div class="panel-heading">
                 <h4 class="panel-title profile-header" sss-changeColor>
-                    <span id="profileBanner" class="accordion-toggle" data-toggle="collapse" data-parent="#profile-pane" href="#profile">
-                        <span popover="Date: {{getDisplayDate() || 'Undefined'}}"
-                    popover-title="Profile ID: {{profile.id || 'Undefined'}}"
-                    popover-placement="right" popover-trigger="mouseenter">Profile</span>
+                <span id="profileBanner" class="accordion-toggle" data-toggle="collapse" data-parent="#profile-pane" href="#profile">
+                    <span popover="Date: {{getDisplayDate() || 'Undefined'}}"
+                          popover-title="Profile ID: {{profile.id || 'Undefined'}}"
+                          popover-placement="right" popover-trigger="mouseenter">
+                          {{profile.title || profile.id || "Profile"}}
                     </span>
+                </span> 
                 </h4>
             </div>
             
-            <div id="profile" class="panel-collapse collapse">
+            <div id="profile" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <table>
                         <tbody>
                             <tr>
                                 <td>
-                                    <label for="id">ID <!--[if lte IE 9]>
+                                    <label for="id">ID* <!--[if lte IE 9]>
                                                        <small>e.g., profile:MyRDAProfile</small>
                                                        <![endif]--></label>
                                 </td>
@@ -210,7 +212,7 @@
                                 </td>
 
                                 <td>
-                                    <label for="title">Title</label>
+                                    <label for="title">Title*</label>
                                 </td>
                                 <td>
                                     <input name="title" ng-model="profile.title" required
@@ -224,10 +226,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="description">Description</label>
+                                    <label for="description">Description*</label>
                                 </td>
                                 <td>
-                                    <input name="description" ng-model="profile.description"
+                                    <input name="description" ng-model="profile.description" required
                                            popover="Textual description associated with the profile."
                                            popover-title="Description" popover-trigger="mouseenter"
                                            popover-placement="right"/>
@@ -248,10 +250,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="author">Author</label>
+                                    <label for="author">Author*</label>
                                 </td>
                                 <td>
-                                    <input name="author" ng-model="profile.author"
+                                    <input name="author" ng-model="profile.author" required
                                            popover="Contact information associated with the profile."
                                            popover-title="Profile Author" popover-trigger="mouseenter"
                                            popover-placement="right"/>
