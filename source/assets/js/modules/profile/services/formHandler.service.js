@@ -25,6 +25,13 @@ angular.module('locApp.modules.profile.services')
             });
         };
 
+        var removeSchemaUrls = function(profile) {
+          if (profile.schema) delete profile.schema;
+          angular.forEach(profile.resourceTemplates, function(resource){
+              if (resource.schema) delete resource.schema;
+          })
+        }
+
         /**
          * @ngdoc function
          * @name getFormData
@@ -36,7 +43,8 @@ angular.module('locApp.modules.profile.services')
         handler.getFormData = function(profile, removeDefault) {
             // TODO: add things here
             if(removeDefault) removeDefaults(profile);
-            
+            removeSchemaUrls(profile);            
+
             obj = {};
             obj.Profile = profile;
             return obj;
@@ -44,4 +52,5 @@ angular.module('locApp.modules.profile.services')
 
         return handler;
     });
+
 
