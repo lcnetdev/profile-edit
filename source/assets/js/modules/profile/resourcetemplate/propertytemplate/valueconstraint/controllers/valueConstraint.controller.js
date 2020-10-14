@@ -66,7 +66,7 @@ angular.module('locApp.modules.profile.controllers')
         // Method to get the template references
         if(!$scope.selectList) {
             var rts = [];
-            Server.get('/verso/api/configs?filter[where][configType]=profile', {})
+            Server.get('/api/listconfigs?where=index.resourceType:profile', {})
                 .then(function(response) {
                     response.forEach(function(prof) {
                         prof.json.Profile.resourceTemplates.forEach(function(rt){

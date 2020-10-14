@@ -13,7 +13,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.searchText = "";
 
         if ($state.current.name == 'profile.ontologies') {
-        Server.get('/verso/api/configs?filter[where][configType]=ontology', {})
+        Server.get('/api/listconfigs?where=index.resourceType:ontology', {})
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
                     response[i].metadata.updateDate = response[i].metadata.updateDate.substring(0, 10);

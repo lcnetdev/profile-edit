@@ -12,7 +12,7 @@ angular.module('locApp.modules.profile.controllers')
         $scope.profiles = [];
         $scope.searchText = "";
 
-        Server.get('/verso/api/configs?filter[where][configType]=profile', {})
+        Server.get('/api/listconfigs?where=index.resourceType:profile', {})
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
                     // Logic to format the date correctly

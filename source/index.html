@@ -64,9 +64,54 @@
         
         <!-- Production JavaScript -->
         <!--<script src="assets/js/dist/profile-editor.min.js"></script>-->
-        <!-- Dev JavaScript -->
-        <script src="assets/js/dist/concat.js"></script>
         
+        <!-- START Dev JavaScript -->
+        <!-- <script src="assets/js/dist/concat.js"></script> -->
+        
+        <!-- base -->
+        <script src="assets/js/modules/profile/profile.module.js"></script>
+        <script src="assets/js/modules/profile/resourcetemplate/controllers/resourceTemplate.controller.js"></script>
+        <script src="assets/js/modules/profile/resourcetemplate/propertytemplate/controllers/propertyTemplate.controller.js"></script>
+        <script src="assets/js/modules/profile/resourcetemplate/propertytemplate/valueconstraint/controllers/valueConstraint.controller.js"></script>
+        <script src="assets/js/modules/profile/resourcetemplate/propertytemplate/valueconstraint/valuedatatype/controllers/valueDataType.controller.js"></script>
+        
+        <script src="assets/js/modules/help/help.module.js"></script>
+        
+        <!-- controllers -->
+        <script src="assets/js/modules/profile/controllers/import.controller.js"></script>
+        <script src="assets/js/modules/profile/controllers/ontologies.controller.js"></script>
+        <script src="assets/js/modules/profile/controllers/profile.controller.js"></script>
+        <script src="assets/js/modules/profile/controllers/profileList.controller.js"></script>
+        
+        <!-- services -->
+        <script src="assets/js/modules/profile/services/alert.service.js"></script>
+        <script src="assets/js/modules/profile/services/formHandler.service.js"></script>
+        <script src="assets/js/modules/profile/services/httpResponse.service.js"></script>
+        <script src="assets/js/modules/profile/services/import.service.js"></script>
+        <script src="assets/js/modules/profile/services/profileHandler.service.js"></script>
+        <script src="assets/js/modules/profile/services/scrub.service.js"></script>
+        <script src="assets/js/modules/profile/services/search.service.js"></script>
+        <script src="assets/js/modules/profile/services/server.service.js"></script>
+        <script src="assets/js/modules/profile/services/vocab.service.js"></script>
+        
+        <!-- directives -->
+        <script src="assets/js/modules/profile/directives/alert.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/changeColor.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/closeChooseResource.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/closeModal.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/closeWarning.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/datepicker.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/delete.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/drop.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/export.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/loading.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/override.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/profile.directive.js"></script>
+        <script src="assets/js/modules/profile/directives/warning.directive.js"></script>
+        
+        <script src="assets/js/modules/help/directives/movetop.directive.js"></script>
+        <!-- END Dev JavaScript -->
+
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/dist/profile-editor.min.css" />
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/jquery.fileupload.css" />
         <link rel="stylesheet" type="text/css" media="all" href="assets/css/jquery.fileupload-ui.css" />

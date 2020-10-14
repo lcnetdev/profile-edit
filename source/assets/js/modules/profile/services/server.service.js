@@ -78,6 +78,35 @@ angular.module('locApp.modules.profile.services')
 
             return deferred.promise;
         };
+        
+        /**
+         * @ngdoc function
+         * @name put
+         * @description
+         * Returns a promise with the server's response to the put request sent to
+         * url with params
+         * @param {type} url - relative path to which the request is sent
+         * @param {type} params - params for the request
+         * @returns {promise} the server's response
+         */
+        server.put = function(url, params) {
+            var deferred = $q.defer();
+
+            $http({
+                url: url,
+                method: "PUT",
+                headers: {'Content-Type': 'application/json'},
+                data: params
+            }).
+            success(function(response_json) {
+                deferred.resolve(response_json.data);
+            }).
+            error(function(response_json) {
+                deferred.reject(response_json.data);
+            });
+
+            return deferred.promise;
+        };
 
         /**
          * @ngdoc function

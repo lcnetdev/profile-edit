@@ -236,8 +236,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
         // if the local storage has expired, gather the data and set it up again
         // TODO: make this connect to the real RDF
         
-        // const vurl = '/verso/api/configs?filter[where][configType]=vocabulary&filter[fields][name]=true&filter[fields][id]=true&filter[where][name][neq]=Languages';
-        const vurl = '/verso/api/configs?filter[where][configType]=ontology';
+        const vurl = '/api/listconfigs?where=index.resourceType:ontology';
 
         Server.get(vurl, {}, false)
         .then(function(response){
@@ -350,7 +349,7 @@ angular.module('locApp.modules.profile.services').factory('Vocab', function($q, 
             queue.resolve(languageList);
         }
         else {
-            Server.get('/verso/api/configs?filter[where][configType]=vocabulary&filter[where][name]=Languages', {}, false)
+            Server.get('/api/listconfigs?where=index.resourceType:vocabulary&where=index.label:Languages', {}, false)
             .then(function(response) {
                 var jsonObj = response[0].json;
 

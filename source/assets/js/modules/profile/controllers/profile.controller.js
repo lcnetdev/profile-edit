@@ -94,8 +94,9 @@ angular.module('locApp.modules.profile.controllers')
 
         // HTTP request to get the data
         if ($stateParams.id) {
-            Server.get('/verso/api/configs/' + $stateParams.id, {})
+            Server.get('/ldp/verso/configs/' + $stateParams.id, {})
                 .then(function(response) {
+                    $scope.storedResponse = response;
                     $scope.insertIntoForm(response.json);
                     $scope.continueImport();
                     $scope.loading = true;
@@ -118,7 +119,7 @@ angular.module('locApp.modules.profile.controllers')
                 });
         };
         // profiles titles call
-        Server.get('/verso/api/configs?filter[where][configType]=profile', {}, true)
+        Server.get('/api/listconfigs?where=index.resourceType:profile', {}, true)
             .then(function(response) {
                 for(var i = 0; i < response.length; i++) {
                     $scope.titleList.push(response[i].json.Profile.title);
@@ -127,7 +128,7 @@ angular.module('locApp.modules.profile.controllers')
             });
 
         // Get propertyTypes
-        Server.get('/verso/api/configs?filter[where][name]=propertyTypes', {}, true)
+        Server.get('/api/listconfigs?where=index.label:propertyTypes', {}, true)
             .then(function(response) {
                 $scope.propertyTypes = response[0].json;
             });
@@ -495,15 +496,44 @@ angular.module('locApp.modules.profile.controllers')
                 "configType": "profile",
                 "json": versoJson
             };
-
-            var postUrl = ($stateParams.id) ? $stateParams.id + '/replace' : '';
+            var d = new Date();
+            if ($scope.storedResponse !== undefined) {
+                versoModel = Object.assign($scope.storedResponse, versoModel);
+                if (versoModel["metadata"] !== undefined) {
+                    versoModel["metadata"]["updateDate"] = d.toISOString();
+                }
+            } else {
+                var newid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, 
+                    function(c) {
+                        var r = Math.random() * 16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                        return v.toString(16);
+                    });
+                $stateParams.id = newid;
+                versoModel["id"] = newid;
+                versoModel["metadata"] = {
+                    "createDate": d.toISOString(),
+                    "modifiedDate": d.toISOString(),
+                    "createUser": null,
+                    "updateUser": null
+                };
+            }
+            
+            var urltoken = ($stateParams.id) ? $stateParams.id : '';
 
             // Save
-            Server.post('/verso/api/configs/' + postUrl, versoModel)
+            if (urltoken != '') {
+                Server.put('/ldp/verso/configs/' + urltoken, versoModel)
                 .then(function() {
                     localStorageService.remove('templateRefs');
                     $state.go('profile.list');
-                 });
+                 });    
+            } else {
+                Server.post('/ldp/verso/configs/', versoModel)
+                .then(function() {
+                    localStorageService.remove('templateRefs');
+                    $state.go('profile.list');
+                 });    
+            }
         };
 
         /**
@@ -543,7 +573,7 @@ angular.module('locApp.modules.profile.controllers')
          * Deletes the profile from the server
          */
         $scope.deleteProfile = function() {
-            Server.deleteItem('/verso/api/configs/' + $stateParams.id, {})
+            Server.deleteItem('/ldp/verso/configs/' + $stateParams.id, {})
                 .then(function() {
                         $state.go('profile.list');
                 }, function(err) {
