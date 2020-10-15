@@ -153,6 +153,7 @@ angular.module('locApp.modules.profile.controllers')
             var url = $scope.resourceTemplate.resourceURI;
             $http({
                 method: 'HEAD',
+                headers: {'Accept': 'text/html'},
                 url: url
             })
             .then(function (response) {
