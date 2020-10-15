@@ -512,7 +512,7 @@ angular.module('locApp.modules.profile.controllers')
                 versoModel["id"] = newid;
                 versoModel["metadata"] = {
                     "createDate": d.toISOString(),
-                    "modifiedDate": d.toISOString(),
+                    "updateDate": d.toISOString(),
                     "createUser": null,
                     "updateUser": null
                 };
