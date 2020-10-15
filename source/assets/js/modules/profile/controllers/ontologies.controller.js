@@ -45,7 +45,7 @@ angular.module('locApp.modules.profile.controllers')
         };
 
         if ($stateParams.id && $stateParams.id != 'create') {
-            Server.get('/verso/api/configs/' + $stateParams.id, {})
+            Server.get('/ldp/verso/configs/' + $stateParams.id, {})
                 .then(function(response) {
                     $scope.ontology = response;
                 });
@@ -56,17 +56,46 @@ angular.module('locApp.modules.profile.controllers')
                 $scope.ontology.name = $scope.ontology.json.label + '-ontology';
             }
             $scope.ontology.configType = 'ontology';
-            var postUrl = ($scope.ontology.id != null) ? $stateParams.id + '/replace' : '';
-            var url = '/verso/api/configs/' + postUrl;
-            Server.post(url, $scope.ontology)
+            
+            var d = new Date();
+            if ($scope.ontology.id != null) {
+                $scope.ontology.metadata.updateDate = d.toISOString();
+            } else {
+                var newid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, 
+                    function(c) {
+                        var r = Math.random() * 16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                        return v.toString(16);
+                    });
+                $stateParams.id = newid;
+                $scope.ontology["id"] = newid;
+                $scope.ontology["metadata"] = {
+                    "createDate": d.toISOString(),
+                    "updateDate": d.toISOString(),
+                    "createUser": null,
+                    "updateUser": null
+                };
+            }
+            
+            var urltoken = ($scope.ontology.id != null) ? $stateParams.id : '';
+            
+            if (urltoken != '') {
+                Server.put('/ldp/verso/configs/' + urltoken, $scope.ontology)
                 .then(function() {
                     localStorageService.clearAll();
                     $state.go('profile.ontologies');
-                 })
+                 });    
+            } else {
+                Server.post('/ldp/verso/configs/', $scope.ontology)
+                .then(function() {
+                    localStorageService.clearAll();
+                    $state.go('profile.ontologies');
+                 });    
+            }
+
         }
 
         $scope.ontologyDelete = function() {
-            var url = '/verso/api/configs/' + $scope.ontology.id;
+            var url = '/ldp/verso/configs/' + $scope.ontology.id;
             Server.deleteItem(url, {})
                 .then(function() {
                     localStorageService.clearAll();
