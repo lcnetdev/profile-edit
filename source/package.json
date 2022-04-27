@@ -7,7 +7,7 @@
     "angular-local-storage": "~0.2.2",
     "angular-spinner": "~0.6.1",
     "findup-sync": "^2.0.0",
-    "grunt": "^1.0.4",
+    "grunt": "^1.5.2",
     "grunt-contrib-uglify-es": "^3.3.0",
     "lodash": ">=4.17.15",
     "spin.js": "~2.3.1",
