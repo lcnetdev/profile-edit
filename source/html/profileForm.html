@@ -216,9 +216,9 @@
                                 </td>
                                 <td>
                                     <input name="title" ng-model="profile.title" required
-                                           popover="Textual title assoicated with the profile"
-                                           popover-title="Title" popover-trigger="mouseenter"
-                                           popover-placement="left"/>
+                                           popoverx="Textual title assoicated with the profile"
+                                           popoverx-title="Title" popoverx-trigger="mouseenter"
+                                           popoverx-placement="left"/>
                                     <div class="error" style="display: inline-block;" ng-show="profileForm.title.$error.required">
                                         <i class="fa fa-warning red"></i>
                                     </div>
@@ -230,9 +230,9 @@
                                 </td>
                                 <td>
                                     <input name="description" ng-model="profile.description" required
-                                           popover="Textual description associated with the profile."
-                                           popover-title="Description" popover-trigger="mouseenter"
-                                           popover-placement="right"/>
+                                           popoverx="Textual description associated with the profile."
+                                           popoverx-title="Description" popoverx-trigger="mouseenter"
+                                           popoverx-placement="right"/>
                                 </td>
 
                                 <td>
@@ -240,9 +240,9 @@
                                 </td>
                                 <td>
                                     <input type="text" name="date" ng-model="profile.date" 
-                                           popover="Date associated with the profile"
-                                           popover-title="Date" popover-trigger="mouseenter"
-                                           popover-placement="left" class="datepicker"/>
+                                           popoverx="Date associated with the profile"
+                                           popoverx-title="Date" popoverx-trigger="mouseenter"
+                                           popoverx-placement="left" class="datepicker"/>
                                     <div class="error" ng-show="profileForm.date.$dirty && profileForm.date.$invalid">
                                        <small class="error">Date is invalid</small>
                                    </div>
@@ -254,9 +254,9 @@
                                 </td>
                                 <td>
                                     <input name="author" ng-model="profile.author" required
-                                           popover="Contact information associated with the profile."
-                                           popover-title="Profile Author" popover-trigger="mouseenter"
-                                           popover-placement="right"/>
+                                           popoverx="Contact information associated with the profile."
+                                           popoverx-title="Profile Author" popoverx-trigger="mouseenter"
+                                           popoverx-placement="right"/>
                                 </td>
     
                                 <td>
@@ -264,9 +264,9 @@
                                 </td>
                                 <td>
                                     <input name="remark" ng-model="profile.remark"
-                                           popover="Comment or guiding statement intended to be presented as supplementary information in user display."
-                                           popover-title="Remark" popover-trigger="mouseenter"
-                                           popover-placement="left"/>
+                                           popoverx="Comment or guiding statement intended to be presented as supplementary information in user display."
+                                           popoverx-title="Remark" popoverx-trigger="mouseenter"
+                                           popoverx-placement="left"/>
                                 </td>
                             </tr>
                             <tr>
@@ -275,9 +275,9 @@
                               </td>
                               <td>
                                 <input name="adherence" ng-model="profile.adherence"
-                                       popover="What rules this profile follows" popover-trigger="mouseenter"
-                                       popover-title="Adherence"
-                                       popover-placement="right" />
+                                       popoverx="What rules this profile follows" popoverx-trigger="mouseenter"
+                                       popoverx-title="Adherence"
+                                       popoverx-placement="right" />
                               </td>
                               <td>
                                 <label for="source">Source</label>
@@ -285,9 +285,9 @@
                               <td>
                                 <input type="url" name="source" ng-model="profile.source"
                                        ng-blur="checkSourceURI()"
-                                       popover="Link to more information about profile" popover-trigger="mouseenter"
-                                       popover-title="Source URL"
-                                       popover-placeholder="left" />
+                                       popoverx="Link to more information about profile" popoverx-trigger="mouseenter"
+                                       popoverx-title="Source URL"
+                                       popoverx-placeholder="left" />
                                  <div class="warn" ng-show="profileForm.source.$warn">
                                      <small class="fa fa-warning red">URI did not resolve!</small>
                                  </div>
@@ -306,7 +306,7 @@
     </div>
     
     <button id="addResource" class="btn btn-secondary" type="button" ng-click="addResource()"
-            popover="">
+            popoverx="">
         <i class="fa fa-plus" style="color: white; margin-right: 1em;"></i>
         Add Resource Template
     </button>
