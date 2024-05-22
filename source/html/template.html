@@ -2,16 +2,16 @@
     <div>
         <label for="template">Template</label>
         <!-- <input id="templateInput_{{item}}_{{parentId}}" type="text" name="template" list="templateList" ng-model="valueConstraint.valueTemplateRefs[parentId]" 
-                popover="A resource template identifier that defines the expected value."
-                popover-title="Value Template Reference" popover-trigger="mouseenter"
-                popover-placement="right"/> -->
+                popoverx="A resource template identifier that defines the expected value."
+                popoverx-title="Value Template Reference" popoverx-trigger="mouseenter"
+                popoverx-placement="right"/> -->
         <!-- <datalist id="templateList"> -->
             <select id="templateSelect_{{item}}_{{parentId}}"
                     ng-options="item for item in selectList track by item"
                     ng-model="valueConstraint.valueTemplateRefs[parentId]"
-                    popover="A resource template identifier that defines the expected value."
-                    popover-title="Value Template Reference" popover-trigger="mouseenter"
-                    popover-placement="right">
+                    popoverx="A resource template identifier that defines the expected value."
+                    popoverx-title="Value Template Reference" popoverx-trigger="mouseenter"
+                    popoverx-placement="right">
             </select>
         <!-- </datalist> -->
         <a href="#" onclick="event.returnValue = false; return false;" ng-click="verifyDelete(deleteTemplate)">

@@ -180,9 +180,9 @@
             <div class="panel-heading">
                 <h4 class="panel-title profile-header" sss-changeColor>
                 <span id="profileBanner" class="accordion-toggle" data-toggle="collapse" data-parent="#profile-pane" href="#profile">
-                    <span popover="Date: {{getDisplayDate() || 'Undefined'}}"
-                          popover-title="Profile ID: {{profile.id || 'Undefined'}}"
-                          popover-placement="right" popover-trigger="mouseenter">
+                    <span popoverx="Date: {{getDisplayDate() || 'Undefined'}}"
+                          popoverx-title="Profile ID: {{profile.id || 'Undefined'}}"
+                          popoverx-placement="right" popoverx-trigger="mouseenter">
                           {{profile.title || profile.id || "Profile"}}
                     </span>
                 </span> 
@@ -202,9 +202,9 @@
                                 <td>
                                     
                                     <input name="id" ng-model="profile.id" required
-                                           popover="Unique identifier associated with the profile"
-                                           popover-title="Profile ID" popover-trigger="mouseenter"
-                                           popover-placement="right" placeholder="eg., profile:MyRDAProfile"
+                                           popoverx="Unique identifier associated with the profile"
+                                           popoverx-title="Profile ID" popoverx-trigger="mouseenter"
+                                           popoverx-placement="right" placeholder="eg., profile:MyRDAProfile"
                                            />
                                     <div class="error" style="display: inline-block;" ng-show="profileForm.id.$error.required">
                                         <i class="fa fa-warning red"></i>

@@ -2,9 +2,9 @@
     <h4 class="panel-property-title profile-header">
 
         <span style="font-size: 14px" data-toggle="collapse" data-parent="#propertyTemplates_{{propNest}}" href="#property_{{item}}" style="display: inline-block">
-            <span popover="Type: {{propertyTemplate.type || 'None'}}"
-        popover-title="Property URI: {{propertyTemplate.propertyURI || 'Undefined'}}"
-        popover-placement="right" popover-trigger="mouseenter">
+            <span popoverx="Type: {{propertyTemplate.type || 'None'}}"
+        popoverx-title="Property URI: {{propertyTemplate.propertyURI || 'Undefined'}}"
+        popoverx-placement="right" popoverx-trigger="mouseenter">
             <i class="fa fa-caret-right" style="color: black"></i>
             {{ propertyTemplate.propertyLabel || "Property Template"}}
             </span>
@@ -34,9 +34,9 @@
                     <td>
                         <input type="url" name="propertyURI" ng-model="propertyTemplate.propertyURI" required
                                ng-blur="checkPropertyURI()"
-                               popover="URI of the RDF property being described"
-                               popover-title="Property URI" popover-trigger="mouseenter"
-                               popover-placement="right"/>
+                               popoverx="URI of the RDF property being described"
+                               popoverx-title="Property URI" popoverx-trigger="mouseenter"
+                               popoverx-placement="right"/>
                         <div class="error" style="display: inline-block;" ng-show="propertyForm.propertyURI.$error.required">
                             <i class="fa fa-warning red"></i>
                         </div>
@@ -52,9 +52,9 @@
                     </td>
                     <td>
                         <input name="propertyLabel" ng-model="propertyTemplate.propertyLabel"
-                                popover="Preferred, human readable label associated with the property."
-                                popover-title="Property Label" popover-trigger="mouseenter"
-                                popover-placement="left"/>
+                                popoverx="Preferred, human readable label associated with the property."
+                                popoverx-title="Property Label" popoverx-trigger="mouseenter"
+                                popoverx-placement="left"/>
                     </td>
                 </tr>
                 <tr>
@@ -64,9 +64,9 @@
                     <td>
                         <select name="type" ng-model="propertyTemplate.type"
                                ng-options="item for item in propertyTypes"
-                               popover="Type or value that is allowed by this property."
-                               popover-title="Type" popover-trigger="mouseenter"
-                               popover-placement="right">
+                               popoverx="Type or value that is allowed by this property."
+                               popoverx-title="Type" popoverx-trigger="mouseenter"
+                               popoverx-placement="right">
                         </select>
                     </td>
                     <td>
@@ -74,9 +74,9 @@
                     </td>
                     <td>
                         <input name="remark" ng-model="propertyTemplate.remark"
-                               popover="Comment or guiding statement intended to be presented as supplementary information in user display"
-                               popover-title="Property Remark" popover-trigger="mouseenter"
-                               popover-placement="left"/>
+                               popoverx="Comment or guiding statement intended to be presented as supplementary information in user display"
+                               popoverx-title="Property Remark" popoverx-trigger="mouseenter"
+                               popoverx-placement="left"/>
                     </td>
                 </tr>
                 <tr>
@@ -86,9 +86,9 @@
                     <td>
                         <select name="mandatory" ng-options="option.key as option.label for option in options"
                                 ng-required ng-model="propertyTemplate.mandatory"
-                                popover="indication that the property is mandatory"
-                                popover-title="Mandatory" popover-trigger="mouseenter"
-                                popover-placement="right">
+                                popoverx="indication that the property is mandatory"
+                                popoverx-title="Mandatory" popoverx-trigger="mouseenter"
+                                popoverx-placement="right">
                         </select>
                     </td>
                     <td>
@@ -97,9 +97,9 @@
                     <td>
                         <select name="repeatable" ng-options="option.key as option.label for option in options"
                                 ng-required ng-model="propertyTemplate.repeatable"
-                                popover="Indication that the property is repeatable"
-                                popover-title="Repeatable" popover-trigger="mouseenter"
-                                popover-placement="left">
+                                popoverx="Indication that the property is repeatable"
+                                popoverx-title="Repeatable" popoverx-trigger="mouseenter"
+                                popoverx-placement="left">
                         </select>
                     </td>
                 </tr>

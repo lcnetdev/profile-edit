@@ -10,18 +10,18 @@
                 </td>
                 <td>
                     <input name="valueLanguage" ng-model="valueConstraint.valueLanguage"
-                           popover="Language specified for a literal"
-                           popover-title="Value Language" popover-trigger="mouseenter"
-                           popover-placement="right"/>
+                           popoverx="Language specified for a literal"
+                           popoverx-title="Value Language" popoverx-trigger="mouseenter"
+                           popoverx-placement="right"/>
                 </td>
                 <td>
                     <label for="languageURI">Language URI</label>
                 </td>
                 <td>
                     <select name="languageURI" ng-model="valueConstraint.languageURI"
-                            popover="URI associated with the language of the literal"
-                            popover-title="Language URI" popover-trigger="mouseenter"
-                            popover-placement="left" ng-options="option.value as option.key for option in languages">
+                            popoverx="URI associated with the language of the literal"
+                            popoverx-title="Language URI" popoverx-trigger="mouseenter"
+                            popoverx-placement="left" ng-options="option.value as option.key for option in languages">
                     </select>
                     
                 </td>
@@ -32,18 +32,18 @@
                 </td>
                 <td>
                     <input name="languageLabel" ng-model="valueConstraint.languageLabel"
-                           popover="Preferred, human readable label associated with the language of the literal."
-                           popover-title="Language Label" popover-trigger="mouseenter"
-                           popover-placement="right"/>
+                           popoverx="Preferred, human readable label associated with the language of the literal."
+                           popoverx-title="Language Label" popoverx-trigger="mouseenter"
+                           popoverx-placement="right"/>
                 </td>
                 <td>
                     <label for="remark">Remark</label>
                 </td>
                 <td>
                     <input name="remark" ng-model="valueConstraint.remark"
-                           popover="Comment or guiding statement intended to be presented as supplementary information in user display"
-                           popover-title="Value Constraint Remark" popover-trigger="mouseenter"
-                           popover-placement="left"/>
+                           popoverx="Comment or guiding statement intended to be presented as supplementary information in user display"
+                           popoverx-title="Value Constraint Remark" popoverx-trigger="mouseenter"
+                           popoverx-placement="left"/>
                 </td>
             </tr>
             <tr>
@@ -53,9 +53,9 @@
                 <td>
                     <select name="editable" ng-options="option.key as option.label for option in options"
                             ng-required ng-model="valueConstraint.editable"
-                            popover="Whether the value provided for the property is meant to be modified by a cataloguer. If not, the specified default value is in effect fixed"
-                            popover-title="Editable" popover-trigger="mouseenter"
-                            popover-placement="right">
+                            popoverx="Whether the value provided for the property is meant to be modified by a cataloguer. If not, the specified default value is in effect fixed"
+                            popoverx-title="Editable" popoverx-trigger="mouseenter"
+                            popoverx-placement="right">
                     </select>
                 </td>
             </tr>
@@ -65,9 +65,9 @@
                 </td>
                 <td>
                     <input name="validatePattern" ng-model="valueConstraint.validatePattern"
-                           popover="Regular expression for input validation."
-                           popover-title="Validate Pattern" popover-trigger="mouseenter"
-                           popover-placement="right"/>
+                           popoverx="Regular expression for input validation."
+                           popoverx-title="Validate Pattern" popoverx-trigger="mouseenter"
+                           popoverx-placement="right"/>
                 </td>
                 <td>
                 </td>
@@ -80,18 +80,18 @@
                 </td>
                 <td>
                     <input name="defaultURI" ng-model="d.defaultURI"
-                            popover="Value constraint default value URI."
-                            popover-title="Default URI" popover-trigger="mouseenter"
-                            popover-placement="right"/>
+                            popoverx="Value constraint default value URI."
+                            popoverx-title="Default URI" popoverx-trigger="mouseenter"
+                            popoverx-placement="right"/>
                 </td>
                 <td>
                     <label for="editable">Default Literal</label>
                 </td>
                 <td>
                     <input name="defaultLiteral" ng-model="d.defaultLiteral" ng-pattern="/{{ valueConstraint.validatePattern }}/"
-                            popover="Value constraint default literal value."
-                            popover-title="Default Literal" popover-trigger="mouseenter"
-                            popover-placement="left"/>
+                            popoverx="Value constraint default literal value."
+                            popoverx-title="Default Literal" popoverx-trigger="mouseenter"
+                            popoverx-placement="left"/>
                     <a href="#" onclick="event.returnValue = false; return false;" ng-click="deleteDefault($index)">
                         <i class="fa fa-trash-o"></i>
                     </a>

@@ -1439,7 +1439,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // ===============================
 
   var Popover = function (element, options) {
-    this.init('popover', element, options)
+    this.init('popoverx', element, options)
   }
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
@@ -1448,7 +1448,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     placement: 'right',
     trigger: 'click',
     content: '',
-    template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+    template: '<div class="popoverx"><div class="arrow"></div><h3 class="popoverx-title"></h3><div class="popoverx-content"></div></div>'
   })
 
 
@@ -1468,8 +1468,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     var title   = this.getTitle()
     var content = this.getContent()
 
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content')[ // we use append for html objects to maintain js events
+    $tip.find('.popoverx-title')[this.options.html ? 'html' : 'text'](title)
+    $tip.find('.popoverx-content')[ // we use append for html objects to maintain js events
       this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
     ](content)
 
@@ -1477,7 +1477,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
     // this manually by checking the contents.
-    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
+    if (!$tip.find('.popoverx-title').html()) $tip.find('.popoverx-title').hide()
   }
 
   Popover.prototype.hasContent = function () {

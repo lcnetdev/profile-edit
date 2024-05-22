@@ -1,14 +1,14 @@
 <div ng-controller="resourceTemplateController" class="panel-heading">
     <h4 class="panel-title profile-header" sss-changeColor>
         <span id="{{item}}" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#{{collapsing}}_{{resNest}}" href="#resource_{{item}}" sssChangeColor>
-            <span popover="URI: {{resourceTemplate.resourceURI || 'Undefined'}}"
-        popover-title="Resource ID: {{resourceTemplate.id || 'Undefined'}}"
-        popover-trigger="mouseenter" popover-placement="right">{{resourceTemplate.resourceLabel || resourceTemplate.id || "Resource Template"}}
+            <span popoverx="URI: {{resourceTemplate.resourceURI || 'Undefined'}}"
+        popoverx-title="Resource ID: {{resourceTemplate.id || 'Undefined'}}"
+        popoverx-trigger="mouseenter" popoverx-placement="right">{{resourceTemplate.resourceLabel || resourceTemplate.id || "Resource Template"}}
             </span>
             <i id="error" class="fa fa-exclamation red" ng-show="resourceForm.$invalid || !resourceValid(resourceTemplate)"
-                popover="Resource templates must contain a resource URI and at least one property template"
-                popover-title="Resource Template" popover-trigger="mouseenter"
-                popover-placement="right" style="width: 2em;"></i>
+                popoverx="Resource templates must contain a resource URI and at least one property template"
+                popoverx-title="Resource Template" popoverx-trigger="mouseenter"
+                popoverx-placement="right" style="width: 2em;"></i>
 
 
                 <a id="resourceChoose" class="pull-right" data-toggle="modal" href="#chooseResource" ng-click="updateChosenResource(resourceTemplate, parentList);" onclick="event.returnValue = false; return false;">
@@ -31,9 +31,9 @@
                     </td>
                     <td>
                         <input name="resourceId" ng-model="resourceTemplate.id" ng-change="checkID()" required
-                               popover="Identifier associated with a resource template"
-                               popover-title="Resource ID" popover-trigger="mouseenter"
-                               popover-placement="right"/>
+                               popoverx="Identifier associated with a resource template"
+                               popoverx-title="Resource ID" popoverx-trigger="mouseenter"
+                               popoverx-placement="right"/>
                         <div class="error" ng-show="resourceForm.resourceId.$invalid">
                             <small class="error">ID not unique</small>
                         </div>
@@ -45,9 +45,9 @@
                     <td>
                         <input  type="url" name="resourceURI" ng-model="resourceTemplate.resourceURI" required
                                ng-blur="checkURI()"
-                               popover="URI of the RDF resource associated with the resource template"
-                               popover-title="Resource URI" popover-trigger="mouseenter"
-                               popover-placement="left"/>
+                               popoverx="URI of the RDF resource associated with the resource template"
+                               popoverx-title="Resource URI" popoverx-trigger="mouseenter"
+                               popoverx-placement="left"/>
                         <div class="error" style="display: inline-block;" ng-show="resourceForm.resourceURI.$error.required">
                             <i class="fa fa-warning red"></i>
                         </div>
@@ -66,9 +66,9 @@
                     </td>
                     <td>
                        <input name="resourceLabel" ng-model="resourceTemplate.resourceLabel"
-                              popover="Localized label associated with the resource template"
-                              popover-title="Resource Label" popover-trigger="mouseenter"
-                              popover-placement="right"/>
+                              popoverx="Localized label associated with the resource template"
+                              popoverx-title="Resource Label" popoverx-trigger="mouseenter"
+                              popoverx-placement="right"/>
                     </td>
 
                     <td>
@@ -76,9 +76,9 @@
                     </td>
                     <td>
                         <input name="rtAuthor" ng-model="resourceTemplate.author"
-                               popover="Contact information associated with the resource template"
-                               popover-title="Resource Title" popover-trigger="mouseenter"
-                               popover-placement="left"/>
+                               popoverx="Contact information associated with the resource template"
+                               popoverx-title="Resource Title" popoverx-trigger="mouseenter"
+                               popoverx-placement="left"/>
                     </td>
                 </tr>
                 <tr>
@@ -87,9 +87,9 @@
                     </td>
                     <td>
                         <input name="rtRemark" ng-model="resourceTemplate.remark"
-                                popover="Comment or guiding statement intended to be presented as supplementary information in user display. A common use for this is to notify a user of code lists or schemata associated with the expected value of this resource."
-                                popover-title="Remark" popover-trigger="mouseenter"
-                                popover-placement="right"/>
+                                popoverx="Comment or guiding statement intended to be presented as supplementary information in user display. A common use for this is to notify a user of code lists or schemata associated with the expected value of this resource."
+                                popoverx-title="Remark" popoverx-trigger="mouseenter"
+                                popoverx-placement="right"/>
                     </td>
                 </tr>
             </tbody>
